@@ -183,30 +183,6 @@ CREATE TABLE IF NOT EXISTS `wineManager`.`wines_has_grapeVarieties` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `wineManager`.`wines_has_storageboxes`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `wineManager`.`wines_has_storageboxes` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `wine_id` INT NOT NULL,
-  `storagebox_id` INT NOT NULL,
-  `wines_has_storageboxescol` VARCHAR(45) NULL,
-  INDEX `fk_wines_has_storageboxes_storageboxes1_idx` (`storagebox_id` ASC),
-  INDEX `fk_wines_has_storageboxes_wines1_idx` (`wine_id` ASC),
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  CONSTRAINT `fk_wines_has_storageboxes_wines1`
-    FOREIGN KEY (`wine_id`)
-    REFERENCES `wineManager`.`wines` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wines_has_storageboxes_storageboxes1`
-    FOREIGN KEY (`storagebox_id`)
-    REFERENCES `wineManager`.`storageboxes` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `wineManager`.`wines_has_alerts`
