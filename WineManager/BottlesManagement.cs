@@ -32,22 +32,28 @@ namespace WineManager
             dvgBottles.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             dvgBottles.GridColor = Color.Black;
 
-            //columns name
-            dvgBottles.Columns[0].Name = "Nom du vin";
-            dvgBottles.Columns[1].Name = "Producteur";
-            dvgBottles.Columns[2].Name = "xxx";
-            dvgBottles.Columns[3].Name = "xxx";
-            dvgBottles.Columns[4].Name = "xxx";
-            dvgBottles.Columns[5].Name = "xxx";
-            dvgBottles.Columns[6].Name = "xxx";
-            dvgBottles.Columns[7].Name = "xxx";
-            dvgBottles.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            //column width - default : 100px
+            dvgBottles.Columns[0].Width = 55;
+            dvgBottles.Columns[3].Width = 45;
+            dvgBottles.Columns[4].Width = 50;
+            dvgBottles.Columns[5].Width = 55;
 
-            //List<Bottles> lstBottle = Bottles.Load();
-            //foreach (Bottles bot in lstBottle)
+
+            //columns name
+            dvgBottles.Columns[1].Name = "Nom du vin";
+            dvgBottles.Columns[2].Name = "Producteur";
+            dvgBottles.Columns[3].Name = "Année";
+            dvgBottles.Columns[4].Name = "Volume";
+            dvgBottles.Columns[5].Name = "Couleurs";
+            dvgBottles.Columns[6].Name = "Cépage(s)";
+            dvgBottles.Columns[7].Name = "Description";
+            dvgBottles.Columns[0].Name = "Quantité";
+
+            List<Bottles> lstBottle = Bottles.ShowAllBottles();
+            foreach (Bottles bot in lstBottle)
             {
-               // string[] row = { bot.Name, bot.Manufacturer, bot.State, bot.Renter, bot.ExpectedReturn.ToString(), bot.ID.ToString() };
-               // dvgBottles.Rows.Add(row);
+               string[] row = { bot.BottleNumber.ToString(), bot.Name, bot.Manufacturer, bot.Year.ToString(), bot.Volume.ToString(), bot.Color, bot.Varietal.ToString(), bot.Description, };
+               dvgBottles.Rows.Add(row);
             }
         }
 

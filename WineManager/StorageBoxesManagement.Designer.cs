@@ -34,15 +34,15 @@ namespace WineManager
             this.grpDel = new System.Windows.Forms.GroupBox();
             this.lblStorageNumberOUT = new System.Windows.Forms.Label();
             this.comboWine = new System.Windows.Forms.ComboBox();
+            this.btnDelStorage = new System.Windows.Forms.Button();
             this.lblDesc = new System.Windows.Forms.Label();
             this.rtxtDescription = new System.Windows.Forms.RichTextBox();
             this.lblStorageNumber = new System.Windows.Forms.Label();
             this.txtBottleName = new System.Windows.Forms.TextBox();
+            this.btnAddStorage = new System.Windows.Forms.Button();
             this.grpActions = new System.Windows.Forms.GroupBox();
             this.radDelStorage = new System.Windows.Forms.RadioButton();
             this.radAddStorage = new System.Windows.Forms.RadioButton();
-            this.btnAddStorage = new System.Windows.Forms.Button();
-            this.btnDelStorage = new System.Windows.Forms.Button();
             this.dvgStorageBoxes = new System.Windows.Forms.DataGridView();
             this.lblStorage = new System.Windows.Forms.Label();
             this.grpAdd.SuspendLayout();
@@ -59,6 +59,7 @@ namespace WineManager
             this.btnMainPage.TabIndex = 0;
             this.btnMainPage.Text = "Retourner à la page principale";
             this.btnMainPage.UseVisualStyleBackColor = true;
+            this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
             // 
             // grpAdd
             // 
@@ -104,6 +105,15 @@ namespace WineManager
             this.comboWine.Size = new System.Drawing.Size(277, 21);
             this.comboWine.TabIndex = 7;
             // 
+            // btnDelStorage
+            // 
+            this.btnDelStorage.Location = new System.Drawing.Point(648, 88);
+            this.btnDelStorage.Name = "btnDelStorage";
+            this.btnDelStorage.Size = new System.Drawing.Size(118, 23);
+            this.btnDelStorage.TabIndex = 4;
+            this.btnDelStorage.Text = "Supprimer le casier";
+            this.btnDelStorage.UseVisualStyleBackColor = true;
+            // 
             // lblDesc
             // 
             this.lblDesc.AutoSize = true;
@@ -136,6 +146,15 @@ namespace WineManager
             this.txtBottleName.Name = "txtBottleName";
             this.txtBottleName.Size = new System.Drawing.Size(277, 20);
             this.txtBottleName.TabIndex = 0;
+            // 
+            // btnAddStorage
+            // 
+            this.btnAddStorage.Location = new System.Drawing.Point(648, 88);
+            this.btnAddStorage.Name = "btnAddStorage";
+            this.btnAddStorage.Size = new System.Drawing.Size(118, 23);
+            this.btnAddStorage.TabIndex = 3;
+            this.btnAddStorage.Text = "Ajouter le casier";
+            this.btnAddStorage.UseVisualStyleBackColor = true;
             // 
             // grpActions
             // 
@@ -170,24 +189,6 @@ namespace WineManager
             this.radAddStorage.Text = "Ajouter un casier";
             this.radAddStorage.UseVisualStyleBackColor = true;
             // 
-            // btnAddStorage
-            // 
-            this.btnAddStorage.Location = new System.Drawing.Point(648, 88);
-            this.btnAddStorage.Name = "btnAddStorage";
-            this.btnAddStorage.Size = new System.Drawing.Size(118, 23);
-            this.btnAddStorage.TabIndex = 3;
-            this.btnAddStorage.Text = "Ajouter le casier";
-            this.btnAddStorage.UseVisualStyleBackColor = true;
-            // 
-            // btnDelStorage
-            // 
-            this.btnDelStorage.Location = new System.Drawing.Point(648, 88);
-            this.btnDelStorage.Name = "btnDelStorage";
-            this.btnDelStorage.Size = new System.Drawing.Size(118, 23);
-            this.btnDelStorage.TabIndex = 4;
-            this.btnDelStorage.Text = "Supprimer le casier";
-            this.btnDelStorage.UseVisualStyleBackColor = true;
-            // 
             // dvgStorageBoxes
             // 
             this.dvgStorageBoxes.BackgroundColor = System.Drawing.SystemColors.ControlDark;
@@ -218,6 +219,7 @@ namespace WineManager
             this.Controls.Add(this.btnMainPage);
             this.Name = "StorageBoxesManagementfrm";
             this.Text = "Gestion des casiers";
+            this.Load += new System.EventHandler(this.StorageBoxesManagementfrm_Load);
             this.grpAdd.ResumeLayout(false);
             this.grpAdd.PerformLayout();
             this.grpDel.ResumeLayout(false);

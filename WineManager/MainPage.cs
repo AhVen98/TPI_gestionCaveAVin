@@ -13,12 +13,11 @@ namespace WineManager
 {
     public partial class MainPagefrm : Form
     {
-        //DBConnection connDB = new DBConnection();
+        DBConnection connDB = new DBConnection();
 
         public MainPagefrm()
         {
             InitializeComponent();
-            //connDB.openConnection();
         }
 
         private void GestionDesBouteillesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -44,7 +43,6 @@ namespace WineManager
 
         private void QuitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //connDB.CloseConnection();
             ActiveForm.Close();
         }
 

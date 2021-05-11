@@ -61,3 +61,6 @@ C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\
 C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\obj\Debug\WineManager_View.csproj.CopyComplete
+C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\WineManager_Library.dll
+C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\WineManager_Library.pdb
+C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\WineManager_Library.dll.config

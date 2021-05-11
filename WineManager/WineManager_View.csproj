@@ -201,5 +201,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WineManager_Library\WineManager_Library.csproj">
+      <Project>{a73e4ebb-d8a4-44fc-aa04-ddfff2e7d533}</Project>
+      <Name>WineManager_Library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

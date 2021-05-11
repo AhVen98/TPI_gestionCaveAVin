@@ -19,8 +19,6 @@ namespace WineManager
             InitConnexion();
         }
 
-        MySqlCommand cmd;
-
         // Method to initialize connection
         private void InitConnexion()
         {
@@ -39,23 +37,20 @@ namespace WineManager
         // Method to initialise the variable for the query
         public MySqlCommand CreateQuery()
         {
-            cmd = connection.CreateCommand();
-            return cmd;
+            return connection.CreateCommand();
         }
 
         // Method to execute the query received in parameter
         public void ExecuteQuery(MySqlCommand command)
         {
-            cmd = command;
-            cmd.ExecuteNonQuery();
+            command.ExecuteNonQuery();
         }
 
 
         // Method used in other to read the content of a select in database
         public MySqlDataReader Select(MySqlCommand command)
         {
-            cmd = command;
-            return cmd.ExecuteReader();
+            return command.ExecuteReader();
         }
 
 
