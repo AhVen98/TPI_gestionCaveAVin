@@ -23,21 +23,21 @@ namespace WineManager
         private void GestionDesBouteillesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BottlesManagementfrm frmBottle = new BottlesManagementfrm();
-            MainPagefrm.ActiveForm.Enabled = false;
+            HideMainPage();
             frmBottle.Show();
         }
 
         private void GestionDesCasiersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StorageBoxesManagementfrm frmStorage = new StorageBoxesManagementfrm();
-            MainPagefrm.ActiveForm.Enabled = false;
+            HideMainPage();
             frmStorage.Show();
         }
 
         private void GérerLesAlertesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AlertsManagementfrm frmAlert = new AlertsManagementfrm();
-            MainPagefrm.ActiveForm.Enabled = false;
+            HideMainPage();
             frmAlert.Show();
         }
 
@@ -49,15 +49,26 @@ namespace WineManager
         private void ExporterEnPDFToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Researchfrm frmSearch = new Researchfrm();
-            MainPagefrm.ActiveForm.Enabled = false;
+            HideMainPage();
             frmSearch.Show();
         }
 
         private void AfficherLhistoriqueToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            HideMainPage();
             Logsfrm frmLog = new Logsfrm();
-            MainPagefrm.ActiveForm.Enabled = false;
             frmLog.Show();
+        }
+
+        public void HideMainPage()
+        {
+            this.Hide();
+        }
+
+        public void ShowMainPage()
+        {
+            this.Show();
         }
     }
 }

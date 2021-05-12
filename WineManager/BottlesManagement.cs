@@ -59,8 +59,58 @@ namespace WineManager
 
             private void BtnMainPage_Click(object sender, EventArgs e)
         {
+            //ShowMainPage();
+        }
+
+        private void radAddBottle_CheckedChanged(object sender, EventArgs e)
+        {
+                grpAdd.Visible = true;
+                grpDel.Visible = false;
+                btnAdd.Visible = true;
+                btnDel.Visible = false;       
+        }
+
+        private void radDelBottles_CheckedChanged(object sender, EventArgs e)
+        {
+                grpDel.Visible = true;
+                btnDel.Visible = true; 
+                grpAdd.Visible = false;
+                btnAdd.Visible = false;
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
 
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string wineName;
+            int number;
+            string year;
+            string description;
+
+            wineName = txtBottleName.Text;
+            bool successNumber = Int32.TryParse(txtNumber.Text, out number);
+
+            //if all tests are okay, check 
+            if (successNumber == true)
+            {
+                if (number < 1)
+                {
+                    MessageBox.Show("Le nombre de bouteilles spécifié n'est pas valide.");
+                    txtNumber.Text = "";
+                }
+                else
+                {
+                    
+                }
+            }
+            else
+            {
+                MessageBox.Show("Le nombre de bouteilles spécifié n'est pas valide.");
+                txtNumber.Text = "";
+            }
+        }
     }
 }

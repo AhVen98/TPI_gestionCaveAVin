@@ -118,6 +118,7 @@ namespace WineManager
             this.grpAdd.TabIndex = 1;
             this.grpAdd.TabStop = false;
             this.grpAdd.Text = "Ajouter des bouteilles";
+
             // 
             // grpDel
             // 
@@ -425,6 +426,7 @@ namespace WineManager
             this.radDelBottles.TabIndex = 1;
             this.radDelBottles.Text = "Sortir des bouteilles";
             this.radDelBottles.UseVisualStyleBackColor = true;
+            this.radDelBottles.CheckedChanged += new System.EventHandler(this.radDelBottles_CheckedChanged);
             // 
             // radAddBottle
             // 
@@ -437,6 +439,7 @@ namespace WineManager
             this.radAddBottle.TabStop = true;
             this.radAddBottle.Text = "Ajouter des bouteilles";
             this.radAddBottle.UseVisualStyleBackColor = true;
+            this.radAddBottle.CheckedChanged += new System.EventHandler(this.radAddBottle_CheckedChanged);
             // 
             // btnAdd
             // 
@@ -446,6 +449,7 @@ namespace WineManager
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Ajouter les bouteilles";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDel
             // 
@@ -455,6 +459,7 @@ namespace WineManager
             this.btnDel.TabIndex = 4;
             this.btnDel.Text = "Sortir les bouteilles";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // dvgBottles
             // 
