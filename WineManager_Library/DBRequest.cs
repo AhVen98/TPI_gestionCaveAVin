@@ -41,6 +41,8 @@ namespace WineManager
                 lstVarietal.Add(varietyName);
             }
 
+
+
             string combinedString = string.Join(", ", lstVarietal);
             connDB2.CloseConnection();
             return combinedString;
@@ -205,5 +207,127 @@ namespace WineManager
             return combinedString;
         }
 
-}
+        /**
+        * SQL request to get a list of all manufacturers present in the database
+        * return a list of string
+        * used for the dropdown field in the bottlesmanagement
+        */
+        public List<string> GetListManufacturers()
+        {
+            connDB.OpenConnection();
+
+            List<string> lstManu = new List<string>();
+            MySqlCommand cmdGetManufacturers= connDB.CreateQuery();
+
+            cmdGetManufacturers.CommandText = "SELECT manufacturersName FROM manufacturers";
+
+
+            MySqlDataReader value = connDB.Select(cmdGetManufacturers);
+
+            while (value.Read())
+            {
+                for (int i = 0; i < value.FieldCount; i++)
+                {
+                    lstManu.Add(value.GetString(i));
+                }
+            }
+
+            connDB.CloseConnection();
+            return lstManu;
+        }
+
+        /**
+        * SQL request to get a list of all wine's colors present in the database
+        * return a list of string
+        * used for the dropdown field in the bottlesmanagement
+        */
+        public List<string> GetListColors()
+        {
+            connDB.OpenConnection();
+
+            List<string> lstCol = new List<string>();
+            MySqlCommand cmdGetColors = connDB.CreateQuery();
+
+            cmdGetColors.CommandText = "SELECT wineColor FROM colors";
+
+
+            MySqlDataReader value = connDB.Select(cmdGetColors);
+
+            while (value.Read())
+            {
+                for (int i = 0; i < value.FieldCount; i++)
+                {
+                    lstCol.Add(value.GetString(i));
+                }
+            }
+
+            connDB.CloseConnection();
+            return lstCol;
+        }
+
+        /**
+        * SQL request to get a list of all wine's colors present in the database
+        * return a list of string
+        * used for the dropdown field in the bottlesmanagement
+        */
+        public List<string> GetListVarieties()
+        {
+            connDB.OpenConnection();
+
+            List<string> lstVar = new List<string>();
+            MySqlCommand cmdGetVarieties = connDB.CreateQuery();
+
+            cmdGetVarieties.CommandText = "SELECT varietyName FROM grapeVarieties";
+
+
+            MySqlDataReader value = connDB.Select(cmdGetVarieties);
+
+            while (value.Read())
+            {
+                for (int i = 0; i < value.FieldCount; i++)
+                {
+                    lstVar.Add(value.GetString(i));
+                }
+            }
+
+            connDB.CloseConnection();
+            return lstVar;
+        }
+
+        /**
+        * SQL request to get a list of all wine's colors present in the database
+        * return a list of string
+        * used for the dropdown field in the bottlesmanagement
+        */
+        public List<string> GetListStorages()
+        {
+            connDB.OpenConnection();
+
+            List<string> lstStor = new List<string>();
+            MySqlCommand cmdGetStorage = connDB.CreateQuery();
+
+            cmdGetStorage.CommandText = "SELECT name FROM storageBoxes";
+
+
+            MySqlDataReader value = connDB.Select(cmdGetStorage);
+
+            while (value.Read())
+            {
+                for (int i = 0; i < value.FieldCount; i++)
+                {
+                    lstStor.Add(value.GetString(i));
+                }
+            }
+
+            connDB.CloseConnection();
+            return lstStor;
+        }
+
+        public bool CheckBottlePresence(string name, int year, double volume)
+        {
+            bool presence = false;
+
+            return presence;
+        }
+    }
 }

@@ -35,22 +35,22 @@ namespace WineManager
             this.lblBottleNameOUT = new System.Windows.Forms.Label();
             this.comboWine = new System.Windows.Forms.ComboBox();
             this.lblManufacturerOUT = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboManufacturerOUT = new System.Windows.Forms.ComboBox();
             this.lblYearOUT = new System.Windows.Forms.Label();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.comboYearOUT = new System.Windows.Forms.ComboBox();
             this.lblVolumeOUT = new System.Windows.Forms.Label();
             this.txtVolumeOUT = new System.Windows.Forms.TextBox();
             this.lblNumberOUT = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboVolume = new System.Windows.Forms.ComboBox();
+            this.comboStorage = new System.Windows.Forms.ComboBox();
             this.lblDesc = new System.Windows.Forms.Label();
             this.lblVariety3 = new System.Windows.Forms.Label();
             this.lblVariety2 = new System.Windows.Forms.Label();
             this.lblVariety1 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboVariety3 = new System.Windows.Forms.ComboBox();
+            this.comboVariety2 = new System.Windows.Forms.ComboBox();
+            this.comboVariety1 = new System.Windows.Forms.ComboBox();
             this.lblStorage = new System.Windows.Forms.Label();
             this.lblVolume = new System.Windows.Forms.Label();
             this.lblColor = new System.Windows.Forms.Label();
@@ -82,7 +82,7 @@ namespace WineManager
             this.btnMainPage.Location = new System.Drawing.Point(670, 12);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(118, 52);
-            this.btnMainPage.TabIndex = 0;
+            this.btnMainPage.TabIndex = 2;
             this.btnMainPage.Text = "Retourner à la page principale";
             this.btnMainPage.UseVisualStyleBackColor = true;
             this.btnMainPage.Click += new System.EventHandler(this.BtnMainPage_Click);
@@ -90,15 +90,15 @@ namespace WineManager
             // grpAdd
             // 
             this.grpAdd.Controls.Add(this.grpDel);
-            this.grpAdd.Controls.Add(this.comboBox7);
-            this.grpAdd.Controls.Add(this.comboBox4);
+            this.grpAdd.Controls.Add(this.comboVolume);
+            this.grpAdd.Controls.Add(this.comboStorage);
             this.grpAdd.Controls.Add(this.lblDesc);
             this.grpAdd.Controls.Add(this.lblVariety3);
             this.grpAdd.Controls.Add(this.lblVariety2);
             this.grpAdd.Controls.Add(this.lblVariety1);
-            this.grpAdd.Controls.Add(this.comboBox3);
-            this.grpAdd.Controls.Add(this.comboBox2);
-            this.grpAdd.Controls.Add(this.comboBox1);
+            this.grpAdd.Controls.Add(this.comboVariety3);
+            this.grpAdd.Controls.Add(this.comboVariety2);
+            this.grpAdd.Controls.Add(this.comboVariety1);
             this.grpAdd.Controls.Add(this.lblStorage);
             this.grpAdd.Controls.Add(this.lblVolume);
             this.grpAdd.Controls.Add(this.lblColor);
@@ -118,16 +118,15 @@ namespace WineManager
             this.grpAdd.TabIndex = 1;
             this.grpAdd.TabStop = false;
             this.grpAdd.Text = "Ajouter des bouteilles";
-
             // 
             // grpDel
             // 
             this.grpDel.Controls.Add(this.lblBottleNameOUT);
             this.grpDel.Controls.Add(this.comboWine);
             this.grpDel.Controls.Add(this.lblManufacturerOUT);
-            this.grpDel.Controls.Add(this.comboBox5);
+            this.grpDel.Controls.Add(this.comboManufacturerOUT);
             this.grpDel.Controls.Add(this.lblYearOUT);
-            this.grpDel.Controls.Add(this.comboBox6);
+            this.grpDel.Controls.Add(this.comboYearOUT);
             this.grpDel.Controls.Add(this.lblVolumeOUT);
             this.grpDel.Controls.Add(this.txtVolumeOUT);
             this.grpDel.Controls.Add(this.lblNumberOUT);
@@ -165,13 +164,13 @@ namespace WineManager
             this.lblManufacturerOUT.TabIndex = 6;
             this.lblManufacturerOUT.Text = "Producteur*";
             // 
-            // comboBox5
+            // comboManufacturerOUT
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(73, 52);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(277, 21);
-            this.comboBox5.TabIndex = 7;
+            this.comboManufacturerOUT.FormattingEnabled = true;
+            this.comboManufacturerOUT.Location = new System.Drawing.Point(73, 52);
+            this.comboManufacturerOUT.Name = "comboManufacturerOUT";
+            this.comboManufacturerOUT.Size = new System.Drawing.Size(277, 21);
+            this.comboManufacturerOUT.TabIndex = 7;
             // 
             // lblYearOUT
             // 
@@ -182,13 +181,13 @@ namespace WineManager
             this.lblYearOUT.TabIndex = 5;
             this.lblYearOUT.Text = "Année de production*";
             // 
-            // comboBox6
+            // comboYearOUT
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(525, 25);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(245, 21);
-            this.comboBox6.TabIndex = 13;
+            this.comboYearOUT.FormattingEnabled = true;
+            this.comboYearOUT.Location = new System.Drawing.Point(525, 25);
+            this.comboYearOUT.Name = "comboYearOUT";
+            this.comboYearOUT.Size = new System.Drawing.Size(245, 21);
+            this.comboYearOUT.TabIndex = 13;
             // 
             // lblVolumeOUT
             // 
@@ -222,21 +221,21 @@ namespace WineManager
             this.textBox2.Size = new System.Drawing.Size(123, 20);
             this.textBox2.TabIndex = 0;
             // 
-            // comboBox7
+            // comboVolume
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(490, 45);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(90, 21);
-            this.comboBox7.TabIndex = 17;
+            this.comboVolume.FormattingEnabled = true;
+            this.comboVolume.Location = new System.Drawing.Point(490, 45);
+            this.comboVolume.Name = "comboVolume";
+            this.comboVolume.Size = new System.Drawing.Size(90, 21);
+            this.comboVolume.TabIndex = 17;
             // 
-            // comboBox4
+            // comboStorage
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(490, 72);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(90, 21);
-            this.comboBox4.TabIndex = 16;
+            this.comboStorage.FormattingEnabled = true;
+            this.comboStorage.Location = new System.Drawing.Point(490, 72);
+            this.comboStorage.Name = "comboStorage";
+            this.comboStorage.Size = new System.Drawing.Size(90, 21);
+            this.comboStorage.TabIndex = 16;
             // 
             // lblDesc
             // 
@@ -274,29 +273,29 @@ namespace WineManager
             this.lblVariety1.TabIndex = 14;
             this.lblVariety1.Text = "Cépage*";
             // 
-            // comboBox3
+            // comboVariety3
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(657, 72);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(112, 21);
-            this.comboBox3.TabIndex = 13;
+            this.comboVariety3.FormattingEnabled = true;
+            this.comboVariety3.Location = new System.Drawing.Point(657, 72);
+            this.comboVariety3.Name = "comboVariety3";
+            this.comboVariety3.Size = new System.Drawing.Size(112, 21);
+            this.comboVariety3.TabIndex = 13;
             // 
-            // comboBox2
+            // comboVariety2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(657, 45);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(112, 21);
-            this.comboBox2.TabIndex = 13;
+            this.comboVariety2.FormattingEnabled = true;
+            this.comboVariety2.Location = new System.Drawing.Point(657, 45);
+            this.comboVariety2.Name = "comboVariety2";
+            this.comboVariety2.Size = new System.Drawing.Size(112, 21);
+            this.comboVariety2.TabIndex = 13;
             // 
-            // comboBox1
+            // comboVariety1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(657, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(112, 21);
-            this.comboBox1.TabIndex = 13;
+            this.comboVariety1.FormattingEnabled = true;
+            this.comboVariety1.Location = new System.Drawing.Point(657, 19);
+            this.comboVariety1.Name = "comboVariety1";
+            this.comboVariety1.Size = new System.Drawing.Size(112, 21);
+            this.comboVariety1.TabIndex = 13;
             // 
             // lblStorage
             // 
@@ -426,7 +425,7 @@ namespace WineManager
             this.radDelBottles.TabIndex = 1;
             this.radDelBottles.Text = "Sortir des bouteilles";
             this.radDelBottles.UseVisualStyleBackColor = true;
-            this.radDelBottles.CheckedChanged += new System.EventHandler(this.radDelBottles_CheckedChanged);
+            this.radDelBottles.Click += new System.EventHandler(this.radDelBottles_Click);
             // 
             // radAddBottle
             // 
@@ -439,7 +438,7 @@ namespace WineManager
             this.radAddBottle.TabStop = true;
             this.radAddBottle.Text = "Ajouter des bouteilles";
             this.radAddBottle.UseVisualStyleBackColor = true;
-            this.radAddBottle.CheckedChanged += new System.EventHandler(this.radAddBottle_CheckedChanged);
+            this.radAddBottle.Click += new System.EventHandler(this.radAddBottle_Click);
             // 
             // btnAdd
             // 
@@ -529,26 +528,26 @@ namespace WineManager
         private System.Windows.Forms.Label lblBottleNameOUT;
         private System.Windows.Forms.ComboBox comboWine;
         private System.Windows.Forms.Label lblManufacturerOUT;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox comboManufacturerOUT;
         private System.Windows.Forms.Label lblYearOUT;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox comboYearOUT;
         private System.Windows.Forms.Label lblVolumeOUT;
         private System.Windows.Forms.TextBox txtVolumeOUT;
         private System.Windows.Forms.Label lblNumberOUT;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox comboStorage;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.Label lblVariety3;
         private System.Windows.Forms.Label lblVariety2;
         private System.Windows.Forms.Label lblVariety1;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboVariety3;
+        private System.Windows.Forms.ComboBox comboVariety2;
+        private System.Windows.Forms.ComboBox comboVariety1;
         private System.Windows.Forms.Label lblStorage;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.DataGridView dvgBottles;
         private System.Windows.Forms.Label lblStock;
-        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.ComboBox comboVolume;
     }
 }
