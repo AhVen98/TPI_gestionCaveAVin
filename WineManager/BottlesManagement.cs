@@ -74,14 +74,15 @@ namespace WineManager
             List<string> lstVarieties = new List<string>();
             List<double> lstVolumes;
             List<string> lstStorages = new List<string>();
+            List<string> lstWines = new List<string>();
+            List<int> lstYears = new List<int>();
 
-
-            //list for all manufacturer in "add a bottle"
+            //list for all manufacturer in "add a bottle" and "remove a bottle"
             lstManufacturers = req.GetListManufacturers();
             for (int i = 0; i < lstManufacturers.Count; i++)
             {
                 comboManufacturer.Items.Add(lstManufacturers[i].ToString());
-
+                comboManufacturerOUT.Items.Add(lstManufacturers[i].ToString());
             }
 
             //list for all colors in "add a bottle"
@@ -91,12 +92,13 @@ namespace WineManager
                 comboColor.Items.Add(lstColors[i].ToString());
             }
 
-            //list for possible volumes in "add a bottle"
+            //list for possible volumes in "add a bottle" and "remove a bottle"
             // fixed -> to enable other volumes, it has to be added in the list 
             lstVolumes = new List<double>() { 0.2, 0.375, 0.5, 0.75, 1.0, 1.5, 3 };
             for (int i = 0; i < lstVolumes.Count; i++)
             {
                 comboVolume.Items.Add(lstVolumes[i].ToString());
+                comboVolumeOUT.Items.Add(lstVolumes[i].ToString());
             }
 
             /** 
@@ -118,29 +120,127 @@ namespace WineManager
                 comboStorage.Items.Add(lstStorages[i].ToString());
             }
 
+            //list for all years in "remove a bottle"
+            lstYears = req.GetListDistinctYears();
+            for (int i = 0; i < lstYears.Count; i++)
+            {
+                comboYearOUT.Items.Add(lstYears[i].ToString());
+            }
+
+            lstWines = req.GetListWines();
+            for (int i = 0; i < lstYears.Count; i++)
+            {
+                comboWine.Items.Add(lstWines[i].ToString());
+            }
+
         }
 
-            private void BtnMainPage_Click(object sender, EventArgs e)
+        private void BtnMainPage_Click(object sender, EventArgs e)
         {
             //ShowMainPage();
         }
 
         private void btnDel_Click(object sender, EventArgs e)
         {
+            //initializing variables to stock informations from the wine bottle
+            string wineName = "";
+            string manufacturer = "";
+            int number = 0;
+            double volume = 0;
+            int year = 0;
 
+            // initializing the boolean to check if everything is correct -> all is false by default, so that if it works, it changes to true
+            bool successName = false;
+            bool successManu = false;
+            bool successNumber = false;
+            bool successYear = false;
+            bool successVolume = false;
+            bool successFormat = false;
+            bool successPresence = false;
+            bool successOut = false;
+
+            /**
+             * verification of data type
+             * if a field is empty and shouldn't be -> the bottle won't get out
+             */
+            if (comboWine.SelectedIndex != -1)
+            {
+                wineName = comboWine.SelectedItem.ToString();
+                successName = true;
+            }
+            if (comboVolumeOUT.SelectedIndex != -1)
+            {
+                successVolume = Double.TryParse(comboVolumeOUT.SelectedItem.ToString(), out volume);
+            }
+            if (comboManufacturerOUT.SelectedIndex != -1)
+            {
+                manufacturer = comboManufacturerOUT.SelectedItem.ToString();
+                successManu = true;
+            }
+            if (txtNumberOUT.Text != "")
+            {
+                successNumber = Int32.TryParse(txtNumberOUT.Text, out number);
+                if (number < 1)
+                {
+                    MessageBox.Show("Le nombre de bouteilles spécifié n'est pas valide.");
+                    txtNumberOUT.Text = "";
+                }
+            }
+            if (comboYearOUT.SelectedIndex != -1)
+            {
+                successYear = Int32.TryParse(comboYearOUT.SelectedItem.ToString(), out year);
+            }
+
+            //verify if the bottle to delete already exists in database -> true : present, false : non present
+            // occur uniquely if the volume, the name and the year have been validated
+            if (successVolume && successName && successYear)
+            {
+                //successPresence = req.CheckBottlePresence(wineName, year, volume);
+            }
+            // if all verification are ok -> will be true, otherwise, will be false
+            successFormat = successNumber && successYear && successName && successManu ;
+            // all checks passed, bottle present in DB
+            if (successFormat == true && !successPresence)
+            {    
+                successOut = Bottles.RemoveBottle(wineName, number, volume, manufacturer, year);
+                // message box to show, depending on the result when getting the right number of bottle out
+                if (successOut)
+                {
+                    MessageBox.Show("Le retrait de bouteille(s) a été effectué correctement.");
+                }
+                else
+                {
+                    MessageBox.Show("Une erreur est survenue lors du retrait de bouteille(s). Veuillez réessayer.");
+                }
+            }
+            // all checks passed, but the combination of data does not concord with DB
+            else if (successFormat == true && !successPresence)
+            {
+                MessageBox.Show("Cette combinaison de données n'existe pas dans les bouteilles présentes. Veuillez vérifier vos informations.");
+            }
+            // problems with at least 1 check
+            else
+            {
+                MessageBox.Show("Une des valeurs spécifiées est incorrecte.");
+                txtNumber.Text = "";
+                txtYear.Text = "";
+            }
         }
 
+        /**
+         * when clicking on "adding the bottle", check if every parameter needed is present and if the datatype is correct
+         */
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //initializing variables to stock informations from the wine bottle
-            string wineName;
-            string color;
-            string manufacturer;
-            string description;
-            string storage;
-            int number;
+            string wineName = "";
+            string color ="";
+            string manufacturer = "";
+            string description ="";
+            string storage = "";
+            int number = 0;
             double volume = 0;
-            int year;
+            int year = 0;
             List<string> varietal = new List<string>();
 
             // initializing variables to compare the logic behind some values
@@ -198,7 +298,7 @@ namespace WineManager
             }
             if(rtxtDescription.Text != "" && rtxtDescription.TextLength < 200)
             {
-                storage = rtxtDescription.Text;
+                description = rtxtDescription.Text;
                 successDescription = true;
             }
             if (txtYear.Text != "")
@@ -239,16 +339,32 @@ namespace WineManager
             // all checks passed, bottle not present
             if (successFormat == true && !successPresence)
             {
-                    successAdd = true;
-                    //bool successAdd = Bottles.AddBottle(...);
-                    if (successAdd)
-                    {
-                        MessageBox.Show("L'ajout de la bouteille a été effectué correctement.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Une erreur est survenue lors de l'ajout de la bouteille. Veuillez réessayer.");
-                    }
+                // different requests, depending on parameters given
+                if (successDescription && successVarietal)
+                {
+                    successAdd = Bottles.AddBottleWithDescAndVarietal(wineName, color, number, volume, manufacturer, year, storage, varietal, description);
+                }   
+                else if (successVarietal)
+                {
+                    successAdd = Bottles.AddBottleWithVarietal(wineName, color, number, volume, manufacturer, year, storage, varietal);
+                }
+                else if(successDescription)
+                {
+                    successAdd = Bottles.AddBottleWithDesc(wineName, color, number, volume, manufacturer, year, storage, description);
+                }
+                else
+                {
+                    successAdd = Bottles.AddBottle(wineName, color, number, volume, manufacturer, year, storage);
+                }
+                // message box to show, depending on the result when adding the bottle
+                if (successAdd)
+                {
+                    MessageBox.Show("L'ajout de la bouteille a été effectué correctement.");    
+                }  
+                else    
+                {
+                    MessageBox.Show("Une erreur est survenue lors de l'ajout de la bouteille. Veuillez réessayer.");
+                }
             }
             // all checks passed, bottle already present
             else if(successFormat == true && successPresence)
@@ -271,10 +387,10 @@ namespace WineManager
          */
         private void radDelBottles_Click(object sender, EventArgs e)
         {
-            grpDel.Visible = true;
-            btnDel.Visible = true;
-            grpAdd.Visible = false;
-            btnAdd.Visible = false;
+            grpAdd.Hide();
+            btnAdd.Hide();
+            grpDel.Show();
+            btnDel.Show();
         }
 
         /**

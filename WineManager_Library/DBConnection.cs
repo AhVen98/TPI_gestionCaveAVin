@@ -46,6 +46,20 @@ namespace WineManager
             command.ExecuteNonQuery();
         }
 
+        public bool ExecuteQueryWCheck(MySqlCommand command)
+        {
+            int nb = command.ExecuteNonQuery();
+            // check if the query has an impact on DB
+            if(nb>=1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         // Method used in other to read the content of a select in database
         public MySqlDataReader Select(MySqlCommand command)

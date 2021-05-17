@@ -39,9 +39,8 @@ namespace WineManager
             this.lblYearOUT = new System.Windows.Forms.Label();
             this.comboYearOUT = new System.Windows.Forms.ComboBox();
             this.lblVolumeOUT = new System.Windows.Forms.Label();
-            this.txtVolumeOUT = new System.Windows.Forms.TextBox();
             this.lblNumberOUT = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtNumberOUT = new System.Windows.Forms.TextBox();
             this.comboVolume = new System.Windows.Forms.ComboBox();
             this.comboStorage = new System.Windows.Forms.ComboBox();
             this.lblDesc = new System.Windows.Forms.Label();
@@ -71,6 +70,7 @@ namespace WineManager
             this.btnDel = new System.Windows.Forms.Button();
             this.dvgBottles = new System.Windows.Forms.DataGridView();
             this.lblStock = new System.Windows.Forms.Label();
+            this.comboVolumeOUT = new System.Windows.Forms.ComboBox();
             this.grpAdd.SuspendLayout();
             this.grpDel.SuspendLayout();
             this.grpActions.SuspendLayout();
@@ -79,7 +79,7 @@ namespace WineManager
             // 
             // btnMainPage
             // 
-            this.btnMainPage.Location = new System.Drawing.Point(670, 12);
+            this.btnMainPage.Location = new System.Drawing.Point(670, 14);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(118, 52);
             this.btnMainPage.TabIndex = 2;
@@ -89,7 +89,6 @@ namespace WineManager
             // 
             // grpAdd
             // 
-            this.grpAdd.Controls.Add(this.grpDel);
             this.grpAdd.Controls.Add(this.comboVolume);
             this.grpAdd.Controls.Add(this.comboStorage);
             this.grpAdd.Controls.Add(this.lblDesc);
@@ -121,6 +120,7 @@ namespace WineManager
             // 
             // grpDel
             // 
+            this.grpDel.Controls.Add(this.comboVolumeOUT);
             this.grpDel.Controls.Add(this.lblBottleNameOUT);
             this.grpDel.Controls.Add(this.comboWine);
             this.grpDel.Controls.Add(this.lblManufacturerOUT);
@@ -128,10 +128,9 @@ namespace WineManager
             this.grpDel.Controls.Add(this.lblYearOUT);
             this.grpDel.Controls.Add(this.comboYearOUT);
             this.grpDel.Controls.Add(this.lblVolumeOUT);
-            this.grpDel.Controls.Add(this.txtVolumeOUT);
             this.grpDel.Controls.Add(this.lblNumberOUT);
-            this.grpDel.Controls.Add(this.textBox2);
-            this.grpDel.Location = new System.Drawing.Point(0, 1);
+            this.grpDel.Controls.Add(this.txtNumberOUT);
+            this.grpDel.Location = new System.Drawing.Point(12, 70);
             this.grpDel.Name = "grpDel";
             this.grpDel.Size = new System.Drawing.Size(776, 150);
             this.grpDel.TabIndex = 0;
@@ -198,13 +197,6 @@ namespace WineManager
             this.lblVolumeOUT.TabIndex = 11;
             this.lblVolumeOUT.Text = "Volume en litre*";
             // 
-            // txtVolumeOUT
-            // 
-            this.txtVolumeOUT.Location = new System.Drawing.Point(525, 52);
-            this.txtVolumeOUT.Name = "txtVolumeOUT";
-            this.txtVolumeOUT.Size = new System.Drawing.Size(245, 20);
-            this.txtVolumeOUT.TabIndex = 12;
-            // 
             // lblNumberOUT
             // 
             this.lblNumberOUT.AutoSize = true;
@@ -214,12 +206,12 @@ namespace WineManager
             this.lblNumberOUT.TabIndex = 2;
             this.lblNumberOUT.Text = "Nombre de bouteilles*";
             // 
-            // textBox2
+            // txtNumberOUT
             // 
-            this.textBox2.Location = new System.Drawing.Point(227, 79);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(123, 20);
-            this.textBox2.TabIndex = 0;
+            this.txtNumberOUT.Location = new System.Drawing.Point(227, 79);
+            this.txtNumberOUT.Name = "txtNumberOUT";
+            this.txtNumberOUT.Size = new System.Drawing.Size(123, 20);
+            this.txtNumberOUT.TabIndex = 0;
             // 
             // comboVolume
             // 
@@ -478,11 +470,20 @@ namespace WineManager
             this.lblStock.TabIndex = 6;
             this.lblStock.Text = "Bouteilles actuellement stockées";
             // 
+            // comboVolumeOUT
+            // 
+            this.comboVolumeOUT.FormattingEnabled = true;
+            this.comboVolumeOUT.Location = new System.Drawing.Point(525, 52);
+            this.comboVolumeOUT.Name = "comboVolumeOUT";
+            this.comboVolumeOUT.Size = new System.Drawing.Size(245, 21);
+            this.comboVolumeOUT.TabIndex = 14;
+            // 
             // BottlesManagementfrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 524);
+            this.Controls.Add(this.grpDel);
             this.Controls.Add(this.lblStock);
             this.Controls.Add(this.dvgBottles);
             this.Controls.Add(this.btnDel);
@@ -532,9 +533,8 @@ namespace WineManager
         private System.Windows.Forms.Label lblYearOUT;
         private System.Windows.Forms.ComboBox comboYearOUT;
         private System.Windows.Forms.Label lblVolumeOUT;
-        private System.Windows.Forms.TextBox txtVolumeOUT;
         private System.Windows.Forms.Label lblNumberOUT;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNumberOUT;
         private System.Windows.Forms.ComboBox comboStorage;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.Label lblVariety3;
@@ -549,5 +549,6 @@ namespace WineManager
         private System.Windows.Forms.DataGridView dvgBottles;
         private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.ComboBox comboVolume;
+        private System.Windows.Forms.ComboBox comboVolumeOUT;
     }
 }

@@ -39,7 +39,59 @@ namespace WineManager
             return lstBot;
         }
 
-        //all getter, to permit the application to view the data
+        static public bool AddBottleWithDescAndVarietal(string name, string col, int num, double vol, string manu, int year, string box, List<string> var, string desc)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+            res = req.AddBottleWDescAndVar(name, col, num, vol, manu, year, box, var, desc);
+
+            return res;
+        }
+
+        static public bool AddBottleWithVarietal(string name, string col, int num, double vol, string manu, int year, string box, List<string> var)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+            res = req.AddBottleWVar(name, col, num, vol, manu, year, box, var);
+
+            return res;
+        }
+
+
+        static public bool AddBottleWithDesc(string name, string col, int num, double vol, string manu, int year, string box, string desc)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+            res = req.AddBottleWDesc(name, col, num, vol, manu, year, box, desc);
+
+            return res;
+        }
+
+        static public bool AddBottle(string name, string col, int num, double vol, string manu, int year, string box)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+            res = req.AddBottle(name, col, num, vol, manu, year, box);
+
+            return res;
+        }
+
+        static public bool RemoveBottle(string name, int num, double vol, string manu, int year)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+            res = req.RemoveBottle(name, num, vol, manu, year);
+
+            return res;
+        }
+
+
+        //all getter, to permit other classes to view the data
         public string Name { get { return name; } }
         public string Color { get { return color; } }
         public int BottleNumber { get { return bottleNumber; } }

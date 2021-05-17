@@ -33,11 +33,11 @@ namespace WineManager
             this.btnResearch = new System.Windows.Forms.Button();
             this.dvgBottles = new System.Windows.Forms.DataGridView();
             this.grpSort = new System.Windows.Forms.GroupBox();
-            this.radColor = new System.Windows.Forms.RadioButton();
-            this.radCountry = new System.Windows.Forms.RadioButton();
             this.radVariety = new System.Windows.Forms.RadioButton();
             this.radManufacturer = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.radCountry = new System.Windows.Forms.RadioButton();
+            this.radColor = new System.Windows.Forms.RadioButton();
+            this.txtResearch = new System.Windows.Forms.TextBox();
             this.lblKeyWord = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dvgBottles)).BeginInit();
             this.grpSort.SuspendLayout();
@@ -60,6 +60,7 @@ namespace WineManager
             this.btnResearch.TabIndex = 3;
             this.btnResearch.Text = "Rechercher";
             this.btnResearch.UseVisualStyleBackColor = true;
+            this.btnResearch.Click += new System.EventHandler(this.btnResearch_Click);
             // 
             // dvgBottles
             // 
@@ -83,28 +84,6 @@ namespace WineManager
             this.grpSort.TabStop = false;
             this.grpSort.Text = "Trier par :";
             // 
-            // radColor
-            // 
-            this.radColor.AutoSize = true;
-            this.radColor.Checked = true;
-            this.radColor.Location = new System.Drawing.Point(6, 19);
-            this.radColor.Name = "radColor";
-            this.radColor.Size = new System.Drawing.Size(93, 17);
-            this.radColor.TabIndex = 0;
-            this.radColor.TabStop = true;
-            this.radColor.Text = "Couleur du vin";
-            this.radColor.UseVisualStyleBackColor = true;
-            // 
-            // radCountry
-            // 
-            this.radCountry.AutoSize = true;
-            this.radCountry.Location = new System.Drawing.Point(215, 19);
-            this.radCountry.Name = "radCountry";
-            this.radCountry.Size = new System.Drawing.Size(48, 17);
-            this.radCountry.TabIndex = 0;
-            this.radCountry.Text = "Pays";
-            this.radCountry.UseVisualStyleBackColor = true;
-            // 
             // radVariety
             // 
             this.radVariety.AutoSize = true;
@@ -125,12 +104,34 @@ namespace WineManager
             this.radManufacturer.Text = "Producteur";
             this.radManufacturer.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // radCountry
             // 
-            this.textBox1.Location = new System.Drawing.Point(503, 72);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(161, 20);
-            this.textBox1.TabIndex = 7;
+            this.radCountry.AutoSize = true;
+            this.radCountry.Location = new System.Drawing.Point(215, 19);
+            this.radCountry.Name = "radCountry";
+            this.radCountry.Size = new System.Drawing.Size(48, 17);
+            this.radCountry.TabIndex = 0;
+            this.radCountry.Text = "Pays";
+            this.radCountry.UseVisualStyleBackColor = true;
+            // 
+            // radColor
+            // 
+            this.radColor.AutoSize = true;
+            this.radColor.Checked = true;
+            this.radColor.Location = new System.Drawing.Point(6, 19);
+            this.radColor.Name = "radColor";
+            this.radColor.Size = new System.Drawing.Size(93, 17);
+            this.radColor.TabIndex = 0;
+            this.radColor.TabStop = true;
+            this.radColor.Text = "Couleur du vin";
+            this.radColor.UseVisualStyleBackColor = true;
+            // 
+            // txtResearch
+            // 
+            this.txtResearch.Location = new System.Drawing.Point(503, 72);
+            this.txtResearch.Name = "txtResearch";
+            this.txtResearch.Size = new System.Drawing.Size(161, 20);
+            this.txtResearch.TabIndex = 7;
             // 
             // lblKeyWord
             // 
@@ -148,13 +149,14 @@ namespace WineManager
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 524);
             this.Controls.Add(this.lblKeyWord);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtResearch);
             this.Controls.Add(this.grpSort);
             this.Controls.Add(this.dvgBottles);
             this.Controls.Add(this.btnResearch);
             this.Controls.Add(this.btnMainPage);
             this.Name = "Researchfrm";
             this.Text = "Rechercher";
+            this.Load += new System.EventHandler(this.Researchfrm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dvgBottles)).EndInit();
             this.grpSort.ResumeLayout(false);
             this.grpSort.PerformLayout();
@@ -173,7 +175,7 @@ namespace WineManager
         private System.Windows.Forms.RadioButton radManufacturer;
         private System.Windows.Forms.RadioButton radCountry;
         private System.Windows.Forms.RadioButton radColor;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtResearch;
         private System.Windows.Forms.Label lblKeyWord;
     }
 }
