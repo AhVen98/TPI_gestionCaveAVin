@@ -90,6 +90,56 @@ namespace WineManager
             return res;
         }
 
+        static public List<Bottles> ResearchByKeyword(string key)
+        {
+            List<Bottles> lstBot = new List<Bottles>();
+            DBRequest req = new DBRequest();
+
+            lstBot = req.ResearchByKeyword(key);
+
+            return lstBot;
+        }
+
+        static public List<Bottles> OrderByColor()
+        {
+            List<Bottles> lstBot = new List<Bottles>();
+            DBRequest req = new DBRequest();
+
+            lstBot = req.OrderByColor();
+
+            return lstBot;
+        }
+
+        static public List<Bottles> OrderByManufacturer()
+        {
+            List<Bottles> lstBot = new List<Bottles>();
+            DBRequest req = new DBRequest();
+
+            lstBot = req.OrderByManufacturer();
+
+            return lstBot;
+        }
+
+        static public List<Bottles> OrderByCountry()
+        {
+            List<Bottles> lstBot = new List<Bottles>();
+            DBRequest req = new DBRequest();
+
+            lstBot = req.OrderByCountry();
+
+            return lstBot;
+        }
+
+        static public List<Bottles> OrderByVarietal()
+        {
+            List<Bottles> lstBot = new List<Bottles>();
+            DBRequest req = new DBRequest();
+
+            lstBot = req.OrderByVarietal();
+
+            return lstBot;
+        }
+
 
         //all getter, to permit other classes to view the data
         public string Name { get { return name; } }
@@ -101,6 +151,6 @@ namespace WineManager
         public string Varietal { get { return varietal; } }
         public string Storage { get { return storage; } }
         public string Description { get { return description; } }
-
+        
     }
 }

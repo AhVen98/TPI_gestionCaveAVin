@@ -33,12 +33,12 @@ namespace WineManager
             this.grpAdd = new System.Windows.Forms.GroupBox();
             this.grpDel = new System.Windows.Forms.GroupBox();
             this.lblStorageNumberOUT = new System.Windows.Forms.Label();
-            this.comboWine = new System.Windows.Forms.ComboBox();
+            this.comboStorage = new System.Windows.Forms.ComboBox();
             this.btnDelStorage = new System.Windows.Forms.Button();
             this.lblDesc = new System.Windows.Forms.Label();
             this.rtxtDescription = new System.Windows.Forms.RichTextBox();
             this.lblStorageNumber = new System.Windows.Forms.Label();
-            this.txtBottleName = new System.Windows.Forms.TextBox();
+            this.txtStorage = new System.Windows.Forms.TextBox();
             this.btnAddStorage = new System.Windows.Forms.Button();
             this.grpActions = new System.Windows.Forms.GroupBox();
             this.radDelStorage = new System.Windows.Forms.RadioButton();
@@ -63,11 +63,10 @@ namespace WineManager
             // 
             // grpAdd
             // 
-            this.grpAdd.Controls.Add(this.grpDel);
             this.grpAdd.Controls.Add(this.lblDesc);
             this.grpAdd.Controls.Add(this.rtxtDescription);
             this.grpAdd.Controls.Add(this.lblStorageNumber);
-            this.grpAdd.Controls.Add(this.txtBottleName);
+            this.grpAdd.Controls.Add(this.txtStorage);
             this.grpAdd.Controls.Add(this.btnAddStorage);
             this.grpAdd.Location = new System.Drawing.Point(12, 70);
             this.grpAdd.Name = "grpAdd";
@@ -79,9 +78,9 @@ namespace WineManager
             // grpDel
             // 
             this.grpDel.Controls.Add(this.lblStorageNumberOUT);
-            this.grpDel.Controls.Add(this.comboWine);
+            this.grpDel.Controls.Add(this.comboStorage);
             this.grpDel.Controls.Add(this.btnDelStorage);
-            this.grpDel.Location = new System.Drawing.Point(0, 0);
+            this.grpDel.Location = new System.Drawing.Point(12, 69);
             this.grpDel.Name = "grpDel";
             this.grpDel.Size = new System.Drawing.Size(776, 117);
             this.grpDel.TabIndex = 0;
@@ -97,13 +96,13 @@ namespace WineManager
             this.lblStorageNumberOUT.TabIndex = 1;
             this.lblStorageNumberOUT.Text = "Numéro de casier*";
             // 
-            // comboWine
+            // comboStorage
             // 
-            this.comboWine.FormattingEnabled = true;
-            this.comboWine.Location = new System.Drawing.Point(106, 25);
-            this.comboWine.Name = "comboWine";
-            this.comboWine.Size = new System.Drawing.Size(277, 21);
-            this.comboWine.TabIndex = 7;
+            this.comboStorage.FormattingEnabled = true;
+            this.comboStorage.Location = new System.Drawing.Point(106, 25);
+            this.comboStorage.Name = "comboStorage";
+            this.comboStorage.Size = new System.Drawing.Size(277, 21);
+            this.comboStorage.TabIndex = 7;
             // 
             // btnDelStorage
             // 
@@ -113,6 +112,7 @@ namespace WineManager
             this.btnDelStorage.TabIndex = 4;
             this.btnDelStorage.Text = "Supprimer le casier";
             this.btnDelStorage.UseVisualStyleBackColor = true;
+            this.btnDelStorage.Click += new System.EventHandler(this.btnDelStorage_Click);
             // 
             // lblDesc
             // 
@@ -140,12 +140,12 @@ namespace WineManager
             this.lblStorageNumber.TabIndex = 1;
             this.lblStorageNumber.Text = "Numéro de casier*";
             // 
-            // txtBottleName
+            // txtStorage
             // 
-            this.txtBottleName.Location = new System.Drawing.Point(106, 19);
-            this.txtBottleName.Name = "txtBottleName";
-            this.txtBottleName.Size = new System.Drawing.Size(277, 20);
-            this.txtBottleName.TabIndex = 0;
+            this.txtStorage.Location = new System.Drawing.Point(106, 19);
+            this.txtStorage.Name = "txtStorage";
+            this.txtStorage.Size = new System.Drawing.Size(277, 20);
+            this.txtStorage.TabIndex = 0;
             // 
             // btnAddStorage
             // 
@@ -155,6 +155,7 @@ namespace WineManager
             this.btnAddStorage.TabIndex = 3;
             this.btnAddStorage.Text = "Ajouter le casier";
             this.btnAddStorage.UseVisualStyleBackColor = true;
+            this.btnAddStorage.Click += new System.EventHandler(this.btnAddStorage_Click);
             // 
             // grpActions
             // 
@@ -176,6 +177,7 @@ namespace WineManager
             this.radDelStorage.TabIndex = 1;
             this.radDelStorage.Text = "Supprimer un casier";
             this.radDelStorage.UseVisualStyleBackColor = true;
+            this.radDelStorage.Click += new System.EventHandler(this.radDelStorage_Click);
             // 
             // radAddStorage
             // 
@@ -188,6 +190,7 @@ namespace WineManager
             this.radAddStorage.TabStop = true;
             this.radAddStorage.Text = "Ajouter un casier";
             this.radAddStorage.UseVisualStyleBackColor = true;
+            this.radAddStorage.Click += new System.EventHandler(this.radAddStorage_Click);
             // 
             // dvgStorageBoxes
             // 
@@ -212,6 +215,7 @@ namespace WineManager
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 524);
+            this.Controls.Add(this.grpDel);
             this.Controls.Add(this.lblStorage);
             this.Controls.Add(this.dvgStorageBoxes);
             this.Controls.Add(this.grpActions);
@@ -242,9 +246,9 @@ namespace WineManager
         private System.Windows.Forms.GroupBox grpDel;
         private System.Windows.Forms.RichTextBox rtxtDescription;
         private System.Windows.Forms.Label lblStorageNumber;
-        private System.Windows.Forms.TextBox txtBottleName;
+        private System.Windows.Forms.TextBox txtStorage;
         private System.Windows.Forms.Label lblStorageNumberOUT;
-        private System.Windows.Forms.ComboBox comboWine;
+        private System.Windows.Forms.ComboBox comboStorage;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.Button btnAddStorage;
         private System.Windows.Forms.Button btnDelStorage;

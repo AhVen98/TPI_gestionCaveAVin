@@ -12,6 +12,7 @@ namespace WineManager
 {
     public partial class StorageBoxesManagementfrm : Form
     {
+        DBRequest req = new DBRequest();
         public StorageBoxesManagementfrm()
         {
             InitializeComponent();
@@ -24,6 +25,24 @@ namespace WineManager
 
         private void StorageBoxesManagementfrm_Load(object sender, EventArgs e)
         {
+            grpDel.Hide();
+            grpAdd.Show();
+
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            //initializing the list for the storage to delete
+            List<string> lstStorages = new List<string>();
+
+            //list for all manufacturer in "add a bottle" and "remove a bottle"
+            lstStorages = req.GetListStorages();
+            for (int i = 0; i < lstStorages.Count; i++)
+            {
+                comboStorage.Items.Add(lstStorages[i].ToString());
+            }
+
             List<string> lstTab = new List<string>();
 
             dvgStorageBoxes.ColumnCount = 2;
@@ -47,6 +66,82 @@ namespace WineManager
                 string[] row = { box.Name, box.Description };
                 dvgStorageBoxes.Rows.Add(row);
             }
+        }
+
+        private void radAddStorage_Click(object sender, EventArgs e)
+        {
+            grpAdd.Show();
+            grpDel.Hide();
+        }
+
+        private void radDelStorage_Click(object sender, EventArgs e)
+        {
+            grpDel.Show();
+            grpAdd.Hide();
+        }
+
+        private void btnDelStorage_Click(object sender, EventArgs e)
+        {
+            bool res = false;
+            bool empty = false;
+
+            //check if a storage is selected
+            if (comboStorage.SelectedIndex != -1)
+            {
+                string storage = comboStorage.SelectedItem.ToString();
+                empty = req.CheckStorageEmpty(storage);
+                if(empty == false)
+                {
+                    MessageBox.Show("Ce casier n'est actuellement pas vide, il n'est pas possible de le supprimer");
+                }
+                else
+                {
+                    res = req.RemoveStorage(storage);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Aucun casier n'a été sélectionné");
+            }
+            LoadData();
+            if (res)
+            {
+                MessageBox.Show("Le casier a été supprimé avec succès");
+            }
+        }
+
+        private void btnAddStorage_Click(object sender, EventArgs e)
+        {
+            bool res = false;
+
+            if (txtStorage.Text == "")
+            {
+                
+                MessageBox.Show("Veuillez spécifier un nom de casier");
+            }
+            // storage already existing
+            //else if () { MessageBox.Show("Un casier portant ce nom est déjà présent.") }
+            else
+            {
+                if (rtxtDescription.Text != "")
+                {
+                    res = req.AddStorage(txtStorage.Text);
+                }
+                else
+                {
+                    res = req.AddStorageWDesc(txtStorage.Text, rtxtDescription.Text);
+                }
+
+            }
+            if (res)
+            {
+                MessageBox.Show("Le casier a été ajouté avec succès");
+            }
+            else
+            {
+                MessageBox.Show("Une erreur est survenue pendant l'ajout du casier. Veuillez réessayer.");
+            }
+            LoadData();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace WineManager
             ActiveForm.Close();
         }
 
-        private void ExporterEnPDFToolStripMenuItem_Click(object sender, EventArgs e)
+        private void researchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Researchfrm frmSearch = new Researchfrm();
             //HideMainPage();

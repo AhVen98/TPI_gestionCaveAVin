@@ -31,16 +31,6 @@ namespace WineManager
         {
             this.btnMainPage = new System.Windows.Forms.Button();
             this.grpAdd = new System.Windows.Forms.GroupBox();
-            this.grpDel = new System.Windows.Forms.GroupBox();
-            this.lblBottleNameOUT = new System.Windows.Forms.Label();
-            this.comboWine = new System.Windows.Forms.ComboBox();
-            this.lblManufacturerOUT = new System.Windows.Forms.Label();
-            this.comboManufacturerOUT = new System.Windows.Forms.ComboBox();
-            this.lblYearOUT = new System.Windows.Forms.Label();
-            this.comboYearOUT = new System.Windows.Forms.ComboBox();
-            this.lblVolumeOUT = new System.Windows.Forms.Label();
-            this.lblNumberOUT = new System.Windows.Forms.Label();
-            this.txtNumberOUT = new System.Windows.Forms.TextBox();
             this.comboVolume = new System.Windows.Forms.ComboBox();
             this.comboStorage = new System.Windows.Forms.ComboBox();
             this.lblDesc = new System.Windows.Forms.Label();
@@ -63,6 +53,17 @@ namespace WineManager
             this.lblNumber = new System.Windows.Forms.Label();
             this.lblTxtBottle = new System.Windows.Forms.Label();
             this.txtBottleName = new System.Windows.Forms.TextBox();
+            this.grpDel = new System.Windows.Forms.GroupBox();
+            this.comboVolumeOUT = new System.Windows.Forms.ComboBox();
+            this.lblBottleNameOUT = new System.Windows.Forms.Label();
+            this.comboWine = new System.Windows.Forms.ComboBox();
+            this.lblManufacturerOUT = new System.Windows.Forms.Label();
+            this.comboManufacturerOUT = new System.Windows.Forms.ComboBox();
+            this.lblYearOUT = new System.Windows.Forms.Label();
+            this.comboYearOUT = new System.Windows.Forms.ComboBox();
+            this.lblVolumeOUT = new System.Windows.Forms.Label();
+            this.lblNumberOUT = new System.Windows.Forms.Label();
+            this.txtNumberOUT = new System.Windows.Forms.TextBox();
             this.grpActions = new System.Windows.Forms.GroupBox();
             this.radDelBottles = new System.Windows.Forms.RadioButton();
             this.radAddBottle = new System.Windows.Forms.RadioButton();
@@ -70,7 +71,6 @@ namespace WineManager
             this.btnDel = new System.Windows.Forms.Button();
             this.dvgBottles = new System.Windows.Forms.DataGridView();
             this.lblStock = new System.Windows.Forms.Label();
-            this.comboVolumeOUT = new System.Windows.Forms.ComboBox();
             this.grpAdd.SuspendLayout();
             this.grpDel.SuspendLayout();
             this.grpActions.SuspendLayout();
@@ -117,101 +117,6 @@ namespace WineManager
             this.grpAdd.TabIndex = 1;
             this.grpAdd.TabStop = false;
             this.grpAdd.Text = "Ajouter des bouteilles";
-            // 
-            // grpDel
-            // 
-            this.grpDel.Controls.Add(this.comboVolumeOUT);
-            this.grpDel.Controls.Add(this.lblBottleNameOUT);
-            this.grpDel.Controls.Add(this.comboWine);
-            this.grpDel.Controls.Add(this.lblManufacturerOUT);
-            this.grpDel.Controls.Add(this.comboManufacturerOUT);
-            this.grpDel.Controls.Add(this.lblYearOUT);
-            this.grpDel.Controls.Add(this.comboYearOUT);
-            this.grpDel.Controls.Add(this.lblVolumeOUT);
-            this.grpDel.Controls.Add(this.lblNumberOUT);
-            this.grpDel.Controls.Add(this.txtNumberOUT);
-            this.grpDel.Location = new System.Drawing.Point(12, 70);
-            this.grpDel.Name = "grpDel";
-            this.grpDel.Size = new System.Drawing.Size(776, 150);
-            this.grpDel.TabIndex = 0;
-            this.grpDel.TabStop = false;
-            this.grpDel.Text = "Sortir des bouteilles";
-            // 
-            // lblBottleNameOUT
-            // 
-            this.lblBottleNameOUT.AutoSize = true;
-            this.lblBottleNameOUT.Location = new System.Drawing.Point(6, 28);
-            this.lblBottleNameOUT.Name = "lblBottleNameOUT";
-            this.lblBottleNameOUT.Size = new System.Drawing.Size(65, 13);
-            this.lblBottleNameOUT.TabIndex = 1;
-            this.lblBottleNameOUT.Text = "Nom du vin*";
-            // 
-            // comboWine
-            // 
-            this.comboWine.FormattingEnabled = true;
-            this.comboWine.Location = new System.Drawing.Point(73, 25);
-            this.comboWine.Name = "comboWine";
-            this.comboWine.Size = new System.Drawing.Size(277, 21);
-            this.comboWine.TabIndex = 7;
-            // 
-            // lblManufacturerOUT
-            // 
-            this.lblManufacturerOUT.AutoSize = true;
-            this.lblManufacturerOUT.Location = new System.Drawing.Point(8, 55);
-            this.lblManufacturerOUT.Name = "lblManufacturerOUT";
-            this.lblManufacturerOUT.Size = new System.Drawing.Size(63, 13);
-            this.lblManufacturerOUT.TabIndex = 6;
-            this.lblManufacturerOUT.Text = "Producteur*";
-            // 
-            // comboManufacturerOUT
-            // 
-            this.comboManufacturerOUT.FormattingEnabled = true;
-            this.comboManufacturerOUT.Location = new System.Drawing.Point(73, 52);
-            this.comboManufacturerOUT.Name = "comboManufacturerOUT";
-            this.comboManufacturerOUT.Size = new System.Drawing.Size(277, 21);
-            this.comboManufacturerOUT.TabIndex = 7;
-            // 
-            // lblYearOUT
-            // 
-            this.lblYearOUT.AutoSize = true;
-            this.lblYearOUT.Location = new System.Drawing.Point(409, 28);
-            this.lblYearOUT.Name = "lblYearOUT";
-            this.lblYearOUT.Size = new System.Drawing.Size(110, 13);
-            this.lblYearOUT.TabIndex = 5;
-            this.lblYearOUT.Text = "Année de production*";
-            // 
-            // comboYearOUT
-            // 
-            this.comboYearOUT.FormattingEnabled = true;
-            this.comboYearOUT.Location = new System.Drawing.Point(525, 25);
-            this.comboYearOUT.Name = "comboYearOUT";
-            this.comboYearOUT.Size = new System.Drawing.Size(245, 21);
-            this.comboYearOUT.TabIndex = 13;
-            // 
-            // lblVolumeOUT
-            // 
-            this.lblVolumeOUT.AutoSize = true;
-            this.lblVolumeOUT.Location = new System.Drawing.Point(409, 55);
-            this.lblVolumeOUT.Name = "lblVolumeOUT";
-            this.lblVolumeOUT.Size = new System.Drawing.Size(80, 13);
-            this.lblVolumeOUT.TabIndex = 11;
-            this.lblVolumeOUT.Text = "Volume en litre*";
-            // 
-            // lblNumberOUT
-            // 
-            this.lblNumberOUT.AutoSize = true;
-            this.lblNumberOUT.Location = new System.Drawing.Point(8, 82);
-            this.lblNumberOUT.Name = "lblNumberOUT";
-            this.lblNumberOUT.Size = new System.Drawing.Size(110, 13);
-            this.lblNumberOUT.TabIndex = 2;
-            this.lblNumberOUT.Text = "Nombre de bouteilles*";
-            // 
-            // txtNumberOUT
-            // 
-            this.txtNumberOUT.Location = new System.Drawing.Point(227, 79);
-            this.txtNumberOUT.Name = "txtNumberOUT";
-            this.txtNumberOUT.Size = new System.Drawing.Size(123, 20);
-            this.txtNumberOUT.TabIndex = 0;
             // 
             // comboVolume
             // 
@@ -397,6 +302,109 @@ namespace WineManager
             this.txtBottleName.Size = new System.Drawing.Size(277, 20);
             this.txtBottleName.TabIndex = 0;
             // 
+            // grpDel
+            // 
+            this.grpDel.Controls.Add(this.comboVolumeOUT);
+            this.grpDel.Controls.Add(this.lblBottleNameOUT);
+            this.grpDel.Controls.Add(this.comboWine);
+            this.grpDel.Controls.Add(this.lblManufacturerOUT);
+            this.grpDel.Controls.Add(this.comboManufacturerOUT);
+            this.grpDel.Controls.Add(this.lblYearOUT);
+            this.grpDel.Controls.Add(this.comboYearOUT);
+            this.grpDel.Controls.Add(this.lblVolumeOUT);
+            this.grpDel.Controls.Add(this.lblNumberOUT);
+            this.grpDel.Controls.Add(this.txtNumberOUT);
+            this.grpDel.Location = new System.Drawing.Point(12, 70);
+            this.grpDel.Name = "grpDel";
+            this.grpDel.Size = new System.Drawing.Size(776, 150);
+            this.grpDel.TabIndex = 0;
+            this.grpDel.TabStop = false;
+            this.grpDel.Text = "Sortir des bouteilles";
+            // 
+            // comboVolumeOUT
+            // 
+            this.comboVolumeOUT.FormattingEnabled = true;
+            this.comboVolumeOUT.Location = new System.Drawing.Point(525, 52);
+            this.comboVolumeOUT.Name = "comboVolumeOUT";
+            this.comboVolumeOUT.Size = new System.Drawing.Size(245, 21);
+            this.comboVolumeOUT.TabIndex = 14;
+            // 
+            // lblBottleNameOUT
+            // 
+            this.lblBottleNameOUT.AutoSize = true;
+            this.lblBottleNameOUT.Location = new System.Drawing.Point(6, 28);
+            this.lblBottleNameOUT.Name = "lblBottleNameOUT";
+            this.lblBottleNameOUT.Size = new System.Drawing.Size(65, 13);
+            this.lblBottleNameOUT.TabIndex = 1;
+            this.lblBottleNameOUT.Text = "Nom du vin*";
+            // 
+            // comboWine
+            // 
+            this.comboWine.FormattingEnabled = true;
+            this.comboWine.Location = new System.Drawing.Point(73, 25);
+            this.comboWine.Name = "comboWine";
+            this.comboWine.Size = new System.Drawing.Size(277, 21);
+            this.comboWine.TabIndex = 7;
+            // 
+            // lblManufacturerOUT
+            // 
+            this.lblManufacturerOUT.AutoSize = true;
+            this.lblManufacturerOUT.Location = new System.Drawing.Point(8, 55);
+            this.lblManufacturerOUT.Name = "lblManufacturerOUT";
+            this.lblManufacturerOUT.Size = new System.Drawing.Size(63, 13);
+            this.lblManufacturerOUT.TabIndex = 6;
+            this.lblManufacturerOUT.Text = "Producteur*";
+            // 
+            // comboManufacturerOUT
+            // 
+            this.comboManufacturerOUT.FormattingEnabled = true;
+            this.comboManufacturerOUT.Location = new System.Drawing.Point(73, 52);
+            this.comboManufacturerOUT.Name = "comboManufacturerOUT";
+            this.comboManufacturerOUT.Size = new System.Drawing.Size(277, 21);
+            this.comboManufacturerOUT.TabIndex = 7;
+            // 
+            // lblYearOUT
+            // 
+            this.lblYearOUT.AutoSize = true;
+            this.lblYearOUT.Location = new System.Drawing.Point(409, 28);
+            this.lblYearOUT.Name = "lblYearOUT";
+            this.lblYearOUT.Size = new System.Drawing.Size(110, 13);
+            this.lblYearOUT.TabIndex = 5;
+            this.lblYearOUT.Text = "Année de production*";
+            // 
+            // comboYearOUT
+            // 
+            this.comboYearOUT.FormattingEnabled = true;
+            this.comboYearOUT.Location = new System.Drawing.Point(525, 25);
+            this.comboYearOUT.Name = "comboYearOUT";
+            this.comboYearOUT.Size = new System.Drawing.Size(245, 21);
+            this.comboYearOUT.TabIndex = 13;
+            // 
+            // lblVolumeOUT
+            // 
+            this.lblVolumeOUT.AutoSize = true;
+            this.lblVolumeOUT.Location = new System.Drawing.Point(409, 55);
+            this.lblVolumeOUT.Name = "lblVolumeOUT";
+            this.lblVolumeOUT.Size = new System.Drawing.Size(80, 13);
+            this.lblVolumeOUT.TabIndex = 11;
+            this.lblVolumeOUT.Text = "Volume en litre*";
+            // 
+            // lblNumberOUT
+            // 
+            this.lblNumberOUT.AutoSize = true;
+            this.lblNumberOUT.Location = new System.Drawing.Point(8, 82);
+            this.lblNumberOUT.Name = "lblNumberOUT";
+            this.lblNumberOUT.Size = new System.Drawing.Size(110, 13);
+            this.lblNumberOUT.TabIndex = 2;
+            this.lblNumberOUT.Text = "Nombre de bouteilles*";
+            // 
+            // txtNumberOUT
+            // 
+            this.txtNumberOUT.Location = new System.Drawing.Point(227, 79);
+            this.txtNumberOUT.Name = "txtNumberOUT";
+            this.txtNumberOUT.Size = new System.Drawing.Size(123, 20);
+            this.txtNumberOUT.TabIndex = 0;
+            // 
             // grpActions
             // 
             this.grpActions.Controls.Add(this.radDelBottles);
@@ -469,14 +477,6 @@ namespace WineManager
             this.lblStock.Size = new System.Drawing.Size(161, 13);
             this.lblStock.TabIndex = 6;
             this.lblStock.Text = "Bouteilles actuellement stockées";
-            // 
-            // comboVolumeOUT
-            // 
-            this.comboVolumeOUT.FormattingEnabled = true;
-            this.comboVolumeOUT.Location = new System.Drawing.Point(525, 52);
-            this.comboVolumeOUT.Name = "comboVolumeOUT";
-            this.comboVolumeOUT.Size = new System.Drawing.Size(245, 21);
-            this.comboVolumeOUT.TabIndex = 14;
             // 
             // BottlesManagementfrm
             // 

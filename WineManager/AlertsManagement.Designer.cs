@@ -31,18 +31,18 @@ namespace WineManager
         {
             this.btnMainPage = new System.Windows.Forms.Button();
             this.grpAddAlert = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvSelected = new System.Windows.Forms.DataGridView();
             this.btnAddBottle = new System.Windows.Forms.Button();
             this.grpDel = new System.Windows.Forms.GroupBox();
             this.lblAlertNameOUT = new System.Windows.Forms.Label();
-            this.comboWine = new System.Windows.Forms.ComboBox();
+            this.comboAlertOUT = new System.Windows.Forms.ComboBox();
             this.lblSelectedBottles = new System.Windows.Forms.Label();
             this.lblWines = new System.Windows.Forms.Label();
             this.comboWineChoice = new System.Windows.Forms.ComboBox();
             this.lblDesc = new System.Windows.Forms.Label();
-            this.rtxtDescription = new System.Windows.Forms.RichTextBox();
+            this.rtxtMessage = new System.Windows.Forms.RichTextBox();
             this.lblAlertName = new System.Windows.Forms.Label();
-            this.txtBottleName = new System.Windows.Forms.TextBox();
+            this.txtAlert = new System.Windows.Forms.TextBox();
             this.grpActions = new System.Windows.Forms.GroupBox();
             this.radDelAlerts = new System.Windows.Forms.RadioButton();
             this.radAddAlert = new System.Windows.Forms.RadioButton();
@@ -50,11 +50,14 @@ namespace WineManager
             this.lblAlerts = new System.Windows.Forms.Label();
             this.btnAddAlert = new System.Windows.Forms.Button();
             this.btnDelAlert = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dvgBottlesSelected = new System.Windows.Forms.DataGridView();
             this.grpAddAlert.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSelected)).BeginInit();
             this.grpDel.SuspendLayout();
             this.grpActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgBottles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgBottlesSelected)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMainPage
@@ -68,16 +71,15 @@ namespace WineManager
             // 
             // grpAddAlert
             // 
-            this.grpAddAlert.Controls.Add(this.dataGridView1);
+            this.grpAddAlert.Controls.Add(this.dgvSelected);
             this.grpAddAlert.Controls.Add(this.btnAddBottle);
-            this.grpAddAlert.Controls.Add(this.grpDel);
             this.grpAddAlert.Controls.Add(this.lblSelectedBottles);
             this.grpAddAlert.Controls.Add(this.lblWines);
             this.grpAddAlert.Controls.Add(this.comboWineChoice);
             this.grpAddAlert.Controls.Add(this.lblDesc);
-            this.grpAddAlert.Controls.Add(this.rtxtDescription);
+            this.grpAddAlert.Controls.Add(this.rtxtMessage);
             this.grpAddAlert.Controls.Add(this.lblAlertName);
-            this.grpAddAlert.Controls.Add(this.txtBottleName);
+            this.grpAddAlert.Controls.Add(this.txtAlert);
             this.grpAddAlert.Location = new System.Drawing.Point(12, 70);
             this.grpAddAlert.Name = "grpAddAlert";
             this.grpAddAlert.Size = new System.Drawing.Size(776, 124);
@@ -85,15 +87,15 @@ namespace WineManager
             this.grpAddAlert.TabStop = false;
             this.grpAddAlert.Text = "Ajouter une alerte";
             // 
-            // dataGridView1
+            // dgvSelected
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Enabled = false;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(375, 63);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(395, 55);
-            this.dataGridView1.TabIndex = 19;
+            this.dgvSelected.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSelected.Enabled = false;
+            this.dgvSelected.EnableHeadersVisualStyles = false;
+            this.dgvSelected.Location = new System.Drawing.Point(375, 63);
+            this.dgvSelected.Name = "dgvSelected";
+            this.dgvSelected.Size = new System.Drawing.Size(395, 55);
+            this.dgvSelected.TabIndex = 19;
             // 
             // btnAddBottle
             // 
@@ -103,12 +105,15 @@ namespace WineManager
             this.btnAddBottle.TabIndex = 18;
             this.btnAddBottle.Text = "Ajouter";
             this.btnAddBottle.UseVisualStyleBackColor = true;
+            this.btnAddBottle.Click += new System.EventHandler(this.btnAddBottle_Click);
             // 
             // grpDel
             // 
+            this.grpDel.Controls.Add(this.dvgBottlesSelected);
             this.grpDel.Controls.Add(this.lblAlertNameOUT);
-            this.grpDel.Controls.Add(this.comboWine);
-            this.grpDel.Location = new System.Drawing.Point(0, 1);
+            this.grpDel.Controls.Add(this.comboAlertOUT);
+            this.grpDel.Controls.Add(this.label1);
+            this.grpDel.Location = new System.Drawing.Point(12, 70);
             this.grpDel.Name = "grpDel";
             this.grpDel.Size = new System.Drawing.Size(776, 123);
             this.grpDel.TabIndex = 0;
@@ -124,13 +129,13 @@ namespace WineManager
             this.lblAlertNameOUT.TabIndex = 1;
             this.lblAlertNameOUT.Text = "Nom de l\'alerte*";
             // 
-            // comboWine
+            // comboAlertOUT
             // 
-            this.comboWine.FormattingEnabled = true;
-            this.comboWine.Location = new System.Drawing.Point(110, 25);
-            this.comboWine.Name = "comboWine";
-            this.comboWine.Size = new System.Drawing.Size(256, 21);
-            this.comboWine.TabIndex = 7;
+            this.comboAlertOUT.FormattingEnabled = true;
+            this.comboAlertOUT.Location = new System.Drawing.Point(110, 25);
+            this.comboAlertOUT.Name = "comboAlertOUT";
+            this.comboAlertOUT.Size = new System.Drawing.Size(256, 21);
+            this.comboAlertOUT.TabIndex = 7;
             // 
             // lblSelectedBottles
             // 
@@ -167,13 +172,13 @@ namespace WineManager
             this.lblDesc.TabIndex = 15;
             this.lblDesc.Text = "Message de l\'alerte";
             // 
-            // rtxtDescription
+            // rtxtMessage
             // 
-            this.rtxtDescription.Location = new System.Drawing.Point(110, 47);
-            this.rtxtDescription.Name = "rtxtDescription";
-            this.rtxtDescription.Size = new System.Drawing.Size(256, 71);
-            this.rtxtDescription.TabIndex = 8;
-            this.rtxtDescription.Text = "";
+            this.rtxtMessage.Location = new System.Drawing.Point(110, 47);
+            this.rtxtMessage.Name = "rtxtMessage";
+            this.rtxtMessage.Size = new System.Drawing.Size(256, 71);
+            this.rtxtMessage.TabIndex = 8;
+            this.rtxtMessage.Text = "";
             // 
             // lblAlertName
             // 
@@ -184,12 +189,12 @@ namespace WineManager
             this.lblAlertName.TabIndex = 1;
             this.lblAlertName.Text = "Nom de l\'alerte*";
             // 
-            // txtBottleName
+            // txtAlert
             // 
-            this.txtBottleName.Location = new System.Drawing.Point(110, 19);
-            this.txtBottleName.Name = "txtBottleName";
-            this.txtBottleName.Size = new System.Drawing.Size(256, 20);
-            this.txtBottleName.TabIndex = 0;
+            this.txtAlert.Location = new System.Drawing.Point(110, 19);
+            this.txtAlert.Name = "txtAlert";
+            this.txtAlert.Size = new System.Drawing.Size(256, 20);
+            this.txtAlert.TabIndex = 0;
             // 
             // grpActions
             // 
@@ -211,6 +216,7 @@ namespace WineManager
             this.radDelAlerts.TabIndex = 1;
             this.radDelAlerts.Text = "Supprimer une alerte";
             this.radDelAlerts.UseVisualStyleBackColor = true;
+            this.radDelAlerts.Click += new System.EventHandler(this.radDelAlerts_Click);
             // 
             // radAddAlert
             // 
@@ -223,6 +229,7 @@ namespace WineManager
             this.radAddAlert.TabStop = true;
             this.radAddAlert.Text = "Ajouter une alerte";
             this.radAddAlert.UseVisualStyleBackColor = true;
+            this.radAddAlert.Click += new System.EventHandler(this.radAddAlert_Click);
             // 
             // dvgBottles
             // 
@@ -250,6 +257,7 @@ namespace WineManager
             this.btnAddAlert.TabIndex = 7;
             this.btnAddAlert.Text = "Ajouter l\'alerte";
             this.btnAddAlert.UseVisualStyleBackColor = true;
+            this.btnAddAlert.Click += new System.EventHandler(this.btnAddAlert_Click);
             // 
             // btnDelAlert
             // 
@@ -259,6 +267,26 @@ namespace WineManager
             this.btnDelAlert.TabIndex = 7;
             this.btnDelAlert.Text = "Supprimer l\'alerte";
             this.btnDelAlert.UseVisualStyleBackColor = true;
+            this.btnDelAlert.Click += new System.EventHandler(this.btnDelAlert_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(374, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Bouteilles sélectionnées";
+            // 
+            // dvgBottlesSelected
+            // 
+            this.dvgBottlesSelected.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvgBottlesSelected.Enabled = false;
+            this.dvgBottlesSelected.EnableHeadersVisualStyles = false;
+            this.dvgBottlesSelected.Location = new System.Drawing.Point(500, 19);
+            this.dvgBottlesSelected.Name = "dvgBottlesSelected";
+            this.dvgBottlesSelected.Size = new System.Drawing.Size(270, 98);
+            this.dvgBottlesSelected.TabIndex = 19;
             // 
             // AlertsManagementfrm
             // 
@@ -267,6 +295,7 @@ namespace WineManager
             this.ClientSize = new System.Drawing.Size(800, 524);
             this.Controls.Add(this.btnDelAlert);
             this.Controls.Add(this.btnAddAlert);
+            this.Controls.Add(this.grpDel);
             this.Controls.Add(this.lblAlerts);
             this.Controls.Add(this.dvgBottles);
             this.Controls.Add(this.grpActions);
@@ -277,12 +306,13 @@ namespace WineManager
             this.Load += new System.EventHandler(this.AlertsManagementfrm_Load);
             this.grpAddAlert.ResumeLayout(false);
             this.grpAddAlert.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSelected)).EndInit();
             this.grpDel.ResumeLayout(false);
             this.grpDel.PerformLayout();
             this.grpActions.ResumeLayout(false);
             this.grpActions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgBottles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgBottlesSelected)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,20 +326,22 @@ namespace WineManager
         private System.Windows.Forms.RadioButton radDelAlerts;
         private System.Windows.Forms.RadioButton radAddAlert;
         private System.Windows.Forms.GroupBox grpDel;
-        private System.Windows.Forms.RichTextBox rtxtDescription;
+        private System.Windows.Forms.RichTextBox rtxtMessage;
         private System.Windows.Forms.Label lblAlertName;
-        private System.Windows.Forms.TextBox txtBottleName;
+        private System.Windows.Forms.TextBox txtAlert;
         private System.Windows.Forms.Label lblAlertNameOUT;
-        private System.Windows.Forms.ComboBox comboWine;
+        private System.Windows.Forms.ComboBox comboAlertOUT;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.DataGridView dvgBottles;
         private System.Windows.Forms.Label lblAlerts;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvSelected;
         private System.Windows.Forms.Button btnAddBottle;
         private System.Windows.Forms.Label lblSelectedBottles;
         private System.Windows.Forms.Label lblWines;
         private System.Windows.Forms.ComboBox comboWineChoice;
         private System.Windows.Forms.Button btnAddAlert;
         private System.Windows.Forms.Button btnDelAlert;
+        private System.Windows.Forms.DataGridView dvgBottlesSelected;
+        private System.Windows.Forms.Label label1;
     }
 }

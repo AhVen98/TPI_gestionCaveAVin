@@ -23,6 +23,36 @@ namespace WineManager
             return lstBox;
         }
 
+        static public bool AddStorageWDesc(string name, string desc)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+            res = req.AddStorageWDesc(name, desc);
+
+            return res;
+        }
+
+        static public bool AddStorage(string name)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+            res = req.AddStorage(name);
+
+            return res;
+        }
+
+        static public bool RemoveStorage(string name)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+            res = req.RemoveStorage(name);
+
+            return res;
+        }
+
         //all getter, to permit the application to view the data
         public string Name { get { return name; } }
         public string Description { get { return description; } }

@@ -31,15 +31,13 @@ namespace WineManager
         {
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionDesBouteillesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionDesCasiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exporterEnPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exporterEnPDFToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.imprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherLhistoriqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.picMainPage = new System.Windows.Forms.PictureBox();
+            this.researchStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.picMainPage = new System.Windows.Forms.PictureBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMainPage)).BeginInit();
             this.SuspendLayout();
@@ -61,14 +59,19 @@ namespace WineManager
             this.gToolStripMenuItem,
             this.gestionDesBouteillesToolStripMenuItem,
             this.gestionDesCasiersToolStripMenuItem,
-            this.exporterEnPDFToolStripMenuItem1,
             this.afficherLhistoriqueToolStripMenuItem,
-            this.imprimerToolStripMenuItem,
-            this.exporterEnPDFToolStripMenuItem,
+            this.researchStripMenuItem,
             this.quitterToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
+            // 
+            // gToolStripMenuItem
+            // 
+            this.gToolStripMenuItem.Name = "gToolStripMenuItem";
+            this.gToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gToolStripMenuItem.Text = "Gérer les alertes";
+            this.gToolStripMenuItem.Click += new System.EventHandler(this.GérerLesAlertesToolStripMenuItem_Click);
             // 
             // gestionDesBouteillesToolStripMenuItem
             // 
@@ -84,38 +87,26 @@ namespace WineManager
             this.gestionDesCasiersToolStripMenuItem.Text = "Gérer les casiers";
             this.gestionDesCasiersToolStripMenuItem.Click += new System.EventHandler(this.GestionDesCasiersToolStripMenuItem_Click);
             // 
-            // gToolStripMenuItem
-            // 
-            this.gToolStripMenuItem.Name = "gToolStripMenuItem";
-            this.gToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gToolStripMenuItem.Text = "Gérer les alertes";
-            this.gToolStripMenuItem.Click += new System.EventHandler(this.GérerLesAlertesToolStripMenuItem_Click);
-            // 
-            // exporterEnPDFToolStripMenuItem
-            // 
-            this.exporterEnPDFToolStripMenuItem.Name = "exporterEnPDFToolStripMenuItem";
-            this.exporterEnPDFToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exporterEnPDFToolStripMenuItem.Text = "Rechercher";
-            this.exporterEnPDFToolStripMenuItem.Click += new System.EventHandler(this.ExporterEnPDFToolStripMenuItem_Click);
-            // 
-            // exporterEnPDFToolStripMenuItem1
-            // 
-            this.exporterEnPDFToolStripMenuItem1.Name = "exporterEnPDFToolStripMenuItem1";
-            this.exporterEnPDFToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.exporterEnPDFToolStripMenuItem1.Text = "Exporter en PDF";
-            // 
-            // imprimerToolStripMenuItem
-            // 
-            this.imprimerToolStripMenuItem.Name = "imprimerToolStripMenuItem";
-            this.imprimerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.imprimerToolStripMenuItem.Text = "Imprimer";
-            // 
             // afficherLhistoriqueToolStripMenuItem
             // 
             this.afficherLhistoriqueToolStripMenuItem.Name = "afficherLhistoriqueToolStripMenuItem";
             this.afficherLhistoriqueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.afficherLhistoriqueToolStripMenuItem.Text = "Historique";
             this.afficherLhistoriqueToolStripMenuItem.Click += new System.EventHandler(this.AfficherLhistoriqueToolStripMenuItem_Click);
+            // 
+            // researchStripMenuItem
+            // 
+            this.researchStripMenuItem.Name = "researchStripMenuItem";
+            this.researchStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.researchStripMenuItem.Text = "Rechercher";
+            this.researchStripMenuItem.Click += new System.EventHandler(this.researchToolStripMenuItem_Click);
+            // 
+            // quitterToolStripMenuItem
+            // 
+            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quitterToolStripMenuItem.Text = "Quitter";
+            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.QuitterToolStripMenuItem_Click);
             // 
             // picMainPage
             // 
@@ -124,13 +115,6 @@ namespace WineManager
             this.picMainPage.Size = new System.Drawing.Size(569, 269);
             this.picMainPage.TabIndex = 1;
             this.picMainPage.TabStop = false;
-            // 
-            // quitterToolStripMenuItem
-            // 
-            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.quitterToolStripMenuItem.Text = "Quitter";
-            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.QuitterToolStripMenuItem_Click);
             // 
             // MainPagefrm
             // 
@@ -158,9 +142,7 @@ namespace WineManager
         private System.Windows.Forms.ToolStripMenuItem gestionDesBouteillesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionDesCasiersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exporterEnPDFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exporterEnPDFToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem imprimerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem researchStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherLhistoriqueToolStripMenuItem;
         private System.Windows.Forms.PictureBox picMainPage;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;

@@ -13,6 +13,8 @@ namespace WineManager
         //generating an instance of DBConnection, to enable the connection to the database
         DBConnection connDB = new DBConnection();
         DBConnection connDB2 = new DBConnection();
+        DBConnection connDB3 = new DBConnection();
+
 
         /**
          * SQL request to get a list of all varietals corresponding to the given wineID
@@ -58,22 +60,22 @@ namespace WineManager
         {
             connDB.OpenConnection();
             //variable initializing
-            int id =0;
-            string name ="";
-            string color = "";
-            int number=0;
-            double volume=0;
-            string manufacturer = "";
-            int year=0;
-            string storage = "";
-            string description = "";
+            int id;
+            string name;
+            string color;
+            int number;
+            double volume;
+            string manufacturer;
+            int year;
+            string storage;
+            string description;
             string strVarietal;
             List<Bottles> lstBot = new List<Bottles>();
 
 
             MySqlCommand cdmGetBottles = connDB.CreateQuery();
 
-            cdmGetBottles.CommandText = "SELECT wines.id, wines.wineName, colors.wineColor, wines.bottleNumber, wines.volume, "+
+            cdmGetBottles.CommandText = "SELECT wines.id, wines.wineName, colors.wineColor, wines.bottleNumber, wines.volume, " +
                 "manufacturers.manufacturersName, wines.productionYear, storageBoxes.name, wines.description " +
                 "FROM " +
                 "wines " +
@@ -96,7 +98,7 @@ namespace WineManager
                 bool res4 = int.TryParse(value[6].ToString(), out year);
                 storage = value[7].ToString();
                 description = value[8].ToString();
-                
+
                 //getting the varietal as a string 
                 strVarietal = GetVarietalByWineID(id);
 
@@ -108,7 +110,7 @@ namespace WineManager
             connDB.CloseConnection();
             return lstBot;
         }
-        
+
 
         /**
          * SQL request to get a list of all boxes present in the database
@@ -117,9 +119,9 @@ namespace WineManager
         public List<StorageBoxes> GetAllBoxes()
         {
             connDB.OpenConnection();
-            int id = 0;
+            int id;
             string name = "";
-            string description = "";
+            string description;
             List<StorageBoxes> lstBox = new List<StorageBoxes>();
 
 
@@ -151,21 +153,21 @@ namespace WineManager
          */
         public List<Alerts> GetAllAlerts()
         {
-            connDB.OpenConnection();
-            int id = 0;
+            connDB3.OpenConnection();
+            int id;
             string name = "";
             string message = "";
             string associatedBottles;
             List<Alerts> lstAlert = new List<Alerts>();
 
 
-            MySqlCommand cmd = connDB.CreateQuery();
+            MySqlCommand cmdGetAlerts = connDB3.CreateQuery();
 
-            cmd.CommandText = "SELECT id, alertName, alertText " +
+            cmdGetAlerts.CommandText = "SELECT id, alertName, alertText " +
                 "FROM " +
                 "alerts ";
 
-            MySqlDataReader value = connDB.Select(cmd);
+            MySqlDataReader value = connDB3.Select(cmdGetAlerts);
 
             while (value.Read())
             {
@@ -180,13 +182,19 @@ namespace WineManager
                 Alerts alert = new Alerts(name, message, associatedBottles);
                 lstAlert.Add(alert);
             }
-            connDB.CloseConnection();
+            value.Close();
+            connDB3.CloseConnection();
             return lstAlert;
         }
 
 
+        /**
+         * SQL request to get a list of all bottles present in the database, who have an alert
+         * return a list of string
+         */
         public string GetAllBottlesWithAlert(int id)
         {
+            connDB.OpenConnection();
             List<string> lstBottles = new List<string>();
             string bottleNames;
 
@@ -205,7 +213,8 @@ namespace WineManager
                 bottleNames = value[1].ToString();
                 lstBottles.Add(bottleNames);
             }
-
+            value.Close();
+            connDB.CloseConnection();
             //going from a list to a string
             string combinedString = string.Join(", ", lstBottles);
             return combinedString;
@@ -222,7 +231,7 @@ namespace WineManager
             connDB.OpenConnection();
 
             List<string> lstManu = new List<string>();
-            MySqlCommand cmdGetManufacturers= connDB.CreateQuery();
+            MySqlCommand cmdGetManufacturers = connDB.CreateQuery();
 
             cmdGetManufacturers.CommandText = "SELECT distinct manufacturersName FROM manufacturers ORDER BY manufacturersName ASC";
 
@@ -314,7 +323,7 @@ namespace WineManager
             List<string> lstStor = new List<string>();
             MySqlCommand cmdGetStorage = connDB.CreateQuery();
 
-            cmdGetStorage.CommandText = "SELECT name FROM storageBoxes";
+            cmdGetStorage.CommandText = "SELECT storageBoxes.name FROM storageBoxes";
 
 
             MySqlDataReader value = connDB.Select(cmdGetStorage);
@@ -379,17 +388,48 @@ namespace WineManager
             cmdGetWines.CommandText = "SELECT DISTINCT wineName FROM wines ORDER BY wineName ASC";
 
             MySqlDataReader value = connDB.Select(cmdGetWines);
-
+            int i = 0;
             while (value.Read())
             {
-                for (int i = 0; i < value.FieldCount; i++)
+                for ( i=0; i < value.FieldCount; i++)
                 {
                     lstWin.Add(value.GetString(i));
                 }
             }
+            value.Close();
 
             connDB.CloseConnection();
             return lstWin;
+        }
+
+
+        /**
+        * SQL request to get a list of all alerts present in the database
+        * return a list of string
+        * used for the dropdown field in the alertsmanagement
+        */
+        public List<string> GetListAlerts()
+        {
+            connDB2.OpenConnection();
+
+            List<string> lstAlert = new List<string>();
+            MySqlCommand cmdGetListAlerts = connDB2.CreateQuery();
+
+            cmdGetListAlerts.CommandText = "SELECT DISTINCT alertName FROM alerts ORDER BY alertName ASC";
+
+            MySqlDataReader value = connDB2.Select(cmdGetListAlerts);
+            
+            while (value.Read())
+            {
+                for (int i = 0; i < value.FieldCount; i++)
+                {
+                    lstAlert.Add(value.GetString(i));
+                }
+            }
+            value.Close();
+
+            connDB2.CloseConnection();
+            return lstAlert;
         }
 
 
@@ -422,9 +462,9 @@ namespace WineManager
             MySqlCommand cmd = connDB.CreateQuery();
 
             connDB.OpenConnection();
-   
-            cmd.CommandText = "INSERT INTO wines "+
-                "(wineName, productionYear, bottleNumber, volume, color_id, manufacturer_id, storagebox_id) "+
+
+            cmd.CommandText = "INSERT INTO wines " +
+                "(wineName, productionYear, bottleNumber, volume, color_id, manufacturer_id, storagebox_id) " +
                 "VALUES " +
                 "(@name,  @year, @number, @volume, @colID, @manuID, @storID)";
             // link to all parameters needed in the request
@@ -526,7 +566,7 @@ namespace WineManager
 
             connDB.CloseConnection();
             // adding the varietals to the intermediate table
-            foreach(string varietal in var)
+            foreach (string varietal in var)
             {
                 int varID = GetIDVarByName(varietal);
                 res = AddVarietalAndWine(varID, wineID);
@@ -607,7 +647,7 @@ namespace WineManager
 
             while (value.Read())
             {
-               int.TryParse(value[0].ToString(), out ID);
+                int.TryParse(value[0].ToString(), out ID);
             }
 
             connDB2.CloseConnection();
@@ -679,9 +719,9 @@ namespace WineManager
             int ID = -1;
 
             MySqlCommand cmdGetID = connDB2.CreateQuery();
-            cmdGetID.CommandText = "SELECT wines.id FROM wines "+
-                "ORDER BY "+
-                "id DESC "+
+            cmdGetID.CommandText = "SELECT wines.id FROM wines " +
+                "ORDER BY " +
+                "id DESC " +
                 "LIMIT 1";
 
             MySqlDataReader value = connDB.Select(cmdGetID);
@@ -722,6 +762,7 @@ namespace WineManager
             return ID;
         }
 
+
         /**
         * request to get the corresponding ID for the wine with this name, volume and production year
         */
@@ -735,7 +776,7 @@ namespace WineManager
                 "FROM " +
                 "wines " +
                 "WHERE wines.wineName = @name " +
-                "AND wines.volume = @vol "+
+                "AND wines.volume = @vol " +
                 "AND wines.productionYear = @year";
 
             cmdGetID.Parameters.AddWithValue("@name", name);
@@ -753,6 +794,10 @@ namespace WineManager
             return ID;
         }
 
+
+        /**
+        * request to get the corresponding number of bottles using the bottle ID
+        */
         public int GetWineBottleNumberByID(int ID)
         {
             connDB2.OpenConnection();
@@ -777,10 +822,14 @@ namespace WineManager
             return nbBottle;
         }
 
+        /**
+        * request to add, after a bottle has been added, the bottle with the corresponding varietal to a list
+        * return a boolean, to know if a modification occurred or not
+        */
         public bool AddVarietalAndWine(int var, int wine)
         {
             bool res = false;
-           
+
             MySqlCommand cmd = connDB.CreateQuery();
 
             connDB.OpenConnection();
@@ -800,7 +849,11 @@ namespace WineManager
             return res;
         }
 
-        
+
+        /**
+        * request to remove a specific number of bottles from a specific bottle
+        * return a boolean, to know if a modification occurred or not
+        */
         public bool RemoveBottle(string name, int number, double volume, string manufacturer, int year)
         {
             bool res = false;
@@ -813,8 +866,8 @@ namespace WineManager
             connDB.OpenConnection();
 
             cmd.CommandText = "UPDATE wines " +
-                "SET "+
-                "bottleNumber = @number "+
+                "SET " +
+                "bottleNumber = @number " +
                 "WHERE " +
                 "wines.id = @wineID";
             // link to all parameters needed in the request
@@ -827,5 +880,437 @@ namespace WineManager
 
             return res;
         }
+
+
+        /**
+        * request to get the list of bottles, where either the name or the description contains the specified keyword
+        * return a list of object "bottles", that can be shown on the application
+        */
+        public List<Bottles> ResearchByKeyword(string keyword)
+        {
+            connDB.OpenConnection();
+            //variable initializing
+            int id;
+            string name;
+            string color;
+            int number;
+            double volume;
+            string manufacturer;
+            int year;
+            string storage;
+            string description;
+            string strVarietal;
+            List<Bottles> lstBot = new List<Bottles>();
+
+
+            MySqlCommand cdmGetBottles = connDB.CreateQuery();
+
+            cdmGetBottles.CommandText = "SELECT wines.id, wines.wineName, colors.wineColor, wines.bottleNumber, wines.volume, " +
+                "manufacturers.manufacturersName, wines.productionYear, storageBoxes.name, wines.description " +
+                "FROM " +
+                "wines " +
+                "LEFT JOIN colors ON wines.color_id = colors.id " +
+                "LEFT JOIN manufacturers ON wines.manufacturer_id = manufacturers.id " +
+                "LEFT JOIN storageBoxes ON wines.storagebox_id = storageBoxes.id " +
+                "WHERE wines.wineName = @key OR wines.description = @key";
+
+            cdmGetBottles.Parameters.AddWithValue("@key", keyword);
+            MySqlDataReader value = connDB.Select(cdmGetBottles);
+
+            //parsing the table created from the request
+            while (value.Read())
+            {
+                //attributing the value from a certain position (value[]) to the correct variable
+                name = value[1].ToString();
+                bool res = int.TryParse(value[0].ToString(), out id);
+                color = value[2].ToString();
+                bool res2 = int.TryParse(value[3].ToString(), out number);
+                bool res3 = double.TryParse(value[4].ToString(), out volume);
+                manufacturer = value[5].ToString();
+                bool res4 = int.TryParse(value[6].ToString(), out year);
+                storage = value[7].ToString();
+                description = value[8].ToString();
+
+                //getting the varietal as a string 
+                strVarietal = GetVarietalByWineID(id);
+
+                //generate an object "Bottle", with the parameters from the database
+                Bottles bot = new Bottles(name, color, number, volume, manufacturer, year, strVarietal, storage, description);
+                //adding the object to the list of bottles
+                lstBot.Add(bot);
+            }
+            connDB.CloseConnection();
+            return lstBot;
+        }
+
+
+        /**
+        * request to get the list of bottles, where either the name or the description contains the specified keyword
+        * return a list of object "bottles", that can be shown on the application
+        */
+        public List<Bottles> OrderByColor()
+        {
+            connDB.OpenConnection();
+            //variable initializing
+            int id;
+            string name;
+            string color;
+            int number;
+            double volume;
+            string manufacturer;
+            int year;
+            string storage;
+            string description;
+            string strVarietal;
+            List<Bottles> lstBot = new List<Bottles>();
+
+
+            MySqlCommand cdmGetBottles = connDB.CreateQuery();
+
+            cdmGetBottles.CommandText = "SELECT wines.id, wines.wineName, colors.wineColor, wines.bottleNumber, wines.volume, " +
+                "manufacturers.manufacturersName, wines.productionYear, storageBoxes.name, wines.description " +
+                "FROM " +
+                "wines " +
+                "LEFT JOIN colors ON wines.color_id = colors.id " +
+                "LEFT JOIN manufacturers ON wines.manufacturer_id = manufacturers.id " +
+                "LEFT JOIN storageBoxes ON wines.storagebox_id = storageBoxes.id " +
+                "ORDER BY colors.wineColor ASC";
+
+            MySqlDataReader value = connDB.Select(cdmGetBottles);
+
+            //parsing the table created from the request
+            while (value.Read())
+            {
+                //attributing the value from a certain position (value[]) to the correct variable
+                name = value[1].ToString();
+                bool res = int.TryParse(value[0].ToString(), out id);
+                color = value[2].ToString();
+                bool res2 = int.TryParse(value[3].ToString(), out number);
+                bool res3 = double.TryParse(value[4].ToString(), out volume);
+                manufacturer = value[5].ToString();
+                bool res4 = int.TryParse(value[6].ToString(), out year);
+                storage = value[7].ToString();
+                description = value[8].ToString();
+
+                //getting the varietal as a string 
+                strVarietal = GetVarietalByWineID(id);
+
+                //generate an object "Bottle", with the parameters from the database
+                Bottles bot = new Bottles(name, color, number, volume, manufacturer, year, strVarietal, storage, description);
+                //adding the object to the list of bottles
+                lstBot.Add(bot);
+            }
+            connDB.CloseConnection();
+            return lstBot;
+        }
+
+
+        /**
+         * request to get the list of bottles, ordered by their color
+         * return a list of object "bottles", that can be shown on the application, ordered by color
+         */
+        public List<Bottles> OrderByManufacturer()
+        {
+            connDB.OpenConnection();
+            //variable initializing
+            int id;
+            string name;
+            string color;
+            int number;
+            double volume;
+            string manufacturer;
+            int year = 0;
+            string storage;
+            string description;
+            string strVarietal;
+            List<Bottles> lstBot = new List<Bottles>();
+
+
+            MySqlCommand cdmGetBottles = connDB.CreateQuery();
+
+            cdmGetBottles.CommandText = "SELECT wines.id, wines.wineName, colors.wineColor, wines.bottleNumber, wines.volume, " +
+                "manufacturers.manufacturersName, wines.productionYear, storageBoxes.name, wines.description " +
+                "FROM " +
+                "wines " +
+                "LEFT JOIN colors ON wines.color_id = colors.id " +
+                "LEFT JOIN manufacturers ON wines.manufacturer_id = manufacturers.id " +
+                "LEFT JOIN storageBoxes ON wines.storagebox_id = storageBoxes.id " +
+                "ORDER BY manufacturers.manufacturersName ASC";
+
+            MySqlDataReader value = connDB.Select(cdmGetBottles);
+
+            //parsing the table created from the request
+            while (value.Read())
+            {
+                //attributing the value from a certain position (value[]) to the correct variable
+                name = value[1].ToString();
+                bool res = int.TryParse(value[0].ToString(), out id);
+                color = value[2].ToString();
+                bool res2 = int.TryParse(value[3].ToString(), out number);
+                bool res3 = double.TryParse(value[4].ToString(), out volume);
+                manufacturer = value[5].ToString();
+                bool res4 = int.TryParse(value[6].ToString(), out year);
+                storage = value[7].ToString();
+                description = value[8].ToString();
+
+                //getting the varietal as a string 
+                strVarietal = GetVarietalByWineID(id);
+
+                //generate an object "Bottle", with the parameters from the database
+                Bottles bot = new Bottles(name, color, number, volume, manufacturer, year, strVarietal, storage, description);
+                //adding the object to the list of bottles
+                lstBot.Add(bot);
+            }
+            connDB.CloseConnection();
+            return lstBot;
+        }
+
+
+        /**
+         * request to get the list of bottles, ordered by their color
+         * return a list of object "bottles", that can be shown on the application, ordered by color
+         */
+        public List<Bottles> OrderByCountry()
+        {
+            connDB.OpenConnection();
+            //variable initializing
+            int id;
+            string name;
+            string color;
+            int number;
+            double volume;
+            string manufacturer;
+            int year;
+            string storage;
+            string description;
+            string strVarietal;
+            List<Bottles> lstBot = new List<Bottles>();
+
+
+            MySqlCommand cdmGetBottles = connDB.CreateQuery();
+
+            cdmGetBottles.CommandText = "SELECT wines.id, wines.wineName, colors.wineColor, wines.bottleNumber, wines.volume, " +
+                "manufacturers.manufacturersName, wines.productionYear, storageBoxes.name, wines.description " +
+                "FROM " +
+                "wines " +
+                "LEFT JOIN colors ON wines.color_id = colors.id " +
+                "LEFT JOIN manufacturers ON wines.manufacturer_id = manufacturers.id " +
+                "LEFT JOIN countries ON manufacturers.country_id = countries.id "+ 
+                "LEFT JOIN storageBoxes ON wines.storagebox_id = storageBoxes.id " +
+                "ORDER BY countries.countryName ASC";
+
+            MySqlDataReader value = connDB.Select(cdmGetBottles);
+
+            //parsing the table created from the request
+            while (value.Read())
+            {
+                //attributing the value from a certain position (value[]) to the correct variable
+                name = value[1].ToString();
+                bool res = int.TryParse(value[0].ToString(), out id);
+                color = value[2].ToString();
+                bool res2 = int.TryParse(value[3].ToString(), out number);
+                bool res3 = double.TryParse(value[4].ToString(), out volume);
+                manufacturer = value[5].ToString();
+                bool res4 = int.TryParse(value[6].ToString(), out year);
+                storage = value[7].ToString();
+                description = value[8].ToString();
+
+                //getting the varietal as a string 
+                strVarietal = GetVarietalByWineID(id);
+
+                //generate an object "Bottle", with the parameters from the database
+                Bottles bot = new Bottles(name, color, number, volume, manufacturer, year, strVarietal, storage, description);
+                //adding the object to the list of bottles
+                lstBot.Add(bot);
+            }
+            connDB.CloseConnection();
+            return lstBot;
+        }
+        
+        /**
+         * request to get the list of bottles, ordered by their color
+         * return a list of object "bottles", that can be shown on the application, ordered by color
+         */
+        public List<Bottles> OrderByVarietal()
+        {
+            connDB.OpenConnection();
+            //variable initializing
+            int id;
+            string name;
+            string color;
+            int number;
+            double volume;
+            string manufacturer;
+            int year;
+            string storage;
+            string description;
+            string strVarietal;
+            List<Bottles> lstBot = new List<Bottles>();
+
+
+            MySqlCommand cdmGetBottles = connDB.CreateQuery();
+
+            cdmGetBottles.CommandText = "SELECT DISTINCT wines.id, wines.wineName, colors.wineColor, wines.bottleNumber, wines.volume, " +
+                "manufacturers.manufacturersName, wines.productionYear, storageBoxes.name, wines.description " +
+                "FROM " +
+                "wines " +
+                "LEFT JOIN colors ON wines.color_id = colors.id " +
+                "LEFT JOIN manufacturers ON wines.manufacturer_id = manufacturers.id " +
+                "LEFT JOIN wines_has_grapeVarieties ON wines_has_grapeVarieties.wine_id = wines.id "+
+                "LEFT JOIN grapeVarieties ON grapeVarieties.id = wines_has_grapeVarieties.grapeVariety_id " +
+                "LEFT JOIN storageBoxes ON wines.storagebox_id = storageBoxes.id " +
+                "ORDER BY grapeVarieties.varietyName ASC";
+
+            MySqlDataReader value = connDB.Select(cdmGetBottles);
+
+            //parsing the table created from the request
+            while (value.Read())
+            {
+                //attributing the value from a certain position (value[]) to the correct variable
+                name = value[1].ToString();
+                bool res = int.TryParse(value[0].ToString(), out id);
+                color = value[2].ToString();
+                bool res2 = int.TryParse(value[3].ToString(), out number);
+                bool res3 = double.TryParse(value[4].ToString(), out volume);
+                manufacturer = value[5].ToString();
+                bool res4 = int.TryParse(value[6].ToString(), out year);
+                storage = value[7].ToString();
+                description = value[8].ToString();
+
+                //getting the varietal as a string 
+                strVarietal = GetVarietalByWineID(id);
+
+                //generate an object "Bottle", with the parameters from the database
+                Bottles bot = new Bottles(name, color, number, volume, manufacturer, year, strVarietal, storage, description);
+                //adding the object to the list of bottles
+                lstBot.Add(bot);
+            }
+            connDB.CloseConnection();
+            return lstBot;
+        }
+
+
+        public bool AddStorageWDesc(string name, string desc)
+        {
+            bool res = false;
+
+            MySqlCommand cmd = connDB.CreateQuery();
+
+            connDB.OpenConnection();
+
+            cmd.CommandText = "INSERT INTO storageBoxes " +
+                "(name, location) " +
+                "VALUES " +
+                "(@name, @desc)";
+            // link to all parameters needed in the request
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@desc", desc);
+
+            res = connDB.ExecuteQueryWCheck(cmd);
+
+            connDB.CloseConnection();
+
+            return res;
+        }
+
+
+        public bool AddStorage(string name)
+        {
+            bool res = false;
+
+            MySqlCommand cmd = connDB.CreateQuery();
+
+            connDB.OpenConnection();
+
+            cmd.CommandText = "INSERT INTO storageBoxes " +
+                "(name) " +
+                "VALUES " +
+                "(@name)";
+            // link to all parameters needed in the request
+            cmd.Parameters.AddWithValue("@name", name);
+
+            res = connDB.ExecuteQueryWCheck(cmd);
+
+            connDB.CloseConnection();
+
+            return res;
+        }
+
+
+        public int GetStorageIDByName(string name)
+        {
+            connDB2.OpenConnection();
+            int boxID = -1;
+
+            MySqlCommand cmdGetID = connDB2.CreateQuery();
+            cmdGetID.CommandText = "SELECT storageBoxes.id " +
+                "FROM " +
+                "storageBoxes " +
+                "WHERE storageBoxes.name = @name ";
+
+            cmdGetID.Parameters.AddWithValue("@name", name);
+
+            MySqlDataReader value = connDB.Select(cmdGetID);
+
+            while (value.Read())
+            {
+                int.TryParse(value[0].ToString(), out boxID);
+            }
+
+            connDB2.CloseConnection();
+            return boxID;
+        }
+
+
+        public bool RemoveStorage(string name)
+        {
+            bool res = false;
+            int storageID = GetStorageIDByName(name);
+
+            MySqlCommand cmd = connDB.CreateQuery();
+
+            connDB.OpenConnection();
+
+            cmd.CommandText = "DELETE FROM storageBoxes " +
+                "WHERE " +
+                "storageBoxes.id = @storID";
+
+            // link to all parameters needed in the request
+            cmd.Parameters.AddWithValue("@storID", storageID);
+
+            res = connDB.ExecuteQueryWCheck(cmd);
+
+            connDB.CloseConnection();
+
+            return res;
+
+        }
+
+
+        public bool CheckStorageEmpty(string storageName)
+        {
+            bool res = false;
+            int storageID = GetStorageIDByName(storageName);
+
+            MySqlCommand cmd = connDB.CreateQuery();
+
+            connDB.OpenConnection();
+
+            cmd.CommandText = "SELECT * " +
+                "FROM wines "+
+                "WHERE " +
+                "wines.storageBox_id = @storID";
+
+            // link to all parameters needed in the request
+            cmd.Parameters.AddWithValue("@storID", storageID);
+
+            res = connDB.ExecuteQueryWCheck(cmd);
+
+            connDB.CloseConnection();
+
+            return res;
+
+        }
     }
 }
+

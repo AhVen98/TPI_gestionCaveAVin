@@ -39,6 +39,8 @@ namespace WineManager
             this.radColor = new System.Windows.Forms.RadioButton();
             this.txtResearch = new System.Windows.Forms.TextBox();
             this.lblKeyWord = new System.Windows.Forms.Label();
+            this.btnPDF = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dvgBottles)).BeginInit();
             this.grpSort.SuspendLayout();
             this.SuspendLayout();
@@ -77,9 +79,9 @@ namespace WineManager
             this.grpSort.Controls.Add(this.radManufacturer);
             this.grpSort.Controls.Add(this.radCountry);
             this.grpSort.Controls.Add(this.radColor);
-            this.grpSort.Location = new System.Drawing.Point(12, 54);
+            this.grpSort.Location = new System.Drawing.Point(12, 17);
             this.grpSort.Name = "grpSort";
-            this.grpSort.Size = new System.Drawing.Size(353, 39);
+            this.grpSort.Size = new System.Drawing.Size(200, 76);
             this.grpSort.TabIndex = 6;
             this.grpSort.TabStop = false;
             this.grpSort.Text = "Trier par :";
@@ -87,12 +89,13 @@ namespace WineManager
             // radVariety
             // 
             this.radVariety.AutoSize = true;
-            this.radVariety.Location = new System.Drawing.Point(283, 19);
+            this.radVariety.Location = new System.Drawing.Point(115, 42);
             this.radVariety.Name = "radVariety";
             this.radVariety.Size = new System.Drawing.Size(62, 17);
             this.radVariety.TabIndex = 0;
             this.radVariety.Text = "Cépage";
             this.radVariety.UseVisualStyleBackColor = true;
+            this.radVariety.Click += new System.EventHandler(this.radVariety_Click);
             // 
             // radManufacturer
             // 
@@ -103,28 +106,29 @@ namespace WineManager
             this.radManufacturer.TabIndex = 0;
             this.radManufacturer.Text = "Producteur";
             this.radManufacturer.UseVisualStyleBackColor = true;
+            this.radManufacturer.Click += new System.EventHandler(this.radManufacturer_Click);
             // 
             // radCountry
             // 
             this.radCountry.AutoSize = true;
-            this.radCountry.Location = new System.Drawing.Point(215, 19);
+            this.radCountry.Location = new System.Drawing.Point(6, 42);
             this.radCountry.Name = "radCountry";
             this.radCountry.Size = new System.Drawing.Size(48, 17);
             this.radCountry.TabIndex = 0;
             this.radCountry.Text = "Pays";
             this.radCountry.UseVisualStyleBackColor = true;
+            this.radCountry.Click += new System.EventHandler(this.radCountry_Click);
             // 
             // radColor
             // 
             this.radColor.AutoSize = true;
-            this.radColor.Checked = true;
             this.radColor.Location = new System.Drawing.Point(6, 19);
             this.radColor.Name = "radColor";
             this.radColor.Size = new System.Drawing.Size(93, 17);
             this.radColor.TabIndex = 0;
-            this.radColor.TabStop = true;
             this.radColor.Text = "Couleur du vin";
             this.radColor.UseVisualStyleBackColor = true;
+            this.radColor.Click += new System.EventHandler(this.radColor_Click);
             // 
             // txtResearch
             // 
@@ -143,11 +147,33 @@ namespace WineManager
             this.lblKeyWord.TabIndex = 8;
             this.lblKeyWord.Text = "Mot-clé";
             // 
+            // btnPDF
+            // 
+            this.btnPDF.Location = new System.Drawing.Point(503, 12);
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(161, 23);
+            this.btnPDF.TabIndex = 9;
+            this.btnPDF.Text = "Exporter en PDF";
+            this.btnPDF.UseVisualStyleBackColor = true;
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(503, 41);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(161, 23);
+            this.btnPrint.TabIndex = 9;
+            this.btnPrint.Text = "Imprimer";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // Researchfrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 524);
+            this.Controls.Add(this.btnPrint);
+            this.Controls.Add(this.btnPDF);
             this.Controls.Add(this.lblKeyWord);
             this.Controls.Add(this.txtResearch);
             this.Controls.Add(this.grpSort);
@@ -177,5 +203,7 @@ namespace WineManager
         private System.Windows.Forms.RadioButton radColor;
         private System.Windows.Forms.TextBox txtResearch;
         private System.Windows.Forms.Label lblKeyWord;
+        private System.Windows.Forms.Button btnPDF;
+        private System.Windows.Forms.Button btnPrint;
     }
 }
