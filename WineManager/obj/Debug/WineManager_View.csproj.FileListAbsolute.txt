@@ -64,3 +64,8 @@ C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\obj\Debug\
 C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\WineManager_Library.dll
 C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\WineManager_Library.pdb
 C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\WineManager_Library.dll.config
+C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\Spire.License.dll
+C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\Spire.Pdf.dll
+C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\Microsoft.mshtml.dll
+C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\Spire.License.xml
+C:\Users\paola.costa\Documents\GitHub\TPI_gestionCaveAVin\WineManager\bin\Debug\Spire.Pdf.xml

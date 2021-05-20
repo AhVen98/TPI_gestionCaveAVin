@@ -30,9 +30,9 @@ namespace WineManager
         private void InitializeComponent()
         {
             this.btnMainPage = new System.Windows.Forms.Button();
-            this.dvgBottles = new System.Windows.Forms.DataGridView();
+            this.dvgLogs = new System.Windows.Forms.DataGridView();
             this.lblLogs = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgBottles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgLogs)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMainPage
@@ -44,14 +44,14 @@ namespace WineManager
             this.btnMainPage.Text = "Retourner à la page principale";
             this.btnMainPage.UseVisualStyleBackColor = true;
             // 
-            // dvgBottles
+            // dvgLogs
             // 
-            this.dvgBottles.BackgroundColor = System.Drawing.SystemColors.ControlDark;
-            this.dvgBottles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgBottles.Location = new System.Drawing.Point(12, 70);
-            this.dvgBottles.Name = "dvgBottles";
-            this.dvgBottles.Size = new System.Drawing.Size(776, 442);
-            this.dvgBottles.TabIndex = 5;
+            this.dvgLogs.BackgroundColor = System.Drawing.SystemColors.ControlDark;
+            this.dvgLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvgLogs.Location = new System.Drawing.Point(12, 70);
+            this.dvgLogs.Name = "dvgLogs";
+            this.dvgLogs.Size = new System.Drawing.Size(776, 442);
+            this.dvgLogs.TabIndex = 5;
             // 
             // lblLogs
             // 
@@ -68,11 +68,12 @@ namespace WineManager
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 524);
             this.Controls.Add(this.lblLogs);
-            this.Controls.Add(this.dvgBottles);
+            this.Controls.Add(this.dvgLogs);
             this.Controls.Add(this.btnMainPage);
             this.Name = "Logsfrm";
             this.Text = "Historique";
-            ((System.ComponentModel.ISupportInitialize)(this.dvgBottles)).EndInit();
+            this.Load += new System.EventHandler(this.Logsfrm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dvgLogs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,7 +82,7 @@ namespace WineManager
         #endregion
 
         private System.Windows.Forms.Button btnMainPage;
-        private System.Windows.Forms.DataGridView dvgBottles;
+        private System.Windows.Forms.DataGridView dvgLogs;
         private System.Windows.Forms.Label lblLogs;
     }
 }

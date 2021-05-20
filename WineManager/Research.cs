@@ -7,6 +7,8 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using Spire.Pdf;
+
 
 namespace WineManager
 {
@@ -222,14 +224,13 @@ namespace WineManager
                 string tVarietal = bot.Varietal;
                 string tDescription = bot.Description;
                 string tStorage = bot.Storage;
-                for(int i = 0; i < numCol; i++)
-                {
+
                 // adding the values to the corresponding cell
                 Cell tcellStorage = new Cell()
                               .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.WHITE)
                               .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
                 tcellStorage.Add(new Paragraph(tStorage));
-                table.AddCell(cellStorage);
+                table.AddCell(tcellStorage);
                 Cell tcellName= new Cell()
                               .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.WHITE)
                               .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
@@ -270,7 +271,6 @@ namespace WineManager
                               .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
                 tcellDescription.Add(new Paragraph(tDescription));
                 table.AddCell(tcellDescription);
-                }
             }
 
             return table;
@@ -279,54 +279,75 @@ namespace WineManager
 
         private void btnPDF_Click(object sender, EventArgs e)
         {
+            Document doc = GeneratePDF("def");
+        }
+
+        private Document GeneratePDF(string use)
+        {
+            List<Bottles> listBottle = new List<Bottles>();
+            //check which order by is selected, select the correct list depending on that
+            if (radColor.Checked)
             {
-                List<Bottles> listBottle = new List<Bottles>();
-                //check which order by is selected, select the correct list depending on that
-                if (radColor.Checked)
-                {
-                    listBottle = Bottles.OrderByColor();
-                }
-                else if (radCountry.Checked)
-                {
-                    listBottle = Bottles.OrderByCountry();
-                }
-                else if (radManufacturer.Checked)
-                {
-                    listBottle = Bottles.OrderByManufacturer();
-                }
-                else if (radVariety.Checked)
-                {
-                    listBottle = Bottles.OrderByVarietal();
-                }
-                else if (txtResearch.Text!= "")
-                {
-                    listBottle = Bottles.ResearchByKeyword(txtResearch.Text);
-                }
-                //if no ordering, select all bottles as they are in DB
-                else
-                {
-                    listBottle = Bottles.ShowAllBottles();
-                }
-
-
-                // Must have write permissions to the path folder
-                PdfWriter writer = new PdfWriter("C:\\Demo.pdf");
-                PdfDocument pdf = new PdfDocument(writer);
-                Document document = new Document(pdf);
-                Paragraph header = new Paragraph("HEADER")
-                   .SetTextAlignment(TextAlignment.CENTER)
-                   .SetFontSize(20);
-
-                document.Add(header);
-                Table table = CreateTable(listBottle);
-                //document.Add(table);
-                document.Close();
+                listBottle = Bottles.OrderByColor();
             }
+            else if (radCountry.Checked)
+            {
+                listBottle = Bottles.OrderByCountry();
+            }
+            else if (radManufacturer.Checked)
+            {
+                listBottle = Bottles.OrderByManufacturer();
+            }
+            else if (radVariety.Checked)
+            {
+                listBottle = Bottles.OrderByVarietal();
+            }
+            else if (txtResearch.Text != "")
+            {
+                listBottle = Bottles.ResearchByKeyword(txtResearch.Text);
+            }
+            //if no ordering, select all bottles as they are in DB
+            else
+            {
+                listBottle = Bottles.ShowAllBottles();
+            }
+
+            string jour = DateTime.Today.Day.ToString()+"."+ DateTime.Today.Month.ToString() + "."+ DateTime.Today.Year.ToString();
+            // Must have write permissions to the path folder
+            PdfWriter writer;
+            if (use == "def")
+            {
+                writer = new PdfWriter("C:\\ListeBouteilles_" + jour + ".pdf");
+            }
+            else
+            {               
+                writer = new PdfWriter("C:\\temp\\list" + jour + ".pdf");
+            }
+            //it is necessary to specify, because the class PdfDocument exist in both iText and Spire
+            iText.Kernel.Pdf.PdfDocument pdf = new iText.Kernel.Pdf.PdfDocument(writer);
+            Document document = new Document(pdf);
+            Paragraph header = new Paragraph("Liste de bouteilles stockées")
+               .SetTextAlignment(TextAlignment.CENTER)
+               .SetFontSize(14);
+
+            document.Add(header);
+            Table table = CreateTable(listBottle);
+            document.Add(table);
+            document.Close();
+
+            return document;
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            
+            Document doc = GeneratePDF("temp");
+            string jour = DateTime.Today.Day.ToString() + "." + DateTime.Today.Month.ToString() + "." + DateTime.Today.Year.ToString();
+
+            //it is necessary to specify Spire.Pdf because iText7 uses the same Class Name
+            Spire.Pdf.PdfDocument pdf = new Spire.Pdf.PdfDocument();
+            pdf.LoadFromFile("C:\\temp\\list" + jour + ".pdf");
+            pdf.PrintSettings.PrinterName = "\\\\SC-PRNT-SV30\\sc-c236-pr02.cpnv.ch";
+            pdf.Print();
         }
     }
 }

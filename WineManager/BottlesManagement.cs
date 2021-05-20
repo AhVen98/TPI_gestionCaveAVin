@@ -27,6 +27,75 @@ namespace WineManager
 
             LoadData();
 
+            /**
+             * load all lists for the drop down fields, to be able to add bottles
+             */
+            //initializing the lists for the dropdown field
+            List<string> lstManufacturers;
+            List<string> lstColors;
+            List<string> lstVarieties;
+            List<double> lstVolumes;
+            List<string> lstStorages;
+            List<string> lstWines;
+            List<int> lstYears;
+
+            //list for all manufacturer in "add a bottle" and "remove a bottle"
+            lstManufacturers = req.GetListManufacturers();
+            for (int i = 0; i < lstManufacturers.Count; i++)
+            {
+                comboManufacturer.Items.Add(lstManufacturers[i].ToString());
+                comboManufacturerOUT.Items.Add(lstManufacturers[i].ToString());
+            }
+
+            //list for all colors in "add a bottle"
+            lstColors = req.GetListColors();
+            for (int i = 0; i < lstColors.Count; i++)
+            {
+                comboColor.Items.Add(lstColors[i].ToString());
+            }
+
+            //list for possible volumes in "add a bottle" and "remove a bottle"
+            // fixed -> to enable other volumes, it has to be added in the list 
+            lstVolumes = new List<double>() { 0.2, 0.375, 0.5, 0.75, 1.0, 1.5, 3 };
+            for (int i = 0; i < lstVolumes.Count; i++)
+            {
+                comboVolume.Items.Add(lstVolumes[i].ToString());
+                comboVolumeOUT.Items.Add(lstVolumes[i].ToString());
+            }
+
+            /** 
+             * list for all varieties in "add a bottle"
+             * there are 3 dropdown fields with the same list, so all are initialized at the same time
+             */
+            lstVarieties = req.GetListVarieties();
+            for (int i = 0; i < lstVarieties.Count; i++)
+            {
+                comboVariety1.Items.Add(lstVarieties[i].ToString());
+                comboVariety2.Items.Add(lstVarieties[i].ToString());
+                comboVariety3.Items.Add(lstVarieties[i].ToString());
+            }
+
+            //list for all storageBoxes in "add a bottle"
+            lstStorages = req.GetListStorages();
+            for (int i = 0; i < lstStorages.Count; i++)
+            {
+                comboStorage.Items.Add(lstStorages[i].ToString());
+            }
+
+            //list for all years in "remove a bottle"
+            lstYears = req.GetListDistinctYears();
+            for (int i = 0; i < lstYears.Count; i++)
+            {
+                comboYearOUT.Items.Add(lstYears[i].ToString());
+            }
+
+            lstWines = req.GetListWines();
+            for (int i = 0; i < lstWines.Count; i++)
+            {
+                comboWine.Items.Add(lstWines[i].ToString());
+            }
+
+
         }
 
         private void BtnMainPage_Click(object sender, EventArgs e)
@@ -227,7 +296,7 @@ namespace WineManager
             // occur uniquely if the volume, the name and the year have been validated
             if(successVolume && successName && successYear)
             {
-                //successPresence = req.CheckBottlePresence(wineName, year, volume);
+                successPresence = req.CheckBottlePresence(wineName, year, volume);
             }
             // if all verification are ok -> will be true, otherwise, will be false
             successFormat = successNumber && successYear && successName && successColor && successManu && successStorage;
@@ -264,7 +333,7 @@ namespace WineManager
             // all checks passed, bottle already present
             else if(successFormat == true && successPresence)
             {
-
+                successAdd = Bottles.UpdateBottle(wineName, number, volume, year);
             }
             // problems with at least 1 check
             else
@@ -341,77 +410,10 @@ namespace WineManager
             List<Bottles> lstBottle = Bottles.ShowAllBottles();
             foreach (Bottles bot in lstBottle)
             {
-                string[] row = { bot.BottleNumber.ToString(), bot.Name, bot.Manufacturer, bot.Year.ToString(), bot.Volume.ToString(), bot.Color, bot.Varietal.ToString(), bot.Description, };
+                string[] row = { bot.BottleNumber.ToString(), bot.Name, bot.Manufacturer, bot.Year.ToString(), bot.Volume.ToString(), bot.Color, bot.Varietal.ToString(), bot.Description };
                 dvgBottles.Rows.Add(row);
             }
 
-            /**
-             * load all lists for the drop down fields, to be able to add bottles
-             */
-            //initializing the lists for the dropdown field
-            List<string> lstManufacturers;
-            List<string> lstColors;
-            List<string> lstVarieties;
-            List<double> lstVolumes;
-            List<string> lstStorages;
-            List<string> lstWines;
-            List<int> lstYears;
-
-            //list for all manufacturer in "add a bottle" and "remove a bottle"
-            lstManufacturers = req.GetListManufacturers();
-            for (int i = 0; i < lstManufacturers.Count; i++)
-            {
-                comboManufacturer.Items.Add(lstManufacturers[i].ToString());
-                comboManufacturerOUT.Items.Add(lstManufacturers[i].ToString());
-            }
-
-            //list for all colors in "add a bottle"
-            lstColors = req.GetListColors();
-            for (int i = 0; i < lstColors.Count; i++)
-            {
-                comboColor.Items.Add(lstColors[i].ToString());
-            }
-
-            //list for possible volumes in "add a bottle" and "remove a bottle"
-            // fixed -> to enable other volumes, it has to be added in the list 
-            lstVolumes = new List<double>() { 0.2, 0.375, 0.5, 0.75, 1.0, 1.5, 3 };
-            for (int i = 0; i < lstVolumes.Count; i++)
-            {
-                comboVolume.Items.Add(lstVolumes[i].ToString());
-                comboVolumeOUT.Items.Add(lstVolumes[i].ToString());
-            }
-
-            /** 
-             * list for all varieties in "add a bottle"
-             * there are 3 dropdown fields with the same list, so all are initialized at the same time
-             */
-            lstVarieties = req.GetListVarieties();
-            for (int i = 0; i < lstVarieties.Count; i++)
-            {
-                comboVariety1.Items.Add(lstVarieties[i].ToString());
-                comboVariety2.Items.Add(lstVarieties[i].ToString());
-                comboVariety3.Items.Add(lstVarieties[i].ToString());
-            }
-
-            //list for all storageBoxes in "add a bottle"
-            lstStorages = req.GetListStorages();
-            for (int i = 0; i < lstStorages.Count; i++)
-            {
-                comboStorage.Items.Add(lstStorages[i].ToString());
-            }
-
-            //list for all years in "remove a bottle"
-            lstYears = req.GetListDistinctYears();
-            for (int i = 0; i < lstYears.Count; i++)
-            {
-                comboYearOUT.Items.Add(lstYears[i].ToString());
-            }
-
-            lstWines = req.GetListWines();
-            for (int i = 0; i < lstWines.Count; i++)
-            {
-                comboWine.Items.Add(lstWines[i].ToString());
-            }
         }
     }
 }

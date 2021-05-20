@@ -7,35 +7,55 @@ using System.Threading.Tasks;
 namespace WineManager
 {
     public class Logs
-    {
+    {        
         protected string action;
         protected DateTime exactTime;
-        protected string bottle;
-        protected string alert;
-        protected string box;
+        protected string element;
 
 
-        public Logs(string name, DateTime exactTime, string bottle ="", string alert = "", string box = "")
+        public Logs(string name, DateTime exactTime, string element)
         {
             this.action = name;
             this.exactTime = exactTime;
-            this.bottle = bottle;
-            this.alert = alert;
-            this.box = box;
+            this.element = element;
         }
 
-        static public List<Alerts> ShowAllAlerts()
+        static public List<Logs> GetAllLogs()
         {
             DBRequest req = new DBRequest();
-            List<Alerts> lstalert = req.GetAllAlerts();
-            return lstalert;
+            List<Logs> lstlog = req.GetAllLogs();
+            return lstlog;
+        }
+
+        static public void AddLog(string action, int bottleID)
+        {
+            DateTime moment = DateTime.Now;
+            bool res;
+            DBRequest req = new DBRequest();
+
+
+            switch (action)
+            {
+                case "ajoutNouvelle":
+                    //res = req.LogAddNew(bottleID);
+                    break;
+                case "ajoutExistante":
+                    //res = req.LogAddExist(bottleID);
+                    break;
+                case "retraitTotal":
+                    //res = req.LogDelTot(bottleID);
+                    break;
+                case "retraitPartiel":
+                    //res = req.LogDelPart(bottleID);
+                    break;
+                case "default":
+                    break;
+            }
         }
 
         //all getter, to permit the application to view the data
-        public string Name { get { return action; } }
+        public string Action { get { return action; } }
         public DateTime ExactTime { get { return exactTime; } }
-        public string Bottle { get { return bottle; } }
-        public string Alert { get { return alert; } }
-        public string Box { get { return box; } }
+        public string Element { get { return element; } }
     }
 }

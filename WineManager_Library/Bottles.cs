@@ -32,12 +32,27 @@ namespace WineManager
             this.description = description;
         }
 
+
+        public Bottles(string name, double volume, int year)
+        {
+            this.name = name;
+            this.volume = volume;
+            this.year = year;
+        }
+
+
+        public Bottles()
+        {
+        }
+
+
         static public List<Bottles> ShowAllBottles()
         {
             DBRequest req = new DBRequest();
             List<Bottles> lstBot = req.GetAllBottles();
             return lstBot;
         }
+
 
         static public bool AddBottleWithDescAndVarietal(string name, string col, int num, double vol, string manu, int year, string box, List<string> var, string desc)
         {
@@ -48,6 +63,7 @@ namespace WineManager
 
             return res;
         }
+
 
         static public bool AddBottleWithVarietal(string name, string col, int num, double vol, string manu, int year, string box, List<string> var)
         {
@@ -138,6 +154,33 @@ namespace WineManager
             lstBot = req.OrderByVarietal();
 
             return lstBot;
+        }
+
+
+        static public bool UpdateBottle(string wineName, int number, double volume, int year)
+        {
+            DBRequest req = new DBRequest();
+
+            bool res = req.UpdateBottle(wineName, number, volume, year);
+
+            return res;
+        }
+
+
+        static public List<Bottles> GetBottlesWithAlert(int id)
+        {
+            DBRequest req = new DBRequest();
+            List<Bottles> lstBot = req.GetBottlesWithAlert(id);
+            return lstBot;
+        }
+
+
+        static public Bottles GetBottleWithName(string name)
+        {
+            DBRequest req = new DBRequest();
+            Bottles bot = req.GetBottleWithName(name);
+            return bot;
+
         }
 
 

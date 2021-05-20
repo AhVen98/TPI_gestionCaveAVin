@@ -89,8 +89,8 @@ namespace WineManager
             if (comboStorage.SelectedIndex != -1)
             {
                 string storage = comboStorage.SelectedItem.ToString();
-                empty = req.CheckStorageEmpty(storage);
-                if(empty == false)
+                List<int> lst = req.CheckStorageEmpty(storage);
+                if(lst.Count != 0)
                 {
                     MessageBox.Show("Ce casier n'est actuellement pas vide, il n'est pas possible de le supprimer");
                 }
@@ -113,6 +113,7 @@ namespace WineManager
         private void btnAddStorage_Click(object sender, EventArgs e)
         {
             bool res = false;
+            bool successPresence = req.CheckStoragePresence(txtStorage.Text);
 
             if (txtStorage.Text == "")
             {
@@ -120,7 +121,10 @@ namespace WineManager
                 MessageBox.Show("Veuillez spécifier un nom de casier");
             }
             // storage already existing
-            //else if () { MessageBox.Show("Un casier portant ce nom est déjà présent.") }
+            else if (successPresence) 
+            {
+                MessageBox.Show("Un casier portant ce nom est déjà présent.");
+            }
             else
             {
                 if (rtxtDescription.Text != "")
@@ -135,11 +139,7 @@ namespace WineManager
             }
             if (res)
             {
-                MessageBox.Show("Le casier a été ajouté avec succès");
-            }
-            else
-            {
-                MessageBox.Show("Une erreur est survenue pendant l'ajout du casier. Veuillez réessayer.");
+                MessageBox.Show("Le casier a été ajouté avec succès.");
             }
             LoadData();
         }

@@ -13,6 +13,8 @@ namespace WineManager
     public partial class AlertsManagementfrm : Form
     {
         DBRequest req = new DBRequest();
+        List<Bottles> lstSelectedWines = new List<Bottles>();
+
         public AlertsManagementfrm()
         {
             InitializeComponent();
@@ -21,7 +23,6 @@ namespace WineManager
         private void AlertsManagementfrm_Load(object sender, EventArgs e)
         {
             LoadData();
-            LoadSelected();
         }
 
         public void LoadData()
@@ -48,65 +49,112 @@ namespace WineManager
             grpAddAlert.Show();
             grpDel.Hide();
 
-            dvgBottles.ColumnCount = 3;
+            dvgAlerts.ColumnCount = 3;
             //option for display
-            dvgBottles.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
-            dvgBottles.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dvgBottles.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dvgAlerts.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            dvgAlerts.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dvgAlerts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            dvgBottles.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dvgBottles.CellBorderStyle = DataGridViewCellBorderStyle.Single;
-            dvgBottles.GridColor = Color.Black;
+            dvgAlerts.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dvgAlerts.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dvgAlerts.GridColor = Color.Black;
 
             //columns name
-            dvgBottles.Columns[0].Name = "Nom du casier";
-            dvgBottles.Columns[1].Name = "Emplacement - description";
-            dvgBottles.Columns[2].Name = "Bouteilles associées";
-            dvgBottles.Columns[0].Width = 130;
+            dvgAlerts.Columns[0].Name = "Nom de l'alerte";
+            dvgAlerts.Columns[1].Name = "Message de l'alerte";
+            dvgAlerts.Columns[2].Name = "Bouteilles associées";
+            dvgAlerts.Columns[0].Width = 130;
+
+            dvgAlerts.Rows.Clear();
 
             List<Alerts> lstAlert = Alerts.ShowAllAlerts();
             foreach (Alerts alert in lstAlert)
             {
                 string[] row = { alert.Name, alert.Message, alert.LinkedBottles };
-                dvgBottles.Rows.Add(row);
+                dvgAlerts.Rows.Add(row);
             }
 
         }
 
-        public void LoadSelected()
+        public void LoadSelectedBottles()
         {
-            dvgBottles.ColumnCount = 3;
+            /**
+             * defining the datagrid for "adding an alert"
+             */
+            dgvSelected.ColumnCount = 3;
             //option for display
-            dvgBottles.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
-            dvgBottles.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dvgBottles.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSelected.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            dgvSelected.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvSelected.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            dvgBottles.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dvgBottles.CellBorderStyle = DataGridViewCellBorderStyle.Single;
-            dvgBottles.GridColor = Color.Black;
+            dgvSelected.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgvSelected.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dgvSelected.GridColor = Color.Black;
 
             //columns name
-            dvgBottles.Columns[0].Name = "Nom du vin";
-            dvgBottles.Columns[1].Name = "Année";
-            dvgBottles.Columns[2].Name = "Contenance";
-            dvgBottles.Columns[0].Width = 130;
+            dgvSelected.Columns[0].Name = "Nom du vin";
+            dgvSelected.Columns[1].Name = "Année";
+            dgvSelected.Columns[2].Name = "Volume";
+            dgvSelected.Columns[0].Width = 130;
 
-            List<Bottles> lstSelectedWines = new List<Bottles>();
+            dgvSelected.Rows.Clear();
+
             foreach (Bottles bot in lstSelectedWines)
             {
                 string[] row = { bot.Name, bot.Year.ToString(), bot.Volume.ToString() };
-                dvgBottles.Rows.Add(row);
+                dgvSelected.Rows.Add(row);
+            }
+        }
+
+
+        public void LoadBottlesFromAlerts(string alertName)
+        {
+            int alertID = req.GetAlertIDFromName(alertName);
+            /**
+             * defining the datagridview for "removing an alert"
+             */
+            dvgBottlesSelected.ColumnCount = 3;
+            //option for display
+            dvgBottlesSelected.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            dvgBottlesSelected.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dvgBottlesSelected.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dvgBottlesSelected.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dvgBottlesSelected.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dvgBottlesSelected.GridColor = Color.Black;
+
+            //columns name
+            dvgBottlesSelected.Columns[0].Name = "Nom du vin";
+            dvgBottlesSelected.Columns[1].Name = "Année";
+            dvgBottlesSelected.Columns[2].Name = "Volume";
+            dvgBottlesSelected.Columns[0].Width = 130;
+
+            dvgBottlesSelected.Rows.Clear();
+
+            List<Bottles> lstWinesFromAlert = new List<Bottles>();
+            lstWinesFromAlert = Bottles.GetBottlesWithAlert(alertID);
+            foreach (Bottles bot in lstWinesFromAlert)
+            {
+                string[] row = { bot.Name, bot.Year.ToString(), bot.Volume.ToString() };
+                dgvSelected.Rows.Add(row);
             }
         }
 
         private void btnAddBottle_Click(object sender, EventArgs e)
         {
-            string wineName = comboWineChoice.SelectedItem.ToString();
-
-
-            //string[] row = { bot.Name, bot.Year.ToString(), bot.Volume.ToString() };
-            //dvgBottles.Rows.Add(row);
-            dvgBottlesSelected.Refresh();
+            string wineName;
+            LoadSelectedBottles();
+            if(comboWineChoice.SelectedIndex != -1)
+            {
+                wineName = comboWineChoice.SelectedItem.ToString();
+                Bottles bot = Bottles.GetBottleWithName(wineName);
+                lstSelectedWines.Add(bot);
+            }
+            else
+            {
+                MessageBox.Show("Aucune bouteille n'est actuellement sélectionnée");
+            }
+            LoadSelectedBottles();
         }
 
         private void btnDelAlert_Click(object sender, EventArgs e)
@@ -133,6 +181,18 @@ namespace WineManager
             grpAddAlert.Hide();
             btnDelAlert.Show();
             btnAddAlert.Hide();
+        }
+
+        private void btnShowBottles_Click(object sender, EventArgs e)
+        {
+            if(comboAlertOUT.SelectedIndex!= -1)
+            {
+                LoadBottlesFromAlerts(comboAlertOUT.SelectedItem.ToString());
+            }
+            else
+            {
+                MessageBox.Show("Aucune alerte n'est actuellement sélectionnée.");
+            }
         }
     }
 }
