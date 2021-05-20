@@ -96,6 +96,17 @@ namespace WineManager
             return res;
         }
 
+        static public bool AddAlertToBottle(string name, string alert)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+            res = req.AddAlertToBottle(name,alert);
+
+            return res;
+
+        }
+
         static public bool RemoveBottle(string name, int num, double vol, string manu, int year)
         {
             bool res = false;

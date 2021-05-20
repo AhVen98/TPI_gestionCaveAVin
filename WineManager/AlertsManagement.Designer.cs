@@ -73,7 +73,6 @@ namespace WineManager
             // 
             this.grpAddAlert.Controls.Add(this.dgvSelected);
             this.grpAddAlert.Controls.Add(this.btnAddBottle);
-            this.grpAddAlert.Controls.Add(this.grpDel);
             this.grpAddAlert.Controls.Add(this.lblWines);
             this.grpAddAlert.Controls.Add(this.comboWineChoice);
             this.grpAddAlert.Controls.Add(this.lblDesc);
@@ -164,7 +163,7 @@ namespace WineManager
             this.grpDel.Controls.Add(this.lblAlertNameOUT);
             this.grpDel.Controls.Add(this.comboAlertOUT);
             this.grpDel.Controls.Add(this.label1);
-            this.grpDel.Location = new System.Drawing.Point(0, 0);
+            this.grpDel.Location = new System.Drawing.Point(12, 70);
             this.grpDel.Name = "grpDel";
             this.grpDel.Size = new System.Drawing.Size(776, 123);
             this.grpDel.TabIndex = 0;
@@ -173,7 +172,7 @@ namespace WineManager
             // 
             // btnShowBottles
             // 
-            this.btnShowBottles.Location = new System.Drawing.Point(164, 52);
+            this.btnShowBottles.Location = new System.Drawing.Point(158, 52);
             this.btnShowBottles.Name = "btnShowBottles";
             this.btnShowBottles.Size = new System.Drawing.Size(202, 23);
             this.btnShowBottles.TabIndex = 20;
@@ -297,6 +296,7 @@ namespace WineManager
             this.ClientSize = new System.Drawing.Size(800, 524);
             this.Controls.Add(this.btnDelAlert);
             this.Controls.Add(this.btnAddAlert);
+            this.Controls.Add(this.grpDel);
             this.Controls.Add(this.lblAlerts);
             this.Controls.Add(this.dvgAlerts);
             this.Controls.Add(this.grpActions);

@@ -37,10 +37,10 @@ namespace WineManager
             switch (action)
             {
                 case "ajoutNouvelle":
-                    //res = req.LogAddNew(bottleID);
+                    req.LogAddNew(bottleID);
                     break;
                 case "ajoutExistante":
-                    //res = req.LogAddExist(bottleID);
+                    req.LogAddExist(bottleID);
                     break;
                 case "retraitTotal":
                     //res = req.LogDelTot(bottleID);

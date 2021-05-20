@@ -23,6 +23,10 @@ namespace WineManager
         private void AlertsManagementfrm_Load(object sender, EventArgs e)
         {
             LoadData();
+            grpAddAlert.Show();
+            grpDel.Hide();
+            btnAddAlert.Show();
+            btnDelAlert.Hide();
         }
 
         public void LoadData()
@@ -159,12 +163,150 @@ namespace WineManager
 
         private void btnDelAlert_Click(object sender, EventArgs e)
         {
+            //initializing variables to stock informations from the alert
+            string alert = "";
+            string message = "";
+            List<Bottles> lstBottles = new List<Bottles>();
 
+            // initializing the boolean to check if everything is correct -> all is false by default, so that if it works, it changes to true
+            bool successAlert = false;
+            bool successMessage = false;
+            bool successBottles = false;
+            bool successFormat = false;
+            bool successPresence = false;
+            bool successAdd = false;
+            bool successAddBottle = true;
+
+            /**
+             * verification of data type
+             * if a field is empty and shouldn't be -> the bottle won't be added
+             */
+            if (txtAlert.Text != "")
+            {
+                alert = txtAlert.Text;
+                successAlert = true;
+            }
+            if (rtxtMessage.Text != "")
+            {
+                message = rtxtMessage.Text;
+                successMessage = true;
+            }
+            if (lstSelectedWines.Count != 0)
+            {
+                successBottles = true;
+            }
+
+            //verify if the bottle to add already exists in database -> true : present, false : non present
+
+            // occur uniquely if the volume, the name and the year have been validated
+            if (successAlert && successMessage)
+            {
+                successPresence = req.CheckAlertPresence(alert);
+            }
+            // if all verification are ok -> will be true, otherwise, will be false
+            successFormat = successMessage && successAlert && successBottles && !successPresence;
+            // all checks passed
+            if (successFormat)
+            {
+                // adding the alert to the DB
+               // successAdd = Alerts.AddAlert(alert, message);
+                foreach (Bottles bot in lstSelectedWines)
+                {
+              //      Bottles.AddAlertToBottle(alert);
+                }
+
+                // message box to show, depending on the result when adding the alert
+                if (successAdd)
+                {
+                    MessageBox.Show("L'ajout de l'alerte a été effectué correctement.");
+                }
+                else
+                {
+                    MessageBox.Show("Une erreur est survenue lors de l'ajout de l'alerte. Veuillez réessayer.");
+                }
+            }
+            // problems with at least 1 check
+            else
+            {
+                MessageBox.Show("Une des valeurs spécifiées est incorrecte.");
+                txtAlert.Text = "";
+                rtxtMessage.Text = "";
+            }
+            LoadData();
         }
 
         private void btnAddAlert_Click(object sender, EventArgs e)
         {
+            //initializing variables to stock informations from the alert
+            string alert = "";
+            string message = "";
+            List<Bottles> lstBottles = new List<Bottles>();
 
+            // initializing the boolean to check if everything is correct -> all is false by default, so that if it works, it changes to true
+            bool successAlert = false;
+            bool successMessage = false;
+            bool successBottles = false;
+            bool successFormat = false;
+            bool successPresence = false;
+            bool successAdd = false;
+            bool successAddBottle = true;
+
+            /**
+             * verification of data type
+             * if a field is empty and shouldn't be -> the bottle won't be added
+             */
+            if (txtAlert.Text != "")
+            {
+                alert = txtAlert.Text;
+                successAlert = true;
+            }
+            if (rtxtMessage.Text != "")
+            {
+                message = rtxtMessage.Text;
+                successMessage = true;
+            }
+            if(lstSelectedWines.Count != 0)
+            {
+                successBottles = true;
+            }
+
+            //verify if the bottle to add already exists in database -> true : present, false : non present
+            
+            // occur uniquely if the volume, the name and the year have been validated
+            if (successAlert && successMessage)
+            {
+                successPresence = req.CheckAlertPresence(alert);
+            }
+            // if all verification are ok -> will be true, otherwise, will be false
+            successFormat = successMessage && successAlert && successBottles && !successPresence;
+            // all checks passed
+            if (successFormat)
+            {
+                // adding the alert to the DB
+                successAdd = Alerts.AddAlert(alert, message);
+                foreach(Bottles bot in lstSelectedWines)
+                {
+                    Bottles.AddAlertToBottle(bot.Name, alert);
+                }
+
+                // message box to show, depending on the result when adding the alert
+                if (successAdd)
+                {
+                    MessageBox.Show("L'ajout de l'alerte a été effectué correctement.");
+                }
+                else
+                {
+                    MessageBox.Show("Une erreur est survenue lors de l'ajout de l'alerte. Veuillez réessayer.");
+                }
+            }
+            // problems with at least 1 check
+            else
+            {
+                MessageBox.Show("Une des valeurs spécifiées est incorrecte.");
+                txtAlert.Text = "";
+                rtxtMessage.Text = "";
+            }
+            LoadData();
         }
 
         private void radAddAlert_Click(object sender, EventArgs e)

@@ -27,6 +27,17 @@ namespace WineManager
             return lstAlert;
         }
 
+        static public bool AddAlert(string alert, string message)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+            res = req.AddAlert(alert, message);
+
+            return res;
+
+        }
+
         //all getter, to permit the application to view the data
         public string Name { get { return name; } }
         public string Message { get { return message; } }
