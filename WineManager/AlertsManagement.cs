@@ -174,8 +174,7 @@ namespace WineManager
             bool successBottles = false;
             bool successFormat = false;
             bool successPresence = false;
-            bool successAdd = false;
-            bool successAddBottle = true;
+            bool successDel = false;
 
             /**
              * verification of data type
@@ -216,7 +215,7 @@ namespace WineManager
                 }
 
                 // message box to show, depending on the result when adding the alert
-                if (successAdd)
+                if (successDel)
                 {
                     MessageBox.Show("L'ajout de l'alerte a été effectué correctement.");
                 }
@@ -249,7 +248,6 @@ namespace WineManager
             bool successFormat = false;
             bool successPresence = false;
             bool successAdd = false;
-            bool successAddBottle = true;
 
             /**
              * verification of data type

@@ -83,7 +83,6 @@ namespace WineManager
         private void btnDelStorage_Click(object sender, EventArgs e)
         {
             bool res = false;
-            bool empty = false;
 
             //check if a storage is selected
             if (comboStorage.SelectedIndex != -1)

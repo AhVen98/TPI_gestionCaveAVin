@@ -30,7 +30,6 @@ namespace WineManager
         static public void AddLog(string action, int bottleID)
         {
             DateTime moment = DateTime.Now;
-            bool res;
             DBRequest req = new DBRequest();
 
 
@@ -42,11 +41,8 @@ namespace WineManager
                 case "ajoutExistante":
                     req.LogAddExist(bottleID);
                     break;
-                case "retraitTotal":
-                    //res = req.LogDelTot(bottleID);
-                    break;
-                case "retraitPartiel":
-                    //res = req.LogDelPart(bottleID);
+                case "retrait":
+                    req.LogDel(bottleID);
                     break;
                 case "default":
                     break;

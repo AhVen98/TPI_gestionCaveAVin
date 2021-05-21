@@ -842,7 +842,7 @@ namespace WineManager
 
             while (value.Read())
             {
-                bottleName = value[1].ToString();
+                bottleName = value[0].ToString();
             }
             value.Close();
             connDB.CloseConnection();
@@ -1483,10 +1483,9 @@ namespace WineManager
 
         }
 
-        //TODO
+
         public List<int> CheckStorageEmpty(string storageName)
         {
-            bool res = false;
             int storageID = GetStorageIDByName(storageName);
 
             MySqlCommand cmd = connDB.CreateQuery();
@@ -1542,9 +1541,11 @@ namespace WineManager
 
             while (value.Read())
             {
-                exactTime = Convert.ToDateTime(value[2].ToString());
-                action = value[1].ToString();
-                wine = value[3].ToString();
+                string temps = value[1].ToString();
+                string[] separate = temps.Split(' ');
+                exactTime = Convert.ToDateTime(separate[0]);
+                action = value[0].ToString();
+                wine = value[2].ToString();
 
                 //generate an object "Bottle", with the parameters from the database
                 Logs log = new Logs(action, exactTime, wine);
@@ -1601,6 +1602,7 @@ namespace WineManager
             return presence;
         }
 
+
         public void LogAddNew(int bottleID)
         {
             string bottleName = GetBottleNameWithID(bottleID);
@@ -1615,7 +1617,7 @@ namespace WineManager
                 "('Ajout de bouteille', @time, @detail, @wine)";
             // link to all parameters needed in the request
             AddLog.Parameters.AddWithValue("@time", DateTime.Now);
-            AddLog.Parameters.AddWithValue("@wine", bottleName);
+            AddLog.Parameters.AddWithValue("@wine", bottleID);
             AddLog.Parameters.AddWithValue("@detail", detail);
 
 
@@ -1623,6 +1625,7 @@ namespace WineManager
 
             connDB.CloseConnection();
         }
+
 
         public void LogAddExist(int bottleID)
         {
@@ -1638,7 +1641,7 @@ namespace WineManager
                 "('Ajout de bouteilles', @time, @detail, @wine)";
             // link to all parameters needed in the request
             AddLog.Parameters.AddWithValue("@time", DateTime.Now);
-            AddLog.Parameters.AddWithValue("@wine", bottleName);
+            AddLog.Parameters.AddWithValue("@wine", bottleID);
             AddLog.Parameters.AddWithValue("@detail", detail);
 
 
@@ -1647,6 +1650,75 @@ namespace WineManager
             connDB.CloseConnection();
         }
 
+
+        public void LogDel(int bottleID)
+        {
+            string bottleName = GetBottleNameWithID(bottleID);
+            string detail = "Retrait de la bouteille " + bottleName + "de la base de données";
+            MySqlCommand DelLog = connDB.CreateQuery();
+
+            connDB.OpenConnection();
+
+            DelLog.CommandText = "INSERT INTO logs " +
+                "(actionName, time, detail, wine_id) " +
+                "VALUES " +
+                "('Ajout de bouteille', @time, @detail, @wine)";
+            // link to all parameters needed in the request
+            DelLog.Parameters.AddWithValue("@time", DateTime.Now);
+            DelLog.Parameters.AddWithValue("@wine", bottleID);
+            DelLog.Parameters.AddWithValue("@detail", detail);
+
+
+            connDB.ExecuteQuery(DelLog);
+
+            connDB.CloseConnection();
+        }
+
+
+        public bool CheckAlertPresenceByBottleName(string wineName)
+        {
+            bool presence = false;
+            int bottleID = -1;
+            int bottlePresence;
+            bottleID = GetIDBottleByName(wineName);
+            //check if the bottle is present in table "wines_has_alerts"
+            bottlePresence = CheckBottlePresenceInAlerts(bottleID);
+            if (bottlePresence < 0)
+            {
+                return presence;
+            }
+            else
+            {
+                presence = true;
+            }
+            return presence;
+
+        }
+
+        public int CheckBottlePresenceInAlerts(int id)
+        {
+            connDB2.OpenConnection();
+            int ID = -1;
+
+            MySqlCommand cmdGetID = connDB2.CreateQuery();
+            cmdGetID.CommandText = "SELECT wines_has_alerts.wine_id " +
+                "FROM " +
+                "wines_has_alerts " +
+                "WHERE wines_has_alerts.wine_id = @id ";
+
+            cmdGetID.Parameters.AddWithValue("@id", id);
+
+            MySqlDataReader value = connDB.Select(cmdGetID);
+
+            while (value.Read())
+            {
+                int.TryParse(value[0].ToString(), out ID);
+            }
+
+            connDB2.CloseConnection();
+            return ID;
+
+        }
 
         public bool CheckAlertPresence(string alertName)
         {

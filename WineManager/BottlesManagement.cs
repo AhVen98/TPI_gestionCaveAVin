@@ -121,6 +121,7 @@ namespace WineManager
             bool successFormat = false;
             bool successPresence = false;
             bool successOut = false;
+            bool successAlert = false;
 
             /**
              * verification of data type
@@ -158,17 +159,24 @@ namespace WineManager
             // occur uniquely if the volume, the name and the year have been validated
             if (successVolume && successName && successYear)
             {
-                //successPresence = req.CheckBottlePresence(wineName, year, volume);
+                successPresence = req.CheckBottlePresence(wineName, year, volume);
             }
             // if all verification are ok -> will be true, otherwise, will be false
             successFormat = successNumber && successYear && successName && successManu ;
+            successAlert = req.CheckAlertPresenceByBottleName(wineName);
             // all checks passed, bottle present in DB
-            if (successFormat == true && !successPresence)
-            {    
+            if (successFormat == true && successPresence)
+            {
+                if (successAlert)
+                {
+                    MessageBox.Show("Attention, cette bouteille est prévue pour un évènement !!");
+                }
                 successOut = Bottles.RemoveBottle(wineName, number, volume, manufacturer, year);
                 // message box to show, depending on the result when getting the right number of bottle out
                 if (successOut)
                 {
+                    int wineID = req.GetIDBottleByName(wineName);
+                    Logs.AddLog("retrait", wineID);
                     MessageBox.Show("Le retrait de bouteille(s) a été effectué correctement.");
                 }
                 else
@@ -190,6 +198,7 @@ namespace WineManager
             }
             LoadData();
         }
+
 
         /**
          * when clicking on "adding the bottle", check if every parameter needed is present and if the datatype is correct
@@ -323,6 +332,8 @@ namespace WineManager
                 // message box to show, depending on the result when adding the bottle
                 if (successAdd)
                 {
+                    int wineID = req.GetIDBottleByName(wineName);
+                    Logs.AddLog("ajoutNouvelle", wineID);
                     MessageBox.Show("L'ajout de la bouteille a été effectué correctement.");    
                 }  
                 else    
@@ -334,6 +345,16 @@ namespace WineManager
             else if(successFormat == true && successPresence)
             {
                 successAdd = Bottles.UpdateBottle(wineName, number, volume, year);
+                if (successAdd)
+                {
+                    int wineID = req.GetIDBottleByName(wineName);
+                    Logs.AddLog("ajoutExistante", wineID);
+                    MessageBox.Show("La mise à jour du nombre de bouteilles a été effectuée correctement.");
+                }
+                else
+                {
+                    MessageBox.Show("Une erreur est survenue lors de la mise à jour du nombre de bouteilles. Veuillez réessayer.");
+                }
             }
             // problems with at least 1 check
             else
@@ -344,6 +365,7 @@ namespace WineManager
             }
             LoadData();
         }
+
 
         /**
          * when clicking the add bottle radio button 
