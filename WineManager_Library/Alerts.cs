@@ -38,6 +38,19 @@ namespace WineManager
 
         }
 
+
+        static public bool DelAlert(string alert)
+        {
+            bool res = false;
+            DBRequest req = new DBRequest();
+
+           // res = req.DelAlert(alert);
+
+            return res;
+
+        }
+
+
         //all getter, to permit the application to view the data
         public string Name { get { return name; } }
         public string Message { get { return message; } }

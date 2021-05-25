@@ -124,6 +124,7 @@ namespace WineManager
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.picMainPage);
             this.Controls.Add(this.menuStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainPagefrm";
             this.Text = "WineManager";

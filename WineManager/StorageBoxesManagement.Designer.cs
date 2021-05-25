@@ -31,15 +31,15 @@ namespace WineManager
         {
             this.btnMainPage = new System.Windows.Forms.Button();
             this.grpAdd = new System.Windows.Forms.GroupBox();
-            this.grpDel = new System.Windows.Forms.GroupBox();
-            this.lblStorageNumberOUT = new System.Windows.Forms.Label();
-            this.comboStorage = new System.Windows.Forms.ComboBox();
-            this.btnDelStorage = new System.Windows.Forms.Button();
             this.lblDesc = new System.Windows.Forms.Label();
             this.rtxtDescription = new System.Windows.Forms.RichTextBox();
             this.lblStorageNumber = new System.Windows.Forms.Label();
             this.txtStorage = new System.Windows.Forms.TextBox();
             this.btnAddStorage = new System.Windows.Forms.Button();
+            this.grpDel = new System.Windows.Forms.GroupBox();
+            this.lblStorageNumberOUT = new System.Windows.Forms.Label();
+            this.comboStorage = new System.Windows.Forms.ComboBox();
+            this.btnDelStorage = new System.Windows.Forms.Button();
             this.grpActions = new System.Windows.Forms.GroupBox();
             this.radDelStorage = new System.Windows.Forms.RadioButton();
             this.radAddStorage = new System.Windows.Forms.RadioButton();
@@ -74,45 +74,6 @@ namespace WineManager
             this.grpAdd.TabIndex = 1;
             this.grpAdd.TabStop = false;
             this.grpAdd.Text = "Ajouter des bouteilles";
-            // 
-            // grpDel
-            // 
-            this.grpDel.Controls.Add(this.lblStorageNumberOUT);
-            this.grpDel.Controls.Add(this.comboStorage);
-            this.grpDel.Controls.Add(this.btnDelStorage);
-            this.grpDel.Location = new System.Drawing.Point(12, 69);
-            this.grpDel.Name = "grpDel";
-            this.grpDel.Size = new System.Drawing.Size(776, 117);
-            this.grpDel.TabIndex = 0;
-            this.grpDel.TabStop = false;
-            this.grpDel.Text = "Sortir des bouteilles";
-            // 
-            // lblStorageNumberOUT
-            // 
-            this.lblStorageNumberOUT.AutoSize = true;
-            this.lblStorageNumberOUT.Location = new System.Drawing.Point(6, 28);
-            this.lblStorageNumberOUT.Name = "lblStorageNumberOUT";
-            this.lblStorageNumberOUT.Size = new System.Drawing.Size(94, 13);
-            this.lblStorageNumberOUT.TabIndex = 1;
-            this.lblStorageNumberOUT.Text = "Numéro de casier*";
-            // 
-            // comboStorage
-            // 
-            this.comboStorage.FormattingEnabled = true;
-            this.comboStorage.Location = new System.Drawing.Point(106, 25);
-            this.comboStorage.Name = "comboStorage";
-            this.comboStorage.Size = new System.Drawing.Size(277, 21);
-            this.comboStorage.TabIndex = 7;
-            // 
-            // btnDelStorage
-            // 
-            this.btnDelStorage.Location = new System.Drawing.Point(648, 88);
-            this.btnDelStorage.Name = "btnDelStorage";
-            this.btnDelStorage.Size = new System.Drawing.Size(118, 23);
-            this.btnDelStorage.TabIndex = 4;
-            this.btnDelStorage.Text = "Supprimer le casier";
-            this.btnDelStorage.UseVisualStyleBackColor = true;
-            this.btnDelStorage.Click += new System.EventHandler(this.btnDelStorage_Click);
             // 
             // lblDesc
             // 
@@ -156,6 +117,45 @@ namespace WineManager
             this.btnAddStorage.Text = "Ajouter le casier";
             this.btnAddStorage.UseVisualStyleBackColor = true;
             this.btnAddStorage.Click += new System.EventHandler(this.btnAddStorage_Click);
+            // 
+            // grpDel
+            // 
+            this.grpDel.Controls.Add(this.lblStorageNumberOUT);
+            this.grpDel.Controls.Add(this.comboStorage);
+            this.grpDel.Controls.Add(this.btnDelStorage);
+            this.grpDel.Location = new System.Drawing.Point(12, 69);
+            this.grpDel.Name = "grpDel";
+            this.grpDel.Size = new System.Drawing.Size(776, 117);
+            this.grpDel.TabIndex = 0;
+            this.grpDel.TabStop = false;
+            this.grpDel.Text = "Sortir des bouteilles";
+            // 
+            // lblStorageNumberOUT
+            // 
+            this.lblStorageNumberOUT.AutoSize = true;
+            this.lblStorageNumberOUT.Location = new System.Drawing.Point(6, 28);
+            this.lblStorageNumberOUT.Name = "lblStorageNumberOUT";
+            this.lblStorageNumberOUT.Size = new System.Drawing.Size(94, 13);
+            this.lblStorageNumberOUT.TabIndex = 1;
+            this.lblStorageNumberOUT.Text = "Numéro de casier*";
+            // 
+            // comboStorage
+            // 
+            this.comboStorage.FormattingEnabled = true;
+            this.comboStorage.Location = new System.Drawing.Point(106, 25);
+            this.comboStorage.Name = "comboStorage";
+            this.comboStorage.Size = new System.Drawing.Size(277, 21);
+            this.comboStorage.TabIndex = 7;
+            // 
+            // btnDelStorage
+            // 
+            this.btnDelStorage.Location = new System.Drawing.Point(648, 88);
+            this.btnDelStorage.Name = "btnDelStorage";
+            this.btnDelStorage.Size = new System.Drawing.Size(118, 23);
+            this.btnDelStorage.TabIndex = 4;
+            this.btnDelStorage.Text = "Supprimer le casier";
+            this.btnDelStorage.UseVisualStyleBackColor = true;
+            this.btnDelStorage.Click += new System.EventHandler(this.btnDelStorage_Click);
             // 
             // grpActions
             // 
@@ -221,6 +221,7 @@ namespace WineManager
             this.Controls.Add(this.grpActions);
             this.Controls.Add(this.grpAdd);
             this.Controls.Add(this.btnMainPage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "StorageBoxesManagementfrm";
             this.Text = "Gestion des casiers";
             this.Load += new System.EventHandler(this.StorageBoxesManagementfrm_Load);

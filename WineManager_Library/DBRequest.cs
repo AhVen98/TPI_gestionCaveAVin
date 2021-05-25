@@ -10,6 +10,7 @@ namespace WineManager
 {
     public class DBRequest
     {
+
         //generating an instance of DBConnection, to enable the connection to the database
         DBConnection connDB = new DBConnection();
         DBConnection connDB2 = new DBConnection();
@@ -276,9 +277,9 @@ namespace WineManager
             while (value.Read())
             {
                 
-                bottleNames = value[1].ToString();
-                double.TryParse(value[2].ToString(), out bottleVolume);
-                int.TryParse(value[3].ToString(), out bottleYear);
+                bottleNames = value[0].ToString();
+                double.TryParse(value[1].ToString(), out bottleVolume);
+                int.TryParse(value[2].ToString(), out bottleYear);
 
                 Bottles bot = new Bottles(bottleNames, bottleVolume, bottleYear);
                 lstBottles.Add(bot);

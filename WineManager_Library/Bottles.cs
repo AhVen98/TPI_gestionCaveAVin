@@ -191,7 +191,6 @@ namespace WineManager
             DBRequest req = new DBRequest();
             Bottles bot = req.GetBottleWithName(name);
             return bot;
-
         }
 
 

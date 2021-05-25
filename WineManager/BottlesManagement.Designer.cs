@@ -491,6 +491,7 @@ namespace WineManager
             this.Controls.Add(this.grpActions);
             this.Controls.Add(this.grpAdd);
             this.Controls.Add(this.btnMainPage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "BottlesManagementfrm";
             this.Text = "Gestion des bouteilles";
             this.Load += new System.EventHandler(this.BottlesManagementfrm_Load);

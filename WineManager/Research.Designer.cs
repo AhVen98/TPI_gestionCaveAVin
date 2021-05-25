@@ -180,6 +180,7 @@ namespace WineManager
             this.Controls.Add(this.dvgBottles);
             this.Controls.Add(this.btnResearch);
             this.Controls.Add(this.btnMainPage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Researchfrm";
             this.Text = "Rechercher";
             this.Load += new System.EventHandler(this.Researchfrm_Load);

@@ -23,8 +23,9 @@ namespace WineManager
         private void InitConnexion()
         {
             // Création de la chaîne de connexion
-
-            string connectionString = "SERVER=127.0.0.1; DATABASE=wineManager; UID=root; PASSWORD=root";
+            string connectionString;
+            connectionString = "SERVER=127.0.0.1; DATABASE=wineManager; UID=root; PASSWORD=root";
+            //connectionString = "SERVER=127.0.0.1; DATABASE=wineManagerTest; UID=root; PASSWORD=root";
             connection = new MySqlConnection(connectionString);
         }
 

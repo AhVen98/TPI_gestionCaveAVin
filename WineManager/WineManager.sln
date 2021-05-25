@@ -10,6 +10,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WineManager_View", "WineMan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WineManager_Library", "..\WineManager_Library\WineManager_Library.csproj", "{A73E4EBB-D8A4-44FC-AA04-DDFFF2E7D533}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WineManager_Tests", "..\WineManager_Tests\WineManager_Tests.csproj", "{F087CE6C-2FE4-4531-A462-E718BCDD4F20}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3317E50E-8833-4BAB-A03A-80DE99DA1C57} = {3317E50E-8833-4BAB-A03A-80DE99DA1C57}
+		{A73E4EBB-D8A4-44FC-AA04-DDFFF2E7D533} = {A73E4EBB-D8A4-44FC-AA04-DDFFF2E7D533}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +30,10 @@ Global
 		{A73E4EBB-D8A4-44FC-AA04-DDFFF2E7D533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A73E4EBB-D8A4-44FC-AA04-DDFFF2E7D533}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A73E4EBB-D8A4-44FC-AA04-DDFFF2E7D533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F087CE6C-2FE4-4531-A462-E718BCDD4F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F087CE6C-2FE4-4531-A462-E718BCDD4F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F087CE6C-2FE4-4531-A462-E718BCDD4F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F087CE6C-2FE4-4531-A462-E718BCDD4F20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

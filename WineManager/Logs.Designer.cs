@@ -70,6 +70,7 @@ namespace WineManager
             this.Controls.Add(this.lblLogs);
             this.Controls.Add(this.dvgLogs);
             this.Controls.Add(this.btnMainPage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Logsfrm";
             this.Text = "Historique";
             this.Load += new System.EventHandler(this.Logsfrm_Load);

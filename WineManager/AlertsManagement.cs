@@ -140,7 +140,7 @@ namespace WineManager
             foreach (Bottles bot in lstWinesFromAlert)
             {
                 string[] row = { bot.Name, bot.Year.ToString(), bot.Volume.ToString() };
-                dgvSelected.Rows.Add(row);
+                dvgBottlesSelected.Rows.Add(row);
             }
         }
 

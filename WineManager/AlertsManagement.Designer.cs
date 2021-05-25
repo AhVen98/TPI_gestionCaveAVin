@@ -302,6 +302,7 @@ namespace WineManager
             this.Controls.Add(this.grpActions);
             this.Controls.Add(this.grpAddAlert);
             this.Controls.Add(this.btnMainPage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AlertsManagementfrm";
             this.Text = "Gestion des alertes";
             this.Load += new System.EventHandler(this.AlertsManagementfrm_Load);
