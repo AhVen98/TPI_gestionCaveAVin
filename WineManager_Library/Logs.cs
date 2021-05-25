@@ -13,9 +13,9 @@ namespace WineManager
         protected string element;
 
 
-        public Logs(string name, DateTime exactTime, string element)
+        public Logs(string action, DateTime exactTime, string element)
         {
-            this.action = name;
+            this.action = action;
             this.exactTime = exactTime;
             this.element = element;
         }
@@ -27,11 +27,12 @@ namespace WineManager
             return lstlog;
         }
 
-        static public void AddLog(string action, int bottleID)
+        static public bool AddLog(string action, int bottleID)
         {
             DateTime moment = DateTime.Now;
             DBRequest req = new DBRequest();
 
+            bool res = false;
 
             switch (action)
             {
@@ -47,6 +48,7 @@ namespace WineManager
                 case "default":
                     break;
             }
+            return res;
         }
 
         //all getter, to permit the application to view the data

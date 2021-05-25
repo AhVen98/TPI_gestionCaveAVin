@@ -45,5 +45,6 @@ namespace WineManager
                 dvgLogs.Rows.Add(row);
             }
         }
+
     }
 }
