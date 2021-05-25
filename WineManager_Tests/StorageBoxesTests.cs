@@ -27,17 +27,6 @@ namespace WineManager
         }
 
         [TestMethod]
-        public void ShowAllBoxes_NoSorting_OK()
-        {
-            List<StorageBoxes> resExpected = lstBoxes;
-            List<StorageBoxes> resCalculated = new List<StorageBoxes>();
-
-            resCalculated = StorageBoxes.ShowAllBoxes();
-
-            Assert.AreEqual(resExpected, resCalculated);
-        }
-
-        [TestMethod]
         public void AddStorageWDesc_AllParams_OK()
         {
             bool resExpected = true;

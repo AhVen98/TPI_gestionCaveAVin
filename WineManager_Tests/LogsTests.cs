@@ -20,7 +20,7 @@ namespace WineManager
             lstLogs = new List<Logs>() 
             {
                     new Logs("Ajout de bouteille", Convert.ToDateTime("20.04.2021 00:00:00"),"bouteille1"),
-                    new Logs("Ajout de bouteille", Convert.ToDateTime("28.04.2021 00:00:00"),"bouteille1"),
+                    new Logs("Ajout de bouteille", Convert.ToDateTime("28.04.2021 00:00:00"),"bouteille3"),
                     new Logs("Ajout de bouteille", Convert.ToDateTime("05.05.2021 00:00:00"),"bouteille2")
         };
             logToAdd = new Logs("Ajout de quantité de bouteille", Convert.ToDateTime("28.05.2021 00:00:00"), "bouteille3");

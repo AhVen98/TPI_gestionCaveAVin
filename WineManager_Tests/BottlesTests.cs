@@ -33,7 +33,7 @@ namespace WineManager
                 { 
                     new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test"), 
                     new Bottles("bouteille2", "blanc", 6, 1.5, "producteur 3", 1960, "cépage2", "casier3", "description bouteille 2"), 
-                    new Bottles("bouteille3", "rose", 1, 1.0, "producteur 1", 1999, "cépage1", "casier1", "description bouteille 3"), 
+                    new Bottles("bouteille3", "rose", 1, 1.0, "producteur 1", 1999, "cépage1", "casier1", "description bouteille 3")
                 };
             lstColor = new List<Bottles>()
                 {
@@ -93,7 +93,7 @@ namespace WineManager
             bool resExpected = true;
             bool resCalculated;
 
-           // resCalculated = Bottles.AddBottleWithDescAndVarietal(bottleToAdd.Name, bottleToAdd.Color, bottleToAdd.BottleNumber, bottleToAdd.Volume, bottleToAdd.Manufacturer, bottleToAdd.Year, bottleToAdd.Storage, bottleToAdd.Varietal, bottleToAdd.Description);
+            // resCalculated = Bottles.AddBottleWithDescAndVarietal(bottleToAdd.Name, bottleToAdd.Color, bottleToAdd.BottleNumber, bottleToAdd.Volume, bottleToAdd.Manufacturer, bottleToAdd.Year, bottleToAdd.Storage, bottleToAdd.Varietal, bottleToAdd.Description);
 
            // Assert.AreEqual(resExpected, resCalculated);
         }
