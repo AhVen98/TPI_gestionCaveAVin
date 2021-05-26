@@ -29,7 +29,6 @@ namespace WineManager
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnMainPage = new System.Windows.Forms.Button();
             this.grpAdd = new System.Windows.Forms.GroupBox();
             this.comboVolume = new System.Windows.Forms.ComboBox();
             this.comboStorage = new System.Windows.Forms.ComboBox();
@@ -76,16 +75,6 @@ namespace WineManager
             this.grpActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgBottles)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnMainPage
-            // 
-            this.btnMainPage.Location = new System.Drawing.Point(670, 14);
-            this.btnMainPage.Name = "btnMainPage";
-            this.btnMainPage.Size = new System.Drawing.Size(118, 52);
-            this.btnMainPage.TabIndex = 2;
-            this.btnMainPage.Text = "Retourner à la page principale";
-            this.btnMainPage.UseVisualStyleBackColor = true;
-            this.btnMainPage.Click += new System.EventHandler(this.BtnMainPage_Click);
             // 
             // grpAdd
             // 
@@ -411,7 +400,7 @@ namespace WineManager
             this.grpActions.Controls.Add(this.radAddBottle);
             this.grpActions.Location = new System.Drawing.Point(12, 12);
             this.grpActions.Name = "grpActions";
-            this.grpActions.Size = new System.Drawing.Size(652, 52);
+            this.grpActions.Size = new System.Drawing.Size(776, 52);
             this.grpActions.TabIndex = 2;
             this.grpActions.TabStop = false;
             this.grpActions.Text = "Que souhaitez-vous faire ?";
@@ -419,7 +408,7 @@ namespace WineManager
             // radDelBottles
             // 
             this.radDelBottles.AutoSize = true;
-            this.radDelBottles.Location = new System.Drawing.Point(403, 29);
+            this.radDelBottles.Location = new System.Drawing.Point(464, 29);
             this.radDelBottles.Name = "radDelBottles";
             this.radDelBottles.Size = new System.Drawing.Size(116, 17);
             this.radDelBottles.TabIndex = 1;
@@ -490,7 +479,6 @@ namespace WineManager
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.grpActions);
             this.Controls.Add(this.grpAdd);
-            this.Controls.Add(this.btnMainPage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "BottlesManagementfrm";
             this.Text = "Gestion des bouteilles";
@@ -508,8 +496,6 @@ namespace WineManager
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnMainPage;
         private System.Windows.Forms.GroupBox grpAdd;
         private System.Windows.Forms.GroupBox grpActions;
         private System.Windows.Forms.RadioButton radDelBottles;

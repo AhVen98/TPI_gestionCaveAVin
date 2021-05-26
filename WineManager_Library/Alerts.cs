@@ -44,7 +44,7 @@ namespace WineManager
             bool res = false;
             DBRequest req = new DBRequest();
 
-           // res = req.DelAlert(alert);
+           res = req.DelAlert(alert);
 
             return res;
 

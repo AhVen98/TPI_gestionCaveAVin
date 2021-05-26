@@ -29,7 +29,6 @@ namespace WineManager
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnMainPage = new System.Windows.Forms.Button();
             this.grpAdd = new System.Windows.Forms.GroupBox();
             this.lblDesc = new System.Windows.Forms.Label();
             this.rtxtDescription = new System.Windows.Forms.RichTextBox();
@@ -50,16 +49,6 @@ namespace WineManager
             this.grpActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgStorageBoxes)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnMainPage
-            // 
-            this.btnMainPage.Location = new System.Drawing.Point(670, 12);
-            this.btnMainPage.Name = "btnMainPage";
-            this.btnMainPage.Size = new System.Drawing.Size(118, 52);
-            this.btnMainPage.TabIndex = 0;
-            this.btnMainPage.Text = "Retourner à la page principale";
-            this.btnMainPage.UseVisualStyleBackColor = true;
-            this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
             // 
             // grpAdd
             // 
@@ -163,7 +152,7 @@ namespace WineManager
             this.grpActions.Controls.Add(this.radAddStorage);
             this.grpActions.Location = new System.Drawing.Point(12, 12);
             this.grpActions.Name = "grpActions";
-            this.grpActions.Size = new System.Drawing.Size(652, 52);
+            this.grpActions.Size = new System.Drawing.Size(776, 52);
             this.grpActions.TabIndex = 2;
             this.grpActions.TabStop = false;
             this.grpActions.Text = "Que souhaitez-vous faire ?";
@@ -171,7 +160,7 @@ namespace WineManager
             // radDelStorage
             // 
             this.radDelStorage.AutoSize = true;
-            this.radDelStorage.Location = new System.Drawing.Point(403, 29);
+            this.radDelStorage.Location = new System.Drawing.Point(518, 29);
             this.radDelStorage.Name = "radDelStorage";
             this.radDelStorage.Size = new System.Drawing.Size(118, 17);
             this.radDelStorage.TabIndex = 1;
@@ -220,7 +209,6 @@ namespace WineManager
             this.Controls.Add(this.dvgStorageBoxes);
             this.Controls.Add(this.grpActions);
             this.Controls.Add(this.grpAdd);
-            this.Controls.Add(this.btnMainPage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "StorageBoxesManagementfrm";
             this.Text = "Gestion des casiers";
@@ -238,8 +226,6 @@ namespace WineManager
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnMainPage;
         private System.Windows.Forms.GroupBox grpAdd;
         private System.Windows.Forms.GroupBox grpActions;
         private System.Windows.Forms.RadioButton radDelStorage;

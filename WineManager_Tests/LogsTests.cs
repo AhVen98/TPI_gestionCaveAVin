@@ -43,7 +43,7 @@ namespace WineManager
             bool resExpected = true;
             bool resCalculated;
 
-            resCalculated = Logs.AddLog("ajoutExisting",1);
+            resCalculated = Logs.AddLog("ajoutExistante",1);
 
             Assert.AreEqual(resExpected, resCalculated);
         }

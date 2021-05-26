@@ -35,6 +35,10 @@ namespace WineManager
             List<string> lstWines;
             List<string> listAlerts;
 
+            //clearing already present data
+            comboAlertOUT.Items.Clear();
+            comboWineChoice.Items.Clear();
+
             //list for all wines in "add an alert"
             lstWines = req.GetListWines();
             for (int i = 0; i < lstWines.Count; i++)
@@ -170,54 +174,26 @@ namespace WineManager
 
             // initializing the boolean to check if everything is correct -> all is false by default, so that if it works, it changes to true
             bool successAlert = false;
-            bool successMessage = false;
-            bool successBottles = false;
-            bool successFormat = false;
-            bool successPresence = false;
             bool successDel = false;
 
             /**
              * verification of data type
              * if a field is empty and shouldn't be -> the bottle won't be added
              */
-            if (txtAlert.Text != "")
+            if (comboAlertOUT.SelectedIndex != -1)
             {
-                alert = txtAlert.Text;
                 successAlert = true;
             }
-            if (rtxtMessage.Text != "")
-            {
-                message = rtxtMessage.Text;
-                successMessage = true;
-            }
-            if (lstSelectedWines.Count != 0)
-            {
-                successBottles = true;
-            }
 
-            //verify if the bottle to add already exists in database -> true : present, false : non present
-
-            // occur uniquely if the volume, the name and the year have been validated
-            if (successAlert && successMessage)
-            {
-                successPresence = req.CheckAlertPresence(alert);
-            }
-            // if all verification are ok -> will be true, otherwise, will be false
-            successFormat = successMessage && successAlert && successBottles && !successPresence;
             // all checks passed
-            if (successFormat)
+            if (successAlert)
             {
-                // adding the alert to the DB
-               // successAdd = Alerts.AddAlert(alert, message);
-                foreach (Bottles bot in lstSelectedWines)
-                {
-              //      Bottles.AddAlertToBottle(alert);
-                }
+                successDel = Alerts.DelAlert(comboAlertOUT.SelectedItem.ToString());
 
                 // message box to show, depending on the result when adding the alert
                 if (successDel)
                 {
-                    MessageBox.Show("L'ajout de l'alerte a été effectué correctement.");
+                    MessageBox.Show("L'alerte a été correctement supprimée.");
                 }
                 else
                 {
@@ -228,10 +204,10 @@ namespace WineManager
             else
             {
                 MessageBox.Show("Une des valeurs spécifiées est incorrecte.");
-                txtAlert.Text = "";
-                rtxtMessage.Text = "";
             }
             LoadData();
+            grpAddAlert.Hide();
+            grpDel.Show();
         }
 
         private void btnAddAlert_Click(object sender, EventArgs e)
@@ -303,6 +279,7 @@ namespace WineManager
                 MessageBox.Show("Une des valeurs spécifiées est incorrecte.");
                 txtAlert.Text = "";
                 rtxtMessage.Text = "";
+                comboWineChoice.Items.Clear();
             }
             LoadData();
         }

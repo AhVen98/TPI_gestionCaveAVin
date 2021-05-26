@@ -29,7 +29,6 @@ namespace WineManager
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnMainPage = new System.Windows.Forms.Button();
             this.btnResearch = new System.Windows.Forms.Button();
             this.dvgBottles = new System.Windows.Forms.DataGridView();
             this.grpSort = new System.Windows.Forms.GroupBox();
@@ -44,15 +43,6 @@ namespace WineManager
             ((System.ComponentModel.ISupportInitialize)(this.dvgBottles)).BeginInit();
             this.grpSort.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnMainPage
-            // 
-            this.btnMainPage.Location = new System.Drawing.Point(670, 12);
-            this.btnMainPage.Name = "btnMainPage";
-            this.btnMainPage.Size = new System.Drawing.Size(118, 52);
-            this.btnMainPage.TabIndex = 0;
-            this.btnMainPage.Text = "Retourner à la page principale";
-            this.btnMainPage.UseVisualStyleBackColor = true;
             // 
             // btnResearch
             // 
@@ -149,9 +139,9 @@ namespace WineManager
             // 
             // btnPDF
             // 
-            this.btnPDF.Location = new System.Drawing.Point(503, 12);
+            this.btnPDF.Location = new System.Drawing.Point(627, 17);
             this.btnPDF.Name = "btnPDF";
-            this.btnPDF.Size = new System.Drawing.Size(161, 23);
+            this.btnPDF.Size = new System.Drawing.Size(161, 47);
             this.btnPDF.TabIndex = 9;
             this.btnPDF.Text = "Exporter en PDF";
             this.btnPDF.UseVisualStyleBackColor = true;
@@ -159,9 +149,9 @@ namespace WineManager
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(503, 41);
+            this.btnPrint.Location = new System.Drawing.Point(460, 17);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(161, 23);
+            this.btnPrint.Size = new System.Drawing.Size(161, 49);
             this.btnPrint.TabIndex = 9;
             this.btnPrint.Text = "Imprimer";
             this.btnPrint.UseVisualStyleBackColor = true;
@@ -179,7 +169,6 @@ namespace WineManager
             this.Controls.Add(this.grpSort);
             this.Controls.Add(this.dvgBottles);
             this.Controls.Add(this.btnResearch);
-            this.Controls.Add(this.btnMainPage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Researchfrm";
             this.Text = "Rechercher";
@@ -193,8 +182,6 @@ namespace WineManager
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnMainPage;
         private System.Windows.Forms.Button btnResearch;
         private System.Windows.Forms.DataGridView dvgBottles;
         private System.Windows.Forms.GroupBox grpSort;

@@ -12,7 +12,7 @@ namespace WineManager
     public class AlertsTests
     {
         List<Alerts> lstAlerts = new List<Alerts>();
-        Alerts alertToAdd = new Alerts("ajout d'alerte", "ceci est un ajout d'alerte", "cépageTest 5");
+        Alerts alertToAdd = new Alerts("ajout d'alerte", "ceci est un ajout d'alerte", "cepageTest 5");
 
         [TestInitialize]
         public void Initialize()
@@ -24,7 +24,7 @@ namespace WineManager
                     new Alerts("alerte3", "message3", "bouteille3"), 
                     new Alerts("alerte4", "message4", "bouteille4") 
                 };
-            alertToAdd = new Alerts("ajout d'alerte", "ceci est un ajout d'alerte", "cépageTest 5");
+            alertToAdd = new Alerts("ajout d'alerte", "ceci est un ajout d'alerte", "cepageTest 5");
         }
 
         [TestMethod]

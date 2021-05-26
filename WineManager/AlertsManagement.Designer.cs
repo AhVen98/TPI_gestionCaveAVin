@@ -29,7 +29,6 @@ namespace WineManager
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnMainPage = new System.Windows.Forms.Button();
             this.grpAddAlert = new System.Windows.Forms.GroupBox();
             this.dgvSelected = new System.Windows.Forms.DataGridView();
             this.btnAddBottle = new System.Windows.Forms.Button();
@@ -59,15 +58,6 @@ namespace WineManager
             this.grpActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgAlerts)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnMainPage
-            // 
-            this.btnMainPage.Location = new System.Drawing.Point(670, 12);
-            this.btnMainPage.Name = "btnMainPage";
-            this.btnMainPage.Size = new System.Drawing.Size(118, 52);
-            this.btnMainPage.TabIndex = 0;
-            this.btnMainPage.Text = "Retourner à la page principale";
-            this.btnMainPage.UseVisualStyleBackColor = true;
             // 
             // grpAddAlert
             // 
@@ -222,7 +212,7 @@ namespace WineManager
             this.grpActions.Controls.Add(this.radAddAlert);
             this.grpActions.Location = new System.Drawing.Point(12, 12);
             this.grpActions.Name = "grpActions";
-            this.grpActions.Size = new System.Drawing.Size(652, 52);
+            this.grpActions.Size = new System.Drawing.Size(776, 52);
             this.grpActions.TabIndex = 2;
             this.grpActions.TabStop = false;
             this.grpActions.Text = "Que souhaitez-vous faire ?";
@@ -230,7 +220,7 @@ namespace WineManager
             // radDelAlerts
             // 
             this.radDelAlerts.AutoSize = true;
-            this.radDelAlerts.Location = new System.Drawing.Point(403, 29);
+            this.radDelAlerts.Location = new System.Drawing.Point(471, 29);
             this.radDelAlerts.Name = "radDelAlerts";
             this.radDelAlerts.Size = new System.Drawing.Size(122, 17);
             this.radDelAlerts.TabIndex = 1;
@@ -301,7 +291,6 @@ namespace WineManager
             this.Controls.Add(this.dvgAlerts);
             this.Controls.Add(this.grpActions);
             this.Controls.Add(this.grpAddAlert);
-            this.Controls.Add(this.btnMainPage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AlertsManagementfrm";
             this.Text = "Gestion des alertes";
@@ -321,8 +310,6 @@ namespace WineManager
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnMainPage;
         private System.Windows.Forms.GroupBox grpAddAlert;
         private System.Windows.Forms.GroupBox grpActions;
         private System.Windows.Forms.RadioButton radDelAlerts;

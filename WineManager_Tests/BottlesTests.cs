@@ -19,11 +19,11 @@ namespace WineManager
         List<Bottles> lstVarietal = new List<Bottles>();
         List<Bottles> lstBottlesWithAlerts = new List<Bottles>();
 
-        Bottles bottleByName = new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test");
+        Bottles bottleByName = new Bottles("bouteille1", "rouge", 4, 1.0, "producteur1", 2020, "cepage3", "casier 2", "description test");
         Bottles bottle3Params = new Bottles("bouteille3", 0.75, 1995);
-        Bottles bottleToUpdate = new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test");
-        Bottles bottleToAdd = new Bottles("bouteille4", "rouge", 5, 0.5, "producteur 1", 2015, "cépage1, cépage2", "casier1", "description Bouteille4");
-        
+        Bottles bottleToUpdate = new Bottles("bouteille1", "rouge", 4, 1.0, "producteur1", 2020, "cepage3", "casier 2", "description test");
+        Bottles bottleToAdd = new Bottles("bouteille4", "rouge", 5, 0.5, "producteur1", 2015, "cepage1, cepage2", "casier 1", "description Bouteille4");
+
         Alerts alert = new Alerts("alerte1", "message1", "bouteille1");
 
         [TestInitialize]
@@ -31,47 +31,47 @@ namespace WineManager
         {
             lstBottles = new List<Bottles>() 
                 { 
-                    new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test"), 
-                    new Bottles("bouteille2", "blanc", 6, 1.5, "producteur 3", 1960, "cépage2", "casier3", "description bouteille 2"), 
-                    new Bottles("bouteille3", "rose", 1, 1.0, "producteur 1", 1999, "cépage1", "casier1", "description bouteille 3")
+                    new Bottles("bouteille1", "rouge", 4, 1.0, "producteur1", 2020, "cepage3", "casier 2", "description test"), 
+                    new Bottles("bouteille2", "blanc", 6, 1.5, "producteur3", 1960, "cepage2", "casier 3", "description bouteille 2"), 
+                    new Bottles("bouteille3", "rose", 1, 1.0, "producteur1", 1999, "cepage1", "casier 1", "description bouteille 3")
                 };
             lstColor = new List<Bottles>()
                 {
-                    new Bottles("bouteille2", "blanc", 6, 1.5, "producteur 3", 1960, "cépage2", "casier3", "description bouteille 2"),
-                    new Bottles("bouteille3", "rose", 1, 1.0, "producteur 1", 1999, "cépage1", "casier1", "description bouteille 3"),
-                    new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test"),
+                    new Bottles("bouteille2", "blanc", 6, 1.5, "producteur3", 1960, "cepage2", "casier 3", "description bouteille 2"),
+                    new Bottles("bouteille3", "rose", 1, 1.0, "producteur1", 1999, "cepage1", "casier 1", "description bouteille 3"),
+                    new Bottles("bouteille1", "rouge", 4, 1.0, "producteur1", 2020, "cepage3", "casier 2", "description test"),
                 };
             lstManufacturer = new List<Bottles>()
                 {
-                    new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test"),
-                    new Bottles("bouteille3", "rose", 1, 1.0, "producteur 1", 1999, "cépage1", "casier1", "description bouteille 3"),
-                    new Bottles("bouteille2", "blanc", 6, 1.5, "producteur 3", 1960, "cépage2", "casier3", "description bouteille 2"),
+                    new Bottles("bouteille1", "rouge", 4, 1, "producteur1", 2020, "cepage3", "casier 2", "description test"),
+                    new Bottles("bouteille3", "rose", 1, 1, "producteur1", 1999, "cepage1", "casier 1", "description bouteille 3"),
+                    new Bottles("bouteille2", "blanc", 6, 1.5, "producteur3", 1960, "cepage2", "casier 3", "description bouteille 2"),
                 };
             lstCountry = new List<Bottles>()
                 {
-                    new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test"),
-                    new Bottles("bouteille3", "rose", 1, 1.0, "producteur 1", 1999, "cépage1", "casier1", "description bouteille 3"),
-                    new Bottles("bouteille2", "blanc", 6, 1.5, "producteur 3", 1960, "cépage2", "casier3", "description bouteille 2"),
+                    new Bottles("bouteille1", "rouge", 4, 1, "producteur1", 2020, "cepage3", "casier 2", "description test"),
+                    new Bottles("bouteille3", "rose", 1, 1, "producteur1", 1999, "cepage1", "casier 1", "description bouteille 3"),
+                    new Bottles("bouteille2", "blanc", 6, 1.5, "producteur3", 1960, "cepage2", "casier 3", "description bouteille 2"),
                 };
             lstKeyword = new List<Bottles>()
                 {
-                    new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test")
+                    new Bottles("bouteille1", "rouge", 4, 1, "producteur1", 2020, "cepage3", "casier 2", "description test")
                 };
             lstVarietal = new List<Bottles>()
                 {
-                    new Bottles("bouteille3", "rose", 1, 1.0, "producteur 1", 1999, "cépage1", "casier1", "description bouteille 3"),
-                    new Bottles("bouteille2", "blanc", 6, 1.5, "producteur 3", 1960, "cépage2", "casier3", "description bouteille 2"),
-                    new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test"),
+                    new Bottles("bouteille3", "rose", 1, 1, "producteur1", 1999, "cepage1", "casier 1", "description bouteille 3"),
+                    new Bottles("bouteille2", "blanc", 6, 1.5, "producteur3", 1960, "cepage2", "casier 3", "description bouteille 2"),
+                    new Bottles("bouteille1", "rouge", 4, 1, "producteur1", 2020, "cepage3", "casier 2", "description test"),
                  };
             lstBottlesWithAlerts = new List<Bottles>()
                 {
-                    new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test"),
+                    new Bottles("bouteille2", null, 0, 1.5, null, 1960, null, null, null)
                 };
 
-            bottleByName = new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test");
+            bottleByName = new Bottles("bouteille1", "rouge", 4, 1.0, "producteur1", 2020, "cepage3", "casier 2", "description test");
             bottle3Params = new Bottles("bouteille3", 0.75, 1995);
-            bottleToAdd = new Bottles("bouteille4", "rouge", 5, 0.5, "producteur 1", 2015, "cépage1, cépage2", "casier1", "description Bouteille4");
-            bottleToUpdate = new Bottles("bouteille1", "rouge", 4, 1.0, "producteur 1", 2020, "cépage3", "casier2", "description test");
+            bottleToAdd = new Bottles("bouteille4", "rouge", 5, 0.5, "producteur1", 2015, "cepage1, cepage2", "casier 1", "description Bouteille4");
+            bottleToUpdate = new Bottles("bouteille1", "rouge", 4, 1.0, "producteur1", 2020, "cepage3", "casier 2", "description test");
             
             alert = new Alerts("alerte1", "message1", "bouteille1");
         }
@@ -92,10 +92,17 @@ namespace WineManager
         {
             bool resExpected = true;
             bool resCalculated;
+            
+            List<string> lstVarietal = new List<string>();
+            string[] subs = bottleToAdd.Varietal.Split(',');
+            foreach(string sub in subs)
+            {
+                lstVarietal.Add(sub);
+            }
 
-            // resCalculated = Bottles.AddBottleWithDescAndVarietal(bottleToAdd.Name, bottleToAdd.Color, bottleToAdd.BottleNumber, bottleToAdd.Volume, bottleToAdd.Manufacturer, bottleToAdd.Year, bottleToAdd.Storage, bottleToAdd.Varietal, bottleToAdd.Description);
+             resCalculated = Bottles.AddBottleWithDescAndVarietal(bottleToAdd.Name, bottleToAdd.Color, bottleToAdd.BottleNumber, bottleToAdd.Volume, bottleToAdd.Manufacturer, bottleToAdd.Year, bottleToAdd.Storage, lstVarietal, bottleToAdd.Description);
 
-           // Assert.AreEqual(resExpected, resCalculated);
+            Assert.AreEqual(resExpected, resCalculated);
         }
 
         [TestMethod]
@@ -104,7 +111,7 @@ namespace WineManager
             bool resExpected = true;
             bool resCalculated;
 
-            resCalculated = Bottles.AddAlertToBottle(bottleToAdd.Name, alert.Name);
+            resCalculated = Bottles.AddAlertToBottle(bottleByName.Name, alert.Name);
 
             Assert.AreEqual(resExpected, resCalculated);
         }
@@ -192,7 +199,7 @@ namespace WineManager
             List<Bottles> resExpected = lstBottlesWithAlerts;
             List<Bottles> resCalculated = new List<Bottles>();
 
-            resCalculated = Bottles.GetBottlesWithAlert(1);
+            resCalculated = Bottles.GetBottlesWithAlert(2);
 
             Assert.AreEqual(resExpected, resCalculated);
         }

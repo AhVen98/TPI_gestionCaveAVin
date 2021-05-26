@@ -36,6 +36,8 @@ namespace WineManager
             //initializing the list for the storage to delete
             List<string> lstStorages = new List<string>();
 
+            comboStorage.Items.Clear();
+
             //list for all manufacturer in "add a bottle" and "remove a bottle"
             lstStorages = req.GetListStorages();
             for (int i = 0; i < lstStorages.Count; i++)
@@ -60,6 +62,7 @@ namespace WineManager
             dvgStorageBoxes.Columns[1].Name = "Emplacement - description";
             dvgStorageBoxes.Columns[0].Width = 130;
 
+            dvgStorageBoxes.Rows.Clear();
             List<StorageBoxes> lstBox = StorageBoxes.ShowAllBoxes();
             foreach (StorageBoxes box in lstBox)
             {

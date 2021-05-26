@@ -29,34 +29,24 @@ namespace WineManager
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnMainPage = new System.Windows.Forms.Button();
             this.dvgLogs = new System.Windows.Forms.DataGridView();
             this.lblLogs = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dvgLogs)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnMainPage
-            // 
-            this.btnMainPage.Location = new System.Drawing.Point(670, 12);
-            this.btnMainPage.Name = "btnMainPage";
-            this.btnMainPage.Size = new System.Drawing.Size(118, 52);
-            this.btnMainPage.TabIndex = 0;
-            this.btnMainPage.Text = "Retourner à la page principale";
-            this.btnMainPage.UseVisualStyleBackColor = true;
-            // 
             // dvgLogs
             // 
             this.dvgLogs.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dvgLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgLogs.Location = new System.Drawing.Point(12, 70);
+            this.dvgLogs.Location = new System.Drawing.Point(12, 34);
             this.dvgLogs.Name = "dvgLogs";
-            this.dvgLogs.Size = new System.Drawing.Size(776, 442);
+            this.dvgLogs.Size = new System.Drawing.Size(776, 478);
             this.dvgLogs.TabIndex = 5;
             // 
             // lblLogs
             // 
             this.lblLogs.AutoSize = true;
-            this.lblLogs.Location = new System.Drawing.Point(12, 51);
+            this.lblLogs.Location = new System.Drawing.Point(12, 18);
             this.lblLogs.Name = "lblLogs";
             this.lblLogs.Size = new System.Drawing.Size(111, 13);
             this.lblLogs.TabIndex = 6;
@@ -69,7 +59,6 @@ namespace WineManager
             this.ClientSize = new System.Drawing.Size(800, 524);
             this.Controls.Add(this.lblLogs);
             this.Controls.Add(this.dvgLogs);
-            this.Controls.Add(this.btnMainPage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Logsfrm";
             this.Text = "Historique";
@@ -81,8 +70,6 @@ namespace WineManager
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnMainPage;
         private System.Windows.Forms.DataGridView dvgLogs;
         private System.Windows.Forms.Label lblLogs;
     }

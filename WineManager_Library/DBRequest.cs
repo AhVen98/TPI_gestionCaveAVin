@@ -1110,7 +1110,7 @@ namespace WineManager
                 "LEFT JOIN colors ON wines.color_id = colors.id " +
                 "LEFT JOIN manufacturers ON wines.manufacturer_id = manufacturers.id " +
                 "LEFT JOIN storageBoxes ON wines.storagebox_id = storageBoxes.id " +
-                "WHERE wines.wineName = @key OR wines.description = @key";
+                "WHERE wines.wineName = @key OR WHERE wines.description = @key";
 
             cdmGetBottles.Parameters.AddWithValue("@key", keyword);
             MySqlDataReader value = connDB.Select(cdmGetBottles);
@@ -1628,8 +1628,9 @@ namespace WineManager
         }
 
 
-        public void LogAddExist(int bottleID)
+        public bool LogAddExist(int bottleID)
         {
+            bool res = false;
             string bottleName = GetBottleNameWithID(bottleID);
             string detail = "Ajout de quantité de la bouteille " + bottleName + "dans la base de données";
             MySqlCommand AddLog = connDB.CreateQuery();
@@ -1646,16 +1647,17 @@ namespace WineManager
             AddLog.Parameters.AddWithValue("@detail", detail);
 
 
-            connDB.ExecuteQuery(AddLog);
+            res = connDB.ExecuteQueryWCheck(AddLog);
 
             connDB.CloseConnection();
+            return res;
         }
 
 
         public void LogDel(int bottleID)
         {
             string bottleName = GetBottleNameWithID(bottleID);
-            string detail = "Retrait de la bouteille " + bottleName + "de la base de données";
+            string detail = "Retrait de la bouteille " + bottleName + " de la base de données";
             MySqlCommand DelLog = connDB.CreateQuery();
 
             connDB.OpenConnection();
@@ -1663,7 +1665,7 @@ namespace WineManager
             DelLog.CommandText = "INSERT INTO logs " +
                 "(actionName, time, detail, wine_id) " +
                 "VALUES " +
-                "('Ajout de bouteille', @time, @detail, @wine)";
+                "('Retrait de bouteille', @time, @detail, @wine)";
             // link to all parameters needed in the request
             DelLog.Parameters.AddWithValue("@time", DateTime.Now);
             DelLog.Parameters.AddWithValue("@wine", bottleID);
@@ -1781,6 +1783,28 @@ namespace WineManager
             // link to all parameters needed in the request
             cmd.Parameters.AddWithValue("@wine", bottleID);
             cmd.Parameters.AddWithValue("@alert", alertID);
+
+            res = connDB.ExecuteQueryWCheck(cmd);
+            connDB.CloseConnection();
+
+            return res;
+        }
+
+        public bool DelAlert(string alert)
+        {
+            bool res = false;
+            int alertID = GetAlertIDByName(alert);
+
+            MySqlCommand cmd = connDB.CreateQuery();
+
+            connDB.OpenConnection();
+
+            cmd.CommandText = "DELETE FROM " +
+                "alerts " +
+                "WHERE " +
+                "alerts.id = @id";
+            // link to all parameters needed in the request
+            cmd.Parameters.AddWithValue("@id", alertID);
 
             res = connDB.ExecuteQueryWCheck(cmd);
             connDB.CloseConnection();

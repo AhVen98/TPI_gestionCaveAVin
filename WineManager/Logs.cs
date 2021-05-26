@@ -41,7 +41,7 @@ namespace WineManager
             List<Logs> lstLogs = Logs.GetAllLogs();
             foreach (Logs log in lstLogs)
             {
-                string[] row = { log.ExactTime.ToString(), log.Action, log.Element };
+                string[] row = { log.ExactTime.ToString(), log.Element, log.Action };
                 dvgLogs.Rows.Add(row);
             }
         }

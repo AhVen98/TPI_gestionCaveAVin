@@ -98,10 +98,6 @@ namespace WineManager
 
         }
 
-        private void BtnMainPage_Click(object sender, EventArgs e)
-        {
-            //ShowMainPage();
-        }
 
         private void btnDel_Click(object sender, EventArgs e)
         {

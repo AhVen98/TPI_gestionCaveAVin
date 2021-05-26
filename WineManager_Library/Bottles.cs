@@ -104,7 +104,6 @@ namespace WineManager
             res = req.AddAlertToBottle(name,alert);
 
             return res;
-
         }
 
         static public bool RemoveBottle(string name, int num, double vol, string manu, int year)
