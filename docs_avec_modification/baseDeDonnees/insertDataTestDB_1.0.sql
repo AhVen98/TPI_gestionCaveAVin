@@ -15,10 +15,10 @@ insert into colors (wineColor) values
 ;
 
 insert into grapeVarieties(varietyName) values 
-("cépage1"),
-("cépage2"),
-("cépage3"),
-("cépage4")
+("cepage1"),
+("cepage2"),
+("cepage3"),
+("cepage4")
 ;
 
 insert into manufacturers(manufacturersName, country_id) values 
@@ -61,7 +61,7 @@ insert into wines_has_alerts(alert_id, wine_id) values
 (1,1),
 (2,2),
 (3,3),
-(4,4)
+(4,1)
 ;
 
 
