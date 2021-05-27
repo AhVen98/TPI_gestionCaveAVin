@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "wineManager_v1.0", "wineManager_v1.0.vdproj", "{BC8E8AF9-92C2-4114-8DC1-19BB5F008445}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC8E8AF9-92C2-4114-8DC1-19BB5F008445}.Debug|Default.ActiveCfg = Debug
+		{BC8E8AF9-92C2-4114-8DC1-19BB5F008445}.Debug|Default.Build.0 = Debug
+		{BC8E8AF9-92C2-4114-8DC1-19BB5F008445}.Release|Default.ActiveCfg = Release
+		{BC8E8AF9-92C2-4114-8DC1-19BB5F008445}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F5A68CA-4BE4-422C-9AD6-B6AA11A9D687}
+	EndGlobalSection
+EndGlobal
