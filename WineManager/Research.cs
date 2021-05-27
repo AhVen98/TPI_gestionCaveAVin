@@ -42,7 +42,7 @@ namespace WineManager
             }
             else
             {
-                MessageBox.Show("Sans texte de reserche, cela ne fonctionnera pas");
+                MessageBox.Show("Sans texte de recherche, cela ne fonctionnera pas");
             }
         }
 

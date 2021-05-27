@@ -24,8 +24,9 @@ namespace WineManager
         {
             // Création de la chaîne de connexion
             string connectionString;
-           // connectionString = "SERVER=127.0.0.1; DATABASE=wineManager; UID=root; PASSWORD=root";
-            connectionString = "SERVER=127.0.0.1; DATABASE=wineManagerTests; UID=root; PASSWORD=root";
+            connectionString = "SERVER=127.0.0.1; DATABASE=wineManager; UID=root; PASSWORD=root";
+            // the below line is to be activated if you want to execute the tests. Care to generate anew the test DB each time you launch the tests
+            //connectionString = "SERVER=127.0.0.1; DATABASE=wineManagerTests; UID=root; PASSWORD=root";
             connection = new MySqlConnection(connectionString);
         }
 
