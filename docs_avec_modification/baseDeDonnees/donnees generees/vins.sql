@@ -1,0 +1,4 @@
+INSERT INTO `winemanager`.`wines` (`color_id`, `manufacturer_id`, `storagebox_id`, `bottleNumber`, `productionYear`, `volume`, `wineName`, `description`) VALUES ('1', '3', '5', '5', '1990', '1.5', 'Pinot Noir', 'vin rouge, passe bien avec un morceau de viande');
+INSERT INTO `winemanager`.`wines` (`color_id`, `manufacturer_id`, `storagebox_id`, `bottleNumber`, `productionYear`, `volume`, `wineName`, `description`) VALUES ('3', '2', '10', '10', '2020', '0.5', 'vin 2', 'passe avec xxx');
+INSERT INTO `winemanager`.`wines` (`color_id`, `manufacturer_id`, `storagebox_id`, `bottleNumber`, `productionYear`, `volume`, `wineName`, `description`) VALUES ('3', '1', '4', '2', '2000', '3', 'Arvine', 'blanc d\'apéro');
+INSERT INTO `winemanager`.`wines` (`color_id`, `manufacturer_id`, `storagebox_id`, `bottleNumber`, `productionYear`, `volume`, `wineName`, `description`) VALUES ('2', '2', '8', '8', '2015', '0.75', 'Rosé', 'rosé, piquant');
